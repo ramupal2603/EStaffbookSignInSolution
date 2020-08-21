@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Staff Solution</string>
+    <string name="clear_pad">Clear</string>
+    <string name="save_signature">Save</string>
+    <string name="login_bottom_title">Staff Management Version 1.0</string>
+    <string name="start_sign_above">Start sign above</string>
+</resources>
