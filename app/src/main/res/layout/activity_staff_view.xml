@@ -51,6 +51,7 @@
         android:textSize="@dimen/smallTextSize" />
 
     <RelativeLayout
+        android:id="@+id/rLoutStaffView"
         style="@style/StaffButtonTheme"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
