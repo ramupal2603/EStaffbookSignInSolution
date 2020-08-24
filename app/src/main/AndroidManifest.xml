@@ -41,6 +41,8 @@
 
         <activity android:name=".ui.qrCodeScannerView.QrCodeScannerViewActivity" />
 
+        <activity android:name=".ui.managerView.managerDashboard.ManageDashboardActivity" />
+
         <activity
             android:name=".ui.staffView.dashboard.StaffDashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />

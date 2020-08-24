@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_marginTop="@dimen/commonViewMargin"
+        android:src="@drawable/ic_logo" />
+
+
+    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+        android:id="@+id/txtWelcomeUserId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/commonViewMargin"
+        android:gravity="center"
+        android:text="@string/welcome_label"
+        android:textColor="@color/themeColor"
+        android:textSize="@dimen/headerTextSize" />
+
+
+    <ImageView
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/img_qrcode_desc"
+        android:src="@drawable/ic_qr_code_sample" />
+
+    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Please scan your QR Code"
+        android:layout_marginTop="@dimen/common_margin"
+        android:textColor="@color/themeColor"
+        android:textSize="@dimen/smallTextSize" />
+
+    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin"
+        android:gravity="center"
+        android:text="Or if working remotely "
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/smallTextSize" />
+
+    <RelativeLayout
+        android:id="@+id/rLoutStaffView"
+        style="@style/StaffButtonTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/common_margin"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/staff_report"
+            android:textSize="@dimen/headerTextSize" />
+
+        <ImageView
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/common_margin"
+            android:src="@drawable/ic_staff_report"
+            app:tint="@color/themeColor" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rLoutFireEvacuationView"
+        style="@style/StaffButtonTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/common_margin"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/fire_evacuation"
+            android:textSize="@dimen/headerTextSize" />
+
+        <ImageView
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/common_margin"
+            android:src="@drawable/ic_fire_icon"
+            app:tint="@color/themeColor" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

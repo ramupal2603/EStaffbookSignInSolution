@@ -22,6 +22,7 @@ import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.ui.Utils;
 import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
+import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 
 import butterknife.ButterKnife;
@@ -142,11 +143,16 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
+    public void openManagerDashboard() {
+        Intent intent = new Intent(getActivity(), ManageDashboardActivity.class);
+        startActivity(intent);
+    }
+
     public void startActivityAfterSeconds() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                openStaffDashboard();
+                openManagerDashboard();
             }
         }, ConstantClass.REDIRECTION_INTERVAL);
     }
