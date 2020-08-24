@@ -1,11 +1,16 @@
 package com.brinfotech.feedbacksystem.baseClasses;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,7 +19,10 @@ import android.widget.Toast;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
+import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.ui.Utils;
+import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
+import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -127,6 +135,20 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public BaseActivity getActivity() {
         return BaseActivity.this;
+    }
+
+    public void openStaffDashboard() {
+        Intent intent = new Intent(getActivity(), StaffDashboardActivity.class);
+        startActivity(intent);
+    }
+
+    public void startActivityAfterSeconds() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                openStaffDashboard();
+            }
+        }, ConstantClass.REDIRECTION_INTERVAL);
     }
 
 }

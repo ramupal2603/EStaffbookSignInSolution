@@ -71,7 +71,8 @@ dependencies {
 
     //FilePicker
     implementation 'com.vincent.filepicker:MultiTypeFilePicker:1.0.8'
-    implementation 'pub.devrel:easypermissions:2.0.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
 
     //Dimension
     implementation 'com.intuit.sdp:sdp-android:1.0.6'

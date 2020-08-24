@@ -12,4 +12,14 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+
+    <style name="StaffButtonTheme">
+        <item name="android:layout_marginLeft">@dimen/commonViewMargin</item>
+        <item name="android:layout_marginRight">@dimen/commonViewMargin</item>
+        <item name="android:layout_marginTop">@dimen/common_margin</item>
+        <item name="android:background">@drawable/edt_background</item>
+
+    </style>
+
+
 </resources>

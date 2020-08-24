@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/fab_margin"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.loginScreen.LoginActivity"
-    android:background="@color/colorWhite"
     tools:ignore="MissingDefaultResource"
     tools:showIn="@layout/activity_login">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_55sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:src="@drawable/ic_logo" />
 
 
@@ -23,57 +24,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-
+        android:gravity="center"
         android:orientation="vertical">
 
         <com.brinfotech.feedbacksystem.customClasses.FontsTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:text="Please Login"
-            android:textColor="@color/grayColor"
-            android:textSize="@dimen/_24sdp" />
+            android:text="[ Scan QRCode to login ]"
+            android:textColor="@color/themeColor"
+            android:textSize="@dimen/headerTextSize" />
 
-
-        <EditText
-            android:id="@+id/edtUserName"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edtTextHeight"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/edt_background"
-            android:gravity="center"
-            android:hint="Email Address"
-            android:text=""
-            android:imeOptions="actionNext"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/grayColor" />
-
-
-        <EditText
-            android:id="@+id/edtPwd"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edtTextHeight"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edt_background"
-            android:gravity="center"
-            android:hint="Password"
-            android:text=""
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColor="@color/grayColor" />
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edtTextHeight"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_border_color"
-            android:text="Login"
-            android:textColor="@color/whiteColor"
-            android:textSize="22sp" />
+        <me.dm7.barcodescanner.zxing.ZXingScannerView
+            android:id="@+id/qrCodeScannerView"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_20sdp" />
 
 
     </LinearLayout>

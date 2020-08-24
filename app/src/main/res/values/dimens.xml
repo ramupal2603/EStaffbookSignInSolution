@@ -3,6 +3,11 @@
 
     <dimen name="fab_margin">@dimen/_10sdp</dimen>
     <dimen name="common_margin">@dimen/_8sdp</dimen>
-    <dimen name="edtTextHeight">@dimen/_50sdp</dimen>
+    <dimen name="edtTextHeight">@dimen/_55sdp</dimen>
+    <dimen name="headerTextSize">@dimen/_20sdp</dimen>
+    <dimen name="mediumTextSize">@dimen/_16sdp</dimen>
+    <dimen name="smallTextSize">@dimen/_14sdp</dimen>
+    <dimen name="verySmallTextSize">@dimen/_12sdp</dimen>
+    <dimen name="commonViewMargin">@dimen/_20sdp</dimen>
 
 </resources>
