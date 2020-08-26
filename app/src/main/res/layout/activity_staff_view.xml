@@ -71,8 +71,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:padding="@dimen/common_margin"
-            android:src="@drawable/ic_sign_in"
-            app:tint="@color/themeColor" />
+            android:src="@drawable/ic_blue_button"
+            />
 
 
     </RelativeLayout>

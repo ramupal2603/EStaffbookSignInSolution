@@ -4,32 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/fab_margin"
+    android:layout_marginBottom="@dimen/common_margin"
     android:background="@color/colorWhite"
     android:orientation="vertical"
-    android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.loginScreen.LoginActivity"
     tools:ignore="MissingDefaultResource"
-    tools:showIn="@layout/activity_login">
+    tools:showIn="@layout/activity_scan_qr_code">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:src="@drawable/ic_logo" />
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_logo" />
+
         <com.brinfotech.feedbacksystem.customClasses.FontsTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
             android:gravity="center"
             android:text="[ Scan QRCode to Sign in ]"
             android:textColor="@color/themeColor"
@@ -37,17 +38,90 @@
 
         <me.dm7.barcodescanner.zxing.ZXingScannerView
             android:id="@+id/qrCodeScannerView"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_250sdp"
-            android:layout_marginTop="@dimen/_20sdp" />
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginTop="@dimen/common_margin" />
 
 
     </LinearLayout>
 
     <com.brinfotech.feedbacksystem.customClasses.FontsTextView
         android:layout_width="match_parent"
+        android:text="Please Scan your QRCode to sign in/out"
+        android:gravity="center"
+        android:textColor="@color/themeColor"
+        android:layout_marginTop="@dimen/common_margin"
+        android:textSize="@dimen/verySmallTextSize"
+        android:layout_height="wrap_content"/>
+
+    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+        android:layout_width="match_parent"
+        android:text="or sign in and out manually"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/common_margin"
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/verySmallTextSize"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/rLoutStaffSignIn"
+        style="@style/StaffButtonTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/sign_in"
+            android:textSize="@dimen/headerTextSize" />
+
+        <ImageView
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/common_margin"
+            android:src="@drawable/ic_green_button"
+             />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rLoutStaffSignOut"
+        style="@style/StaffButtonTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/sign_out"
+            android:textSize="@dimen/headerTextSize" />
+
+        <ImageView
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/common_margin"
+            android:src="@drawable/ic_red_button"
+            />
+
+
+    </RelativeLayout>
+
+    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center"
+        android:layout_marginTop="@dimen/common_margin"
         android:text="@string/login_bottom_title"
         android:textColor="#929292"
         android:textSize="@dimen/_18sdp"

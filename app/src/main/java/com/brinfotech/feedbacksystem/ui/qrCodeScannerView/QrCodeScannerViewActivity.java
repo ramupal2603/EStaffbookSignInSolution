@@ -37,8 +37,6 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
 
         initializeScannerView();
 
-        startActivityAfterSeconds();
-
     }
 
     @Override

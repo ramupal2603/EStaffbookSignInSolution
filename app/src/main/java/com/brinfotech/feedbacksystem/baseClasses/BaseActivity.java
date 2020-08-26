@@ -152,7 +152,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                openManagerDashboard();
+                openStaffDashboard();
             }
         }, ConstantClass.REDIRECTION_INTERVAL);
     }
