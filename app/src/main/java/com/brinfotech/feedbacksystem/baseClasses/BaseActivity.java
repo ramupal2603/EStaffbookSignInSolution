@@ -3,8 +3,8 @@ package com.brinfotech.feedbacksystem.baseClasses;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
-import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
@@ -27,6 +26,11 @@ import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashb
 import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
@@ -206,6 +210,26 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public boolean isUserLoggedIn() {
         return Prefs.getBoolean(PreferenceKeys.USER_LOGGED_IN, false);
+    }
+
+    public Bitmap generateQRCode(String userId) {
+        if (!userId.isEmpty()) {
+            Bitmap qrCodeBitmap = null;
+            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+            try {
+                BitMatrix bitMatrix = multiFormatWriter.encode(userId, BarcodeFormat.QR_CODE, 250, 250);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                qrCodeBitmap = bitmap;
+
+            } catch (WriterException e) {
+                e.printStackTrace();
+            }
+            return qrCodeBitmap;
+        }
+
+        return null;
+
     }
 
 
