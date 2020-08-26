@@ -27,54 +27,125 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/common_margin"
-            android:layout_marginBottom="@dimen/common_margin"
-            android:layout_weight="1"
-            android:background="@drawable/bg_gray_round_shape"
-            android:orientation="vertical"
-            tools:ignore="InefficientWeight">
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/loutResultView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.70"
+                android:background="@drawable/bg_gray_round_shape"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_vialoent_round_shape">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:gravity="center"
+                        android:text="Name"
+                        android:textColor="@color/whiteColor" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical|end"
+                        android:text="Present"
+                        android:textColor="@color/whiteColor" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvFireEvacuationList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:visibility="visible">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+            <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                android:id="@+id/txtVisitorListEmptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:text="No Visitors Found !!"
+                android:textColor="@color/grayColor"
+                android:textSize="20sp"
+                android:visibility="gone" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/bg_vialoent_round_shape"
-                android:orientation="horizontal">
+                android:layout_height="0dp"
+                android:layout_weight="0.30"
+                android:orientation="vertical">
 
-                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.40"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/common_margin"
-                    android:text="Name"
-                    android:textColor="@color/whiteColor"
-                    android:textSize="@dimen/headerTextSize" />
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_border_color"
+                    android:text="Save Fire Evacuation List"
+                    android:textAllCaps="false"
 
-                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.30"
-                    android:gravity="center"
-                    android:text="@string/in"
                     android:textColor="@color/whiteColor"
-                    android:textSize="@dimen/headerTextSize" />
+                    android:textSize="22sp" />
 
-                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
-                    android:layout_width="0dp"
+
+                <LinearLayout
+                    android:id="@+id/loutSuccessView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Thank You."
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Fire Evacuation list has been saved in admin"
+                        android:textColor="@color/grayColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.30"
-                    android:gravity="center"
-                    android:text="@string/out"
-                    android:textColor="@color/whiteColor"
-                    android:textSize="@dimen/headerTextSize" />
+                    android:gravity="center|bottom"
+                    android:text="@string/bottom_text" />
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_5sdp" />
 
         </LinearLayout>
 
