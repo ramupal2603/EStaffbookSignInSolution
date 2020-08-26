@@ -1,9 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include layout="@layout/action_bar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/common_margin"
+        android:orientation="vertical">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="center"
+            android:text="@string/staff_report"
+            android:textColor="@color/themeColor"
+            android:textSize="@dimen/headerTextSize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/common_margin">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.50"
+                android:background="@drawable/bg_green_round_shape">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/common_margin"
+                    android:paddingLeft="@dimen/common_margin"
+                    android:text="@string/remotely"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize"
+                    tools:ignore="NestedWeights,RtlSymmetry" />
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/whiteColor" />
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:id="@+id/txtRemotelyWorkingCounter"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="15"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_weight="0.50"
+                android:background="@drawable/bg_orange_round_shape">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/common_margin"
+                    android:paddingLeft="@dimen/common_margin"
+                    android:text="@string/office"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize"
+                    tools:ignore="NestedWeights,RtlSymmetry" />
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/whiteColor" />
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:id="@+id/txtOfficeWorkingCounter"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="15"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/common_margin"
+            android:layout_marginBottom="@dimen/common_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_gray_round_shape"
+            android:orientation="vertical"
+            tools:ignore="InefficientWeight">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/bg_vialoent_round_shape"
+                android:orientation="horizontal">
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.40"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/common_margin"
+                    android:text="Name"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/headerTextSize" />
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.30"
+                    android:gravity="center"
+                    android:text="@string/in"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/headerTextSize" />
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.30"
+                    android:gravity="center"
+                    android:text="@string/out"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/headerTextSize" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvStaffReport"
+                android:layout_width="match_parent"
+                tools:listitem="@layout/cell_staff_report_view"
+                android:layout_height="match_parent"
+                tools:itemCount="5"
+                android:layout_marginTop="@dimen/_5sdp" />
+
+        </LinearLayout>
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_margin"
+            android:gravity="end"
+            android:text="@string/bottom_text"
+            tools:ignore="RtlHardcoded" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

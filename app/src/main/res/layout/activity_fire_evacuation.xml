@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/common_margin"
+        android:orientation="vertical">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="center"
+            android:text="@string/fire_evacuation"
+            android:textColor="@color/themeColor"
+            android:textSize="@dimen/headerTextSize" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/common_margin"
+            android:layout_marginBottom="@dimen/common_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_gray_round_shape"
+            android:orientation="vertical"
+            tools:ignore="InefficientWeight">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/bg_vialoent_round_shape"
+                android:orientation="horizontal">
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.40"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/common_margin"
+                    android:text="Name"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/headerTextSize" />
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.30"
+                    android:gravity="center"
+                    android:text="@string/in"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/headerTextSize" />
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.30"
+                    android:gravity="center"
+                    android:text="@string/out"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/headerTextSize" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_5sdp" />
+
+        </LinearLayout>
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_margin"
+            android:gravity="end"
+            android:text="@string/bottom_text"
+            tools:ignore="RtlHardcoded" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

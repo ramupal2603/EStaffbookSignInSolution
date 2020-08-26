@@ -7,9 +7,14 @@
     <string name="welcome_label">Hi, Ramu</string>
     <string name="img_qrcode_desc">this image is useful for displaying qr code of user</string>
     <string name="click_here">Click Here</string>
-    <string name="staff_report">Staff Report</string>
     <string name="fire_evacuation">Fire Evacuation</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_out">Sign Out</string>
     <string name="rationale_camera">You must grant permission to access camera and external storage to run this application</string>
+    <string name="staff_report">Staff Report</string>
+    <string name="remotely">Remotely</string>
+    <string name="office">Office</string>
+    <string name="bottom_text">Staff Management Version 1.0</string>
+    <string name="in">In</string>
+    <string name="out">Out</string>
 </resources>

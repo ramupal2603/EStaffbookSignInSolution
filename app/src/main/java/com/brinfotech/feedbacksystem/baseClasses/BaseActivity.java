@@ -26,6 +26,8 @@ import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.ui.Utils;
 import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
+import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity;
+import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 
 import butterknife.BindView;
@@ -172,11 +174,20 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
+    public void openStaffReportActivity() {
+        Intent intent = new Intent(getActivity(), StaffReportActivity.class);
+        startActivity(intent);
+    }
+    public void openFireEvacuationActivity() {
+        Intent intent = new Intent(getActivity(), FireEvacuationActivity.class);
+        startActivity(intent);
+    }
+
     public void startActivityAfterSeconds() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                openStaffDashboard();
+                openManagerDashboard();
             }
         }, ConstantClass.REDIRECTION_INTERVAL);
     }

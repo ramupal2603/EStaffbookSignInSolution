@@ -44,6 +44,7 @@
         <activity android:name=".ui.managerView.managerDashboard.ManageDashboardActivity" />
 
         <activity android:name=".ui.managerView.managerStaffView.StaffReportActivity" />
+        <activity android:name=".ui.managerView.managerFireEvacuation.FireEvacuationActivity" />
 
         <activity
             android:name=".ui.staffView.dashboard.StaffDashboardActivity"

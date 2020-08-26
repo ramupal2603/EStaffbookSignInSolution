@@ -6,9 +6,13 @@
     <color name="themeColor">#00B9D0</color>
     <color name="whiteColor">#FFFFFF</color>
     <color name="grayColor">#929292</color>
+    <color name="lightGrayColor">#EAEAEA</color>
     <color name="border_color">#2A3674</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="greenColor">#D9D900</color>
+    <color name="orangeColor">#FF9900</color>
+    <color name="vialolent">#323857</color>
 
 
 </resources>
