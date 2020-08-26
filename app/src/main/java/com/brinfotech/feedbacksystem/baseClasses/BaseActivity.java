@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +22,16 @@ import android.widget.Toast;
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
+import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.ui.Utils;
 import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Optional;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
@@ -35,6 +41,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     private ProgressLoader loader;
 
+    @Nullable
+    @BindView(R.id.txtBack)
+    ImageView imgBack;
+
+    @Nullable
+    @BindView(R.id.txtTime)
+    TextView txtTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +55,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setContentView(getLayoutResource());
         unbinder = ButterKnife.bind(this);
         Utils.hideKeyBoard(getActivity());
+
+        if (txtTime != null) {
+            txtTime.setText(String.format("Time: %s", DateTimeUtils.getCurrentTime(getContext())));
+        }
+
+    }
+
+    @Optional
+    @OnClick(R.id.txtBack)
+    void onBackArrowPressed() {
+        getActivity().finish();
     }
 
 
