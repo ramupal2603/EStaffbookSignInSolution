@@ -2,19 +2,23 @@ package com.brinfotech.feedbacksystem.ui.loginScreen;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 
 import com.brinfotech.feedbacksystem.R;
-import com.brinfotech.feedbacksystem.baseClasses.ActBase;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
+import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
+import com.brinfotech.feedbacksystem.data.loginData.LoginRequestParamsModel;
+import com.brinfotech.feedbacksystem.data.loginData.LoginResponseModel;
+import com.brinfotech.feedbacksystem.helpers.ConstantClass;
+import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
+import com.brinfotech.feedbacksystem.network.RetrofitClient;
+import com.brinfotech.feedbacksystem.network.RetrofitInterface;
+import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,9 @@ import java.util.List;
 import butterknife.BindView;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ZXingScannerView.ResultHandler, EasyPermissions.PermissionCallbacks,
         EasyPermissions.RationaleCallbacks {
@@ -42,7 +49,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         initializeScannerView();
 
-        startActivityAfterSeconds();
+        //startActivityAfterSeconds();
 
     }
 
@@ -94,14 +101,59 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         qrCodeScanner.stopCamera();
     }
 
-    private void callLoginMethod(String userName, String userPassword) {
-        openStaffDashboard();
+    private void callLoginMethod(String userId) {
+        printLogMessage("userID", "" + userId);
+
+        showProgressBar();
+
+        RetrofitInterface apiService = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
+        apiService.loginFromScanner(getLoginRequest(userId)).enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                hideProgressBar();
+                if (response.isSuccessful()) {
+                    LoginResponseModel responseModel = response.body();
+                    if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
+                        Prefs.putString(PreferenceKeys.USER_ID, userId);
+                        Prefs.putString(PreferenceKeys.USER_TYPE, responseModel.getVisitor_details().get(0).getUser_type());
+                        Prefs.putBoolean(PreferenceKeys.USER_LOGGED_IN, true);
+                        redirectBasedOnUserType(getActivity());
+                    }
+                } else {
+                    showErrorMessage();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                t.printStackTrace();
+                hideProgressBar();
+            }
+        });
+    }
+
+    private LoginRequestModel getLoginRequest(String userId) {
+        LoginRequestModel requestModel = new LoginRequestModel();
+        LoginRequestParamsModel requestParamsModel = new LoginRequestParamsModel();
+        requestParamsModel.setUser_id(userId);
+        requestModel.setParam(requestParamsModel);
+        return requestModel;
     }
 
     @Override
     public void handleResult(Result result) {
+        String scannedId = result.getText();
+        if (!scannedId.isEmpty()) {
+            if (NetworkUtils.isNetworkConnected(getContext())) {
+                callLoginMethod(scannedId);
+            } else {
+                showNoNetworkMessage();
+            }
 
+        }
     }
+
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {

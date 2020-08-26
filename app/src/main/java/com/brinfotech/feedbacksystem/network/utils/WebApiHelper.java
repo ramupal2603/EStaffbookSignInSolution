@@ -3,20 +3,26 @@ package com.brinfotech.feedbacksystem.network.utils;
 public class WebApiHelper {
 
     //Method Listing
-    public static final String LOGIN = "RestController.php?action=userLogin";
-    public static final String DASHBOARD = "RestController.php?action=getPermitdetails";
-    public static final String UPDATE_SIGNATURE = "RestController.php?action=updatePermitsignatures";
-    public static final String UPDATE_DETAILS = "RestController.php?action=updateDetails";
-    public static final String UPDATE_PERMIT_FORM = "RestController.php?action=updatePermitform";
-    public static final String GET_PERSON_IN_CHARGE_LIST = "RestController.php?action=getAdminuser";
+    public static final String LOGIN = "scanQrcodelogin";
+    public static final String SIGN_IN_OUT_QRCODE = "scanQrcode";
+    public static final String GET_STAFF_REPORT = "getStaffrecords";
 
 
-    //Constant
-    public static final String userType = "1";
+    //USER_TYPE
+    public static final String USER_TYPE_MANAGER = "1";
+    public static final String USER_TYPE_STAFF = "2";
+
+    //STATUS
+    public static final String STATUS_SIGNED_IN = "1";
+    public static final String STATUS_SIGNED_OUT = "2";
+
+    //DEVICE_TYPE
+    public static final String DEVICE_TYPE_TAB = "1";
+    public static final String DEVICE_TYPE_MOBILE = "2";
 
 
     //BaseUrl of Repository
-    public static String BASE_URL = "https://advertico.co.uk/Jll/Webservice/";
+    public static String BASE_URL = "http://konnectico.co.uk/Staffbook/Webservice/";
 
 
 }

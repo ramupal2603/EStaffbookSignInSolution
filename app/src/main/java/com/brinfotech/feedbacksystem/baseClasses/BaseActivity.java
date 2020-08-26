@@ -1,16 +1,9 @@
 package com.brinfotech.feedbacksystem.baseClasses;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -19,16 +12,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
+import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
+import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
-import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -164,33 +163,51 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         return BaseActivity.this;
     }
 
-    public void openStaffDashboard() {
+    public void openStaffDashboard(BaseActivity activity) {
         Intent intent = new Intent(getActivity(), StaffDashboardActivity.class);
         startActivity(intent);
+        activity.finish();
     }
 
-    public void openManagerDashboard() {
+    public void openManagerDashboard(BaseActivity activity) {
         Intent intent = new Intent(getActivity(), ManageDashboardActivity.class);
         startActivity(intent);
+        activity.finish();
     }
 
     public void openStaffReportActivity() {
         Intent intent = new Intent(getActivity(), StaffReportActivity.class);
         startActivity(intent);
     }
+
     public void openFireEvacuationActivity() {
         Intent intent = new Intent(getActivity(), FireEvacuationActivity.class);
         startActivity(intent);
     }
 
-    public void startActivityAfterSeconds() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                openManagerDashboard();
-            }
-        }, ConstantClass.REDIRECTION_INTERVAL);
+    public void redirectBasedOnUserType(BaseActivity activity) {
+        String userType = Prefs.getString(PreferenceKeys.USER_TYPE, "0");
+
+        if (userType.equals(WebApiHelper.USER_TYPE_STAFF)) {
+            openStaffDashboard(activity);
+        } else if (userType.equals(WebApiHelper.USER_TYPE_MANAGER)) {
+            openManagerDashboard(activity);
+        }
     }
+
+
+    public void showErrorMessage() {
+        showToastMessage(getActivity().getResources().getString(R.string.something_went_wrong));
+    }
+
+    public void showNoNetworkMessage() {
+        showToastMessage(getActivity().getResources().getString(R.string.no_internet_connection));
+    }
+
+    public boolean isUserLoggedIn() {
+        return Prefs.getBoolean(PreferenceKeys.USER_LOGGED_IN, false);
+    }
+
 
 }
 

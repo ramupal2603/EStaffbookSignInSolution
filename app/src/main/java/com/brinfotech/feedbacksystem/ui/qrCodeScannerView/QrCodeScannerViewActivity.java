@@ -88,7 +88,6 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     }
 
     private void callLoginMethod(String userName, String userPassword) {
-        openStaffDashboard();
     }
 
     @Override
