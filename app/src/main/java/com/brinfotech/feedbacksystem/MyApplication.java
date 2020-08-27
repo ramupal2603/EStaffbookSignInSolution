@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.birbit.android.jobqueue.JobManager;
 import com.birbit.android.jobqueue.config.Configuration;
+import com.brinfotech.feedbacksystem.dataBase.DBUtils;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
@@ -25,6 +26,8 @@ public class MyApplication extends Application {
         super.onCreate();
 
         mAppInstance = this;
+
+        DBUtils.initRealm(this);
 
         new Prefs.Builder()
                 .setContext(this)

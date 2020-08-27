@@ -7,6 +7,7 @@ public class WebApiHelper {
     public static final String SIGN_IN_OUT_QRCODE = "scanQrcode";
     public static final String GET_STAFF_REPORT = "getStaffrecords";
     public static final String GET_TODAY_VISITORS = "getTodayvisitors";
+    public static final String IMPORT_FIRE_EVACUATION = "importFireevacuation";
 
 
     //USER_TYPE

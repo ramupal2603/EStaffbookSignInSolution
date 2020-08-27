@@ -28,7 +28,7 @@ public class FireEvacuationListAdapter extends RecyclerView.Adapter<FireEvacuati
     OnStaffSelectedListener onStaffSelectedListener;
 
     public FireEvacuationListAdapter(Activity activity, ArrayList<TodayVisitorDataModel> arrTodaysVisitor,
-                                     HashMap<String, String> selectedHashmap,OnStaffSelectedListener onStaffSelectedListener) {
+                                     HashMap<String, String> selectedHashmap, OnStaffSelectedListener onStaffSelectedListener) {
         this.activity = activity;
         this.arrTodaysVisitor = arrTodaysVisitor;
         this.selectedHashmap = selectedHashmap;
@@ -78,6 +78,11 @@ public class FireEvacuationListAdapter extends RecyclerView.Adapter<FireEvacuati
 
     public void updateData(ArrayList<TodayVisitorDataModel> arrTodaysVisitor) {
         this.arrTodaysVisitor = arrTodaysVisitor;
+        notifyDataSetChanged();
+    }
+
+    public void setData(HashMap<String, String> tempHashmap) {
+        this.selectedHashmap = tempHashmap;
         notifyDataSetChanged();
     }
 

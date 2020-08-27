@@ -87,7 +87,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:gravity="center"
-                android:text="No Visitors Found !!"
+                android:text="@string/no_staff_members_found"
                 android:textColor="@color/grayColor"
                 android:textSize="20sp"
                 android:visibility="gone" />

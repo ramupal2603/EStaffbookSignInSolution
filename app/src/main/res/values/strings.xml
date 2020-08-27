@@ -25,4 +25,5 @@
     <string name="staff">Staff</string>
     <string name="fire_evacuation_success">Fire Evacuation list has been saved in admin</string>
     <string name="thank_you">Thank You.</string>
+    <string name="no_staff_members_found">No Staff Members Found !!</string>
 </resources>
