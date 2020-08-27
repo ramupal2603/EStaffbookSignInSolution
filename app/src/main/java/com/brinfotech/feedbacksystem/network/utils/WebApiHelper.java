@@ -6,10 +6,11 @@ public class WebApiHelper {
     public static final String LOGIN = "scanQrcodelogin";
     public static final String SIGN_IN_OUT_QRCODE = "scanQrcode";
     public static final String GET_STAFF_REPORT = "getStaffrecords";
+    public static final String GET_TODAY_VISITORS = "getTodayvisitors";
 
 
     //USER_TYPE
-    public static final String USER_TYPE_MANAGER = "1";
+    public static final String USER_TYPE_MANAGER = "2";
     public static final String USER_TYPE_STAFF = "0";
 
     //STATUS
