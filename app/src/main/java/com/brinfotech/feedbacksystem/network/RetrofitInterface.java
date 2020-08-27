@@ -5,6 +5,8 @@ import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginResponseModel;
 import com.brinfotech.feedbacksystem.data.signINOut.ScanQrCodeResponseModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutRequestModel;
+import com.brinfotech.feedbacksystem.data.staffReport.StaffReportRequestModel;
+import com.brinfotech.feedbacksystem.data.staffReport.StaffReportResponseModel;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 
 import retrofit2.Call;
@@ -18,6 +20,9 @@ public interface RetrofitInterface {
 
     @POST(WebApiHelper.SIGN_IN_OUT_QRCODE)
     Call<ScanQrCodeResponseModel> scanQRCodeSignInOut(@Body SignInOutRequestModel requestModel);
+
+    @POST(WebApiHelper.GET_STAFF_REPORT)
+    Call<StaffReportResponseModel> getStaffReports(@Body StaffReportRequestModel requestModel);
 
 
 }

@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.brinfotech.feedbacksystem.R;
+import com.brinfotech.feedbacksystem.data.staffReport.StaffReportDataModel;
 
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,11 +22,11 @@ public class StaffReportAdapter extends RecyclerView.Adapter<StaffReportAdapter.
 
 
     Activity activity;
+    ArrayList<StaffReportDataModel> arrVisitorDetails;
 
-    public StaffReportAdapter(Activity activity) {
+    public StaffReportAdapter(Activity activity, ArrayList<StaffReportDataModel> arrVisitorDetails) {
         this.activity = activity;
-
-
+        this.arrVisitorDetails = arrVisitorDetails;
     }
 
     @NonNull
@@ -37,15 +39,25 @@ public class StaffReportAdapter extends RecyclerView.Adapter<StaffReportAdapter.
     @Override
     public void onBindViewHolder(@NonNull DashboardHolder holder, @SuppressLint("RecyclerView") final int position) {
 
+        StaffReportDataModel arrItem = arrVisitorDetails.get(position);
+        holder.txtName.setText(arrItem.getStaff_name());
+        holder.txtSignInTime.setText(arrItem.getTime_in());
+        holder.txtSignOutTime.setText(arrItem.getTime_out());
 
     }
 
 
     @Override
     public int getItemCount() {
-        return 100;
+        return arrVisitorDetails.size();
     }
 
+
+    void updateData(ArrayList<StaffReportDataModel> arrStaffReport){
+        this.arrVisitorDetails=arrStaffReport;
+        notifyDataSetChanged();
+
+    }
 
     static class DashboardHolder extends RecyclerView.ViewHolder {
 

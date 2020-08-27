@@ -116,6 +116,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
                         Prefs.putString(PreferenceKeys.USER_ID, userId);
                         Prefs.putString(PreferenceKeys.USER_TYPE, responseModel.getVisitor_details().get(0).getUser_type());
+                        Prefs.putString(PreferenceKeys.SITE_ID, responseModel.getVisitor_details().get(0).getSite_details());
                         Prefs.putBoolean(PreferenceKeys.USER_LOGGED_IN, true);
                         redirectBasedOnUserType(getActivity());
                     }

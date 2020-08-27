@@ -193,7 +193,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         String userType = Prefs.getString(PreferenceKeys.USER_TYPE, "0");
 
         if (userType.equals(WebApiHelper.USER_TYPE_STAFF)) {
-            openStaffDashboard(activity);
+            openManagerDashboard(activity);
         } else if (userType.equals(WebApiHelper.USER_TYPE_MANAGER)) {
             openManagerDashboard(activity);
         }
