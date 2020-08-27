@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
-import com.brinfotech.feedbacksystem.ui.qrCodeScannerView.QrCodeScannerViewActivity;
+import com.brinfotech.feedbacksystem.ui.staffView.qrCodeScannerView.QrCodeScannerViewActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
@@ -26,6 +27,9 @@ public class StaffDashboardActivity extends BaseActivity {
     @BindView(R.id.imgQrCodeView)
     ImageView imgQrCodeView;
 
+    @BindView(R.id.txtWelcomeUserId)
+    TextView txtWelcomeUserId;
+
     int REQUEST_QR_CODE_SCANNER;
 
     @Override
@@ -36,6 +40,8 @@ public class StaffDashboardActivity extends BaseActivity {
         displayQRCode(qrCode);
 
         rLoutStaffView.setOnClickListener(this);
+
+        txtWelcomeUserId.setText(String.format("Hi , %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
     }
 
     private void displayQRCode(Bitmap qrCode) {

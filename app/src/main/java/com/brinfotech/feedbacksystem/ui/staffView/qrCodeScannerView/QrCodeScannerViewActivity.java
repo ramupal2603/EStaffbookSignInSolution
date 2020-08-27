@@ -1,8 +1,9 @@
-package com.brinfotech.feedbacksystem.ui.qrCodeScannerView;
+package com.brinfotech.feedbacksystem.ui.staffView.qrCodeScannerView;
 
 import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 
@@ -12,12 +13,14 @@ import com.brinfotech.feedbacksystem.data.signINOut.ScanQrCodeResponseModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutParamsModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutRequestModel;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
+import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
 import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,12 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     @BindView(R.id.qrCodeScannerView)
     ZXingScannerView qrCodeScanner;
 
+    @BindView(R.id.rLoutStaffSignIn)
+    RelativeLayout rLoutStaffSignIn;
+
+    @BindView(R.id.rLoutStaffSignOut)
+    RelativeLayout rLoutStaffSignOut;
+
     private static final String[] CAMERA_AND_STORAGE =
             {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -47,6 +56,9 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
         super.onCreate(savedInstanceState);
 
         initializeScannerView();
+
+        rLoutStaffSignIn.setOnClickListener(this::onClick);
+        rLoutStaffSignOut.setOnClickListener(this::onClick);
 
     }
 
@@ -90,6 +102,15 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     @Override
     public void onClick(View view) {
 
+        if (view == rLoutStaffSignIn) {
+            String userID = Prefs.getString(PreferenceKeys.USER_ID, "");
+            callSignInOutMethod(userID);
+        }
+
+        if (view == rLoutStaffSignOut) {
+            String userID = Prefs.getString(PreferenceKeys.USER_ID, "");
+            callSignInOutMethod(userID);
+        }
     }
 
     @Override
@@ -126,9 +147,12 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
                 hideProgressBar();
                 if (response.isSuccessful()) {
                     ScanQrCodeResponseModel responseModel = response.body();
-                    if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
-                        finish();
-                    }
+                    if (responseModel != null)
+                        if (responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS_SIGN_IN)
+                                || responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS_SIGN_OUT)) {
+                            openThankYouActivity(responseModel.getStatus());
+                            finish();
+                        }
                 } else {
                     showErrorMessage();
                 }

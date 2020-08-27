@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
+import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
@@ -26,6 +27,7 @@ import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashb
 import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
+import com.brinfotech.feedbacksystem.ui.staffView.thankYouPage.ThankYouScreen;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -189,11 +191,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
+    public void openThankYouActivity(String status) {
+        Intent intent = new Intent(getActivity(), ThankYouScreen.class);
+        intent.putExtra(ConstantClass.EXTRAA_FORM_DATA, status);
+        startActivity(intent);
+    }
+
     public void redirectBasedOnUserType(BaseActivity activity) {
         String userType = Prefs.getString(PreferenceKeys.USER_TYPE, "0");
 
         if (userType.equals(WebApiHelper.USER_TYPE_STAFF)) {
-            openManagerDashboard(activity);
+            openStaffDashboard(activity);
         } else if (userType.equals(WebApiHelper.USER_TYPE_MANAGER)) {
             openManagerDashboard(activity);
         }
