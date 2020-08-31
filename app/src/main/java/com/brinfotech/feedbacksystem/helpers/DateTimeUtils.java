@@ -13,7 +13,7 @@ public class DateTimeUtils {
 
     public static String getCurrentDate(Context context) {
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(c.getTime());
         return formattedDate;
     }

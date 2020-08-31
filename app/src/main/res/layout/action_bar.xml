@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:background="@color/themeColor"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <ImageView
@@ -33,7 +34,7 @@
             android:gravity="center_vertical"
             android:text="Time 10:40 am"
             android:textColor="@color/whiteColor"
-            android:textSize="@dimen/verySmallTextSize" />
+            android:textSize="@dimen/smallTextSize" />
 
 
     </LinearLayout>
