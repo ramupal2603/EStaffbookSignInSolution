@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "689082945269",
-    "firebase_url": "https://contractor-solution.firebaseio.com",
-    "project_id": "contractor-solution",
-    "storage_bucket": "contractor-solution.appspot.com"
+    "project_number": "640804513921",
+    "firebase_url": "https://staffsolution-fc569.firebaseio.com",
+    "project_id": "staffsolution-fc569",
+    "storage_bucket": "staffsolution-fc569.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:689082945269:android:8c8c4b4f5b660cdb627fbc",
+        "mobilesdk_app_id": "1:640804513921:android:f6197957d490be0c280580",
         "android_client_info": {
           "package_name": "com.adverticoLTD.estaffsol"
         }
       },
       "oauth_client": [
         {
-          "client_id": "689082945269-25pjnj9hbusstjiedcpusa9tnip5aosv.apps.googleusercontent.com",
+          "client_id": "640804513921-i2deticpgjgh3ncogjh1kit517ld4ht3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCpcY7NKrlbMx25zl0O8K4Qhat9aJgiXKg"
+          "current_key": "AIzaSyDdMvdkESUne-NgsCNZ_DeO8c96h0UKCYM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "689082945269-25pjnj9hbusstjiedcpusa9tnip5aosv.apps.googleusercontent.com",
+              "client_id": "640804513921-i2deticpgjgh3ncogjh1kit517ld4ht3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

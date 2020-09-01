@@ -97,7 +97,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
 
             notificationBuilder.setChannelId(channelId);
 
-            CharSequence name = "JLL Contractor Solution";
+            CharSequence name = "Staff Solution";
             String description = "Notification";
             int importance = NotificationManager.IMPORTANCE_HIGH;
 
