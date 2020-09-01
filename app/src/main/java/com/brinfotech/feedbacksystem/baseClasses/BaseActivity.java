@@ -28,6 +28,7 @@ import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEv
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.thankYouPage.ThankYouScreen;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -238,6 +239,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
         return null;
 
+    }
+
+    public String getFCMRefreshedToken() {
+        String fcmToken = "";
+        fcmToken = Prefs.getString(PreferenceKeys.FCM_TOKEN, "");
+
+        if (fcmToken.isEmpty()) {
+            fcmToken = FirebaseInstanceId.getInstance().getToken();
+        }
+
+        return fcmToken;
     }
 
 

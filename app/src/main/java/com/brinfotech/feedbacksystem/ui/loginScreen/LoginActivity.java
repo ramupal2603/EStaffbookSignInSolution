@@ -16,6 +16,7 @@ import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
 import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
+import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -136,9 +137,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private LoginRequestModel getLoginRequest(String userId) {
+        String fcmToken = getFCMRefreshedToken();
         LoginRequestModel requestModel = new LoginRequestModel();
         LoginRequestParamsModel requestParamsModel = new LoginRequestParamsModel();
         requestParamsModel.setUser_id(userId);
+        requestParamsModel.setUser_type(WebApiHelper.DEVICE_ANDROID);
+        requestParamsModel.setToken(fcmToken);
         requestModel.setParam(requestParamsModel);
         return requestModel;
     }

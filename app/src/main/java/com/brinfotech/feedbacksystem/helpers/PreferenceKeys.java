@@ -10,4 +10,5 @@ public class PreferenceKeys {
 
 
     public static final String SITE_ID = "SITE_ID";
+    public static final String FCM_TOKEN = "FCM_TOKEN";
 }

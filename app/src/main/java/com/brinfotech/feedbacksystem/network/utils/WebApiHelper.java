@@ -22,6 +22,11 @@ public class WebApiHelper {
     public static final String DEVICE_TYPE_TAB = "1";
     public static final String DEVICE_TYPE_MOBILE = "2";
 
+    //Login User TYpe
+    public static final String DEVICE_ANDROID = "1";
+    public static final String DEVICE_iOS = "2";
+
+
 
     //BaseUrl of Repository
     public static String BASE_URL = "http://konnectico.co.uk/Staffbook/Webservice/";

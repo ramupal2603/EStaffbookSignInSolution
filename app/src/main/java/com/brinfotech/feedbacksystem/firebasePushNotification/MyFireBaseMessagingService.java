@@ -10,14 +10,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
 import android.util.Log;
 
-import com.brinfotech.feedbacksystem.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
+import com.brinfotech.feedbacksystem.R;
+import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.Map;
 
@@ -33,8 +36,9 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
 
 
     @Override
-    public void onNewToken(String s) {
-        super.onNewToken(s);
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        Prefs.putString(PreferenceKeys.FCM_TOKEN, token);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -154,8 +158,6 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         Intent intent = new Intent(this, LoginActivity.class);
         generateNotification(this, "Notifications", msg, intent, NOTIFICATION_ID);
     }
-
-
 
 
 }
