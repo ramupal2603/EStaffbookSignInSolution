@@ -1,5 +1,6 @@
 package com.brinfotech.feedbacksystem.ui.staffView.thankYouPage;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -56,9 +57,36 @@ public class ThankYouScreen extends BaseActivity {
 
         if (status.equals(WebApiHelper.STATUS_SIGNED_IN)) {
             txtThanksMessage.setText(R.string.signed_in_thanks_msg);
+            playSignedInVoice();
         } else if (status.equals(WebApiHelper.STATUS_SIGNED_OUT)) {
             txtThanksMessage.setText(R.string.signed_out_thanks_msg);
+            playSignedOutVoice();
         }
+    }
+
+    private void playSignedOutVoice() {
+        MediaPlayer mPlayer = MediaPlayer.create(ThankYouScreen.this, R.raw.fivesquidjamilsigningout);
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                mp.release();
+            }
+        });
+        mPlayer.start();
+    }
+
+    private void playSignedInVoice() {
+        MediaPlayer mPlayer = MediaPlayer.create(ThankYouScreen.this, R.raw.fivesquidjamilsigningin);
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                mp.release();
+            }
+        });
+        mPlayer.start();
     }
 
     @Override
