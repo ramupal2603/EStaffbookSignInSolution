@@ -19,13 +19,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.75"
         android:orientation="vertical">
 
         <com.brinfotech.feedbacksystem.customClasses.FontsTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_margin"
+            android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
             android:text="[ Scan QRCode to Sign in ]"
             android:textColor="@color/themeColor"
@@ -33,9 +33,11 @@
 
         <me.dm7.barcodescanner.zxing.ZXingScannerView
             android:id="@+id/qrCodeScannerView"
-            android:layout_width="@dimen/_225sdp"
-            android:layout_height="@dimen/_225sdp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginTop="@dimen/common_margin" />
 
 
@@ -68,9 +70,11 @@
         android:orientation="horizontal">
 
         <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:id="@+id/txtSignIn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:textColor="@color/colorBlack"
             android:text="@string/sign_in"
             android:textSize="@dimen/headerTextSize" />
 
@@ -80,6 +84,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:padding="@dimen/common_margin"
+
             android:src="@drawable/ic_green_button" />
 
 
@@ -94,9 +99,11 @@
         android:orientation="horizontal">
 
         <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:id="@+id/txtSignOut"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:textColor="@color/colorBlack"
             android:text="@string/sign_out"
             android:textSize="@dimen/headerTextSize" />
 

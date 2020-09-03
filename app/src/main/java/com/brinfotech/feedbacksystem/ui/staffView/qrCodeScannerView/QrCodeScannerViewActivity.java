@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -41,6 +42,13 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     @BindView(R.id.rLoutStaffSignIn)
     RelativeLayout rLoutStaffSignIn;
 
+    @BindView(R.id.txtSignIn)
+    TextView txtSignIn;
+
+    @BindView(R.id.txtSignOut)
+    TextView txtSignOut;
+
+
     @BindView(R.id.rLoutStaffSignOut)
     RelativeLayout rLoutStaffSignOut;
 
@@ -57,9 +65,26 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
 
         initializeScannerView();
 
-        rLoutStaffSignIn.setOnClickListener(this::onClick);
-        rLoutStaffSignOut.setOnClickListener(this::onClick);
+        initiateSignedInView();
 
+    }
+
+    private void initiateSignedInView() {
+
+        String status = Prefs.getString(PreferenceKeys.SCAN_STATUS, "0");
+
+
+        if (status.equals("0") || status.equals(ConstantClass.RESPONSE_SUCCESS_SIGN_OUT)) {
+            txtSignIn.setTextColor(getResources().getColor(R.color.colorBlack));
+            txtSignOut.setTextColor(getResources().getColor(R.color.grayColor));
+            rLoutStaffSignIn.setOnClickListener(this::onClick);
+            rLoutStaffSignOut.setOnClickListener(null);
+        } else if (status.equals(ConstantClass.RESPONSE_SUCCESS_SIGN_IN)) {
+            txtSignIn.setTextColor(getResources().getColor(R.color.grayColor));
+            txtSignOut.setTextColor(getResources().getColor(R.color.colorBlack));
+            rLoutStaffSignIn.setOnClickListener(null);
+            rLoutStaffSignOut.setOnClickListener(this::onClick);
+        }
     }
 
     @Override
@@ -119,8 +144,6 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
         qrCodeScanner.stopCamera();
     }
 
-    private void callLoginMethod(String userName, String userPassword) {
-    }
 
     @Override
     public void handleResult(Result result) {
@@ -151,6 +174,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
                         if (responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS_SIGN_IN)
                                 || responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS_SIGN_OUT)) {
                             openThankYouActivity(responseModel.getStatus());
+                            Prefs.putString(PreferenceKeys.SCAN_STATUS, responseModel.getStatus());
                             finish();
                         }
                 } else {
