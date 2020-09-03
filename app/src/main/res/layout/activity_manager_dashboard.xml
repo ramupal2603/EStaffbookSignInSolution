@@ -102,7 +102,7 @@
             android:layout_alignParentRight="true"
             android:padding="@dimen/common_margin"
             android:src="@drawable/ic_fire_icon"
-            app:tint="@color/themeColor" />
+             />
 
 
     </RelativeLayout>
