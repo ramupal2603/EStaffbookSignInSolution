@@ -1,7 +1,9 @@
 package com.brinfotech.feedbacksystem.ui.managerView.managerDashboard;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +23,9 @@ public class ManageDashboardActivity extends BaseActivity {
     @BindView(R.id.rLoutFireEvacuationView)
     RelativeLayout rLoutFireEvacuationView;
 
+    @BindView(R.id.imgQrCodeView)
+    ImageView imgQrCodeView;
+
     @BindView(R.id.txtWelcomeUserId)
     TextView txtWelcomeUserId;
 
@@ -30,7 +35,16 @@ public class ManageDashboardActivity extends BaseActivity {
         rLoutStaffView.setOnClickListener(this);
         rLoutFireEvacuationView.setOnClickListener(this);
 
+        Bitmap qrCode = generateQRCode(Prefs.getString(PreferenceKeys.USER_ID, ""));
+        displayQRCode(qrCode);
+
         txtWelcomeUserId.setText(String.format("Hi , %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+    }
+
+    private void displayQRCode(Bitmap qrCode) {
+        if (qrCode != null) {
+            imgQrCodeView.setImageBitmap(qrCode);
+        }
     }
 
     @Override
@@ -42,7 +56,8 @@ public class ManageDashboardActivity extends BaseActivity {
     public void onClick(View view) {
         if (view == rLoutStaffView) {
             openStaffReportActivity();
-        }if (view == rLoutFireEvacuationView) {
+        }
+        if (view == rLoutFireEvacuationView) {
             openFireEvacuationActivity();
         }
     }
