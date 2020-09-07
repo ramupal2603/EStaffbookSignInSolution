@@ -13,6 +13,7 @@
     <string name="rationale_camera">You must grant permission to access camera and external storage to run this application</string>
     <string name="staff_report">Staff Report</string>
     <string name="remotely">Remotely</string>
+    <string name="working_remotely">Working Remotely</string>
     <string name="office">Office</string>
     <string name="bottom_text">Staff Management Version 1.0</string>
     <string name="in">In</string>
@@ -26,4 +27,6 @@
     <string name="fire_evacuation_success">Fire Evacuation list has been saved in admin</string>
     <string name="thank_you">Thank You.</string>
     <string name="no_staff_members_found">No Staff Members Found !!</string>
+    <string name="qr_code_not_valid_for_sign_in_out">Invalid QR Code For Sign in and Sign out,  Please Try Another One</string>
+
 </resources>

@@ -40,6 +40,7 @@
         <activity android:name=".ui.loginScreen.LoginActivity" />
 
         <activity android:name=".ui.staffView.qrCodeScannerView.QrCodeScannerViewActivity" />
+        <activity android:name=".ui.managerView.qrCodeScannerView.ManagerQrCodeScannerViewActivity" />
         <activity android:name=".ui.staffView.thankYouPage.ThankYouScreen" />
 
         <activity android:name=".ui.managerView.managerDashboard.ManageDashboardActivity" />

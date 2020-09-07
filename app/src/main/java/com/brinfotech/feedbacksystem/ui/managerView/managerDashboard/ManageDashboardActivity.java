@@ -1,5 +1,6 @@
 package com.brinfotech.feedbacksystem.ui.managerView.managerDashboard;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +13,16 @@ import androidx.annotation.Nullable;
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
+import com.brinfotech.feedbacksystem.ui.managerView.qrCodeScannerView.ManagerQrCodeScannerViewActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
 
 public class ManageDashboardActivity extends BaseActivity {
+    private static final int REQUEST_QR_CODE_SCANNER = 10000;
+    @BindView(R.id.rLoutRemoteView)
+    RelativeLayout rLoutRemoteView;
+
     @BindView(R.id.rLoutStaffView)
     RelativeLayout rLoutStaffView;
 
@@ -32,6 +38,7 @@ public class ManageDashboardActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        rLoutRemoteView.setOnClickListener(this);
         rLoutStaffView.setOnClickListener(this);
         rLoutFireEvacuationView.setOnClickListener(this);
 
@@ -59,6 +66,11 @@ public class ManageDashboardActivity extends BaseActivity {
         }
         if (view == rLoutFireEvacuationView) {
             openFireEvacuationActivity();
+        }
+
+        if (view == rLoutRemoteView) {
+            Intent intent = new Intent(ManageDashboardActivity.this, ManagerQrCodeScannerViewActivity.class);
+            startActivityForResult(intent, REQUEST_QR_CODE_SCANNER);
         }
     }
 }

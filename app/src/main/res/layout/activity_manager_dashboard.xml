@@ -43,14 +43,34 @@
         android:textColor="@color/themeColor"
         android:textSize="@dimen/smallTextSize" />
 
-    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+
+    <RelativeLayout
+        android:id="@+id/rLoutRemoteView"
+        style="@style/StaffButtonTheme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_50sdp"
         android:layout_marginTop="@dimen/common_margin"
         android:gravity="center"
-        android:text="Or View"
-        android:textColor="@color/grayColor"
-        android:textSize="@dimen/smallTextSize" />
+        android:orientation="horizontal">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/working_remotely"
+            android:textSize="@dimen/mediumTextSize" />
+
+        <ImageView
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/common_margin"
+            android:src="@drawable/ic_sign_out"
+            app:tint="@color/themeColor" />
+
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rLoutStaffView"
@@ -66,7 +86,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/staff_report"
-            android:textSize="@dimen/headerTextSize" />
+            android:textSize="@dimen/mediumTextSize" />
 
         <ImageView
             android:layout_width="@dimen/_55sdp"
@@ -94,7 +114,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/fire_evacuation"
-            android:textSize="@dimen/headerTextSize" />
+            android:textSize="@dimen/mediumTextSize" />
 
         <ImageView
             android:layout_width="@dimen/_55sdp"
