@@ -4,6 +4,24 @@ public class TodayVisitorDataModel {
     String visitor_id;
     String visitor_name;
     String site_id;
+    String visitor_type;
+    String log_id;
+
+    public String getVisitor_type() {
+        return visitor_type;
+    }
+
+    public void setVisitor_type(String visitor_type) {
+        this.visitor_type = visitor_type;
+    }
+
+    public String getLog_id() {
+        return log_id;
+    }
+
+    public void setLog_id(String log_id) {
+        this.log_id = log_id;
+    }
 
     public String getSite_id() {
         return site_id;
