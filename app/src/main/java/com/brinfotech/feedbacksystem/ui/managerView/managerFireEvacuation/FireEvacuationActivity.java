@@ -176,6 +176,7 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
                     evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireEvacuationActivity.this));
                     evacuationImport.setSite_id(arrItem.getSite_id());
 
+
                     arrFireEvacuationList.add(evacuationImport);
                 }
             }

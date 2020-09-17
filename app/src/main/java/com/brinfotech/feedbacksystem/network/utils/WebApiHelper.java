@@ -24,7 +24,7 @@ public class WebApiHelper {
     public static final String DEVICE_TYPE_TAB = "1";
     public static final String DEVICE_TYPE_MOBILE = "2";
 
-    //Login User TYpe
+    //Login User TYPE
     public static final String DEVICE_ANDROID = "1";
     public static final String DEVICE_iOS = "2";
 
