@@ -1,12 +1,24 @@
 package com.brinfotech.feedbacksystem.data.importFireEvacuation;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ImportFireEvacuationParamsModel {
     String evacuation_date;
     String evacuation_time;
     String visitor_id;
+    String log_id;
     String visitor_name;
     String visitor_type;
+    @SerializedName("company_id")
     String site_id;
+
+    public String getLog_id() {
+        return log_id;
+    }
+
+    public void setLog_id(String log_id) {
+        this.log_id = log_id;
+    }
 
     public String getEvacuation_date() {
         return evacuation_date;

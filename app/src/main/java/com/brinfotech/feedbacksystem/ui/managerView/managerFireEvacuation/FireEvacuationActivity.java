@@ -29,7 +29,6 @@ import com.brinfotech.feedbacksystem.jobQueue.SyncRequestParamsJob;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
 import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
-import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -171,7 +170,8 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
                     ImportFireEvacuationParamsModel evacuationImport = new ImportFireEvacuationParamsModel();
                     evacuationImport.setVisitor_id(arrItem.getVisitor_id());
                     evacuationImport.setVisitor_name(arrItem.getVisitor_name());
-                    evacuationImport.setVisitor_type(WebApiHelper.USER_TYPE_STAFF);
+                    evacuationImport.setVisitor_type(arrItem.getVisitor_type());
+                    evacuationImport.setLog_id(arrItem.getLog_id());
                     evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireEvacuationActivity.this));
                     evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireEvacuationActivity.this));
                     evacuationImport.setSite_id(arrItem.getSite_id());

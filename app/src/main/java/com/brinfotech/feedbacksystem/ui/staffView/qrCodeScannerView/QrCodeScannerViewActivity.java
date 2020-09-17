@@ -33,11 +33,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QrCodeScannerViewActivity extends BaseActivity implements View.OnClickListener, ZXingScannerView.ResultHandler, EasyPermissions.PermissionCallbacks,
+public class QrCodeScannerViewActivity extends BaseActivity implements View.OnClickListener, EasyPermissions.PermissionCallbacks,
         EasyPermissions.RationaleCallbacks {
-
-    @BindView(R.id.qrCodeScannerView)
-    ZXingScannerView qrCodeScanner;
 
     @BindView(R.id.rLoutStaffSignIn)
     RelativeLayout rLoutStaffSignIn;
@@ -47,6 +44,9 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
 
     @BindView(R.id.txtSignOut)
     TextView txtSignOut;
+
+    @BindView(R.id.txtWelcomeUserId)
+    TextView txtWelcomeUserId;
 
 
     @BindView(R.id.rLoutStaffSignOut)
@@ -63,9 +63,9 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initializeScannerView();
-
         initiateSignedInView();
+
+        txtWelcomeUserId.setText(String.format("Hi , %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
     }
 
@@ -98,8 +98,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
                     MY_CAMERA_REQUEST_CODE,
                     CAMERA_AND_STORAGE);
         } else {
-            qrCodeScanner.startCamera();
-            qrCodeScanner.setResultHandler(QrCodeScannerViewActivity.this);
+
         }
 
 
@@ -110,14 +109,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
         super.onDestroy();
     }
 
-    private void initializeScannerView() {
-        arrFormatList.add(BarcodeFormat.QR_CODE);
-        qrCodeScanner.setFormats(arrFormatList);
-        qrCodeScanner.setAutoFocus(true);
-        qrCodeScanner.setLaserColor(R.color.colorAccent);
-        qrCodeScanner.setMaskColor(R.color.colorAccent);
 
-    }
 
     @Override
     protected int getLayoutResource() {
@@ -141,21 +133,6 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     @Override
     protected void onPause() {
         super.onPause();
-        qrCodeScanner.stopCamera();
-    }
-
-
-    @Override
-    public void handleResult(Result result) {
-        String scannedId = result.getText();
-        if (!scannedId.isEmpty()) {
-            if (NetworkUtils.isNetworkConnected(getContext())) {
-                callSignInOutMethod(scannedId);
-            } else {
-                showNoNetworkMessage();
-            }
-
-        }
     }
 
     private void callSignInOutMethod(String scannedId) {
@@ -204,8 +181,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            qrCodeScanner.startCamera();
-            qrCodeScanner.setResultHandler(QrCodeScannerViewActivity.this);
+
         }
     }
 

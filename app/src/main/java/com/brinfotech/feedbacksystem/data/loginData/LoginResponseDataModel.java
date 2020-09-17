@@ -1,10 +1,13 @@
 package com.brinfotech.feedbacksystem.data.loginData;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResponseDataModel {
 
     String user_id;
     String user_name;
     String user_type;
+    @SerializedName("company_details")
     String site_details;
 
     public String getUser_id() {

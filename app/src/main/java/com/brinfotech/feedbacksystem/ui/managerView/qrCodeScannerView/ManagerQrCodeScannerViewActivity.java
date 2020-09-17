@@ -34,11 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ManagerQrCodeScannerViewActivity extends BaseActivity implements View.OnClickListener, ZXingScannerView.ResultHandler, EasyPermissions.PermissionCallbacks,
+public class ManagerQrCodeScannerViewActivity extends BaseActivity implements View.OnClickListener, EasyPermissions.PermissionCallbacks,
         EasyPermissions.RationaleCallbacks {
-
-    @BindView(R.id.qrCodeScannerView)
-    ZXingScannerView qrCodeScanner;
 
     @BindView(R.id.rLoutStaffSignIn)
     RelativeLayout rLoutStaffSignIn;
@@ -48,6 +45,9 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
 
     @BindView(R.id.txtSignOut)
     TextView txtSignOut;
+
+    @BindView(R.id.txtWelcomeUserId)
+    TextView txtWelcomeUserId;
 
 
     @BindView(R.id.rLoutStaffSignOut)
@@ -64,9 +64,9 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initializeScannerView();
-
         initiateSignedInView();
+
+        txtWelcomeUserId.setText(String.format("Hi , %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
     }
 
@@ -98,9 +98,6 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                     getString(R.string.rationale_camera),
                     MY_CAMERA_REQUEST_CODE,
                     CAMERA_AND_STORAGE);
-        } else {
-            qrCodeScanner.startCamera();
-            qrCodeScanner.setResultHandler(ManagerQrCodeScannerViewActivity.this);
         }
 
 
@@ -111,14 +108,6 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
         super.onDestroy();
     }
 
-    private void initializeScannerView() {
-        arrFormatList.add(BarcodeFormat.QR_CODE);
-        qrCodeScanner.setFormats(arrFormatList);
-        qrCodeScanner.setAutoFocus(true);
-        qrCodeScanner.setLaserColor(R.color.colorAccent);
-        qrCodeScanner.setMaskColor(R.color.colorAccent);
-
-    }
 
     @Override
     protected int getLayoutResource() {
@@ -142,22 +131,8 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
     @Override
     protected void onPause() {
         super.onPause();
-        qrCodeScanner.stopCamera();
     }
 
-
-    @Override
-    public void handleResult(Result result) {
-        String scannedId = result.getText();
-        if (!scannedId.isEmpty()) {
-            if (NetworkUtils.isNetworkConnected(getContext())) {
-                callSignInOutMethod(scannedId);
-            } else {
-                showNoNetworkMessage();
-            }
-
-        }
-    }
 
     private void callSignInOutMethod(String scannedId) {
         printLogMessage("userID", "" + scannedId);
@@ -179,7 +154,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                             finish();
                         }else {
                             showInvalidQrCodeMessage();
-                            resumeCameraPreview();
+
                         }
                 } else {
                     showErrorMessage();
@@ -209,22 +184,11 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
         showToastMessage(getActivity().getResources().getString(R.string.qr_code_not_valid_for_sign_in_out));
     }
 
-    private void resumeCameraPreview() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                qrCodeScanner.resumeCameraPreview(ManagerQrCodeScannerViewActivity.this);
-            }
-        }, 5000);
 
-    }
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            qrCodeScanner.startCamera();
-            qrCodeScanner.setResultHandler(ManagerQrCodeScannerViewActivity.this);
-        }
+
     }
 
     @Override

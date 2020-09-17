@@ -1,6 +1,9 @@
 package com.brinfotech.feedbacksystem.data.staffReport;
 
+import com.google.gson.annotations.SerializedName;
+
 public class StaffReportParamsModel {
+    @SerializedName("company_id")
     String site_id;
 
     public String getSite_id() {

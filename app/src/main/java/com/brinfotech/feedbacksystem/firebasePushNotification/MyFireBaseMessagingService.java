@@ -18,6 +18,7 @@ import androidx.annotation.RequiresApi;
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
+import com.brinfotech.feedbacksystem.ui.splashScreen.SplashScreenActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -155,7 +156,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
 //            itemId = data.get("item_id");
         }
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, SplashScreenActivity.class);
         generateNotification(this, "Notifications", msg, intent, NOTIFICATION_ID);
     }
 

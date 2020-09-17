@@ -11,8 +11,10 @@ public class WebApiHelper {
 
 
     //USER_TYPE
+    public static final String USER_TYPE_PRE_BOOK_VISITOR = "0";
+    public static final String USER_TYPE_ADMIN = "1";
     public static final String USER_TYPE_MANAGER = "2";
-    public static final String USER_TYPE_STAFF = "0";
+    public static final String USER_TYPE_STAFF = "3";
 
     //STATUS
     public static final String STATUS_SIGNED_IN = "1";
@@ -25,7 +27,6 @@ public class WebApiHelper {
     //Login User TYpe
     public static final String DEVICE_ANDROID = "1";
     public static final String DEVICE_iOS = "2";
-
 
 
     //BaseUrl of Repository
