@@ -11,15 +11,6 @@ public class ImportFireEvacuationParamsModel {
     String visitor_type;
     @SerializedName("company_id")
     String site_id;
-    String log_id;
-
-    public String getLog_id() {
-        return log_id;
-    }
-
-    public void setLog_id(String log_id) {
-        this.log_id = log_id;
-    }
 
     public String getLog_id() {
         return log_id;
