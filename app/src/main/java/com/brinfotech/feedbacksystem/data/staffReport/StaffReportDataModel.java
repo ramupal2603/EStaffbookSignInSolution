@@ -9,6 +9,15 @@ public class StaffReportDataModel {
     String site_id;
     String site_name;
     String device_type;
+    String visitor_type;
+
+    public String getVisitor_type() {
+        return visitor_type;
+    }
+
+    public void setVisitor_type(String visitor_type) {
+        this.visitor_type = visitor_type;
+    }
 
     public String getUser_id() {
         return user_id;

@@ -45,6 +45,18 @@ public class StaffReportActivity extends BaseActivity {
     @BindView(R.id.loutRemoteView)
     LinearLayout loutRemoteView;
 
+    @BindView(R.id.loutAllView)
+    LinearLayout loutAllView;
+
+    @BindView(R.id.loutVisitor)
+    LinearLayout loutVisitor;
+
+    @BindView(R.id.txtAllCounter)
+    TextView txtAllCounter;
+
+    @BindView(R.id.txtVisitorCounter)
+    TextView txtVisitorCounter;
+
     @BindView(R.id.loutOfficeView)
     LinearLayout loutOfficeView;
 
@@ -54,6 +66,7 @@ public class StaffReportActivity extends BaseActivity {
     ArrayList<StaffReportDataModel> arrFilteredData = new ArrayList<>();
 
     ArrayList<StaffReportDataModel> arrRemoteWorkData = new ArrayList<>();
+    ArrayList<StaffReportDataModel> arrVisitorsData = new ArrayList<>();
     ArrayList<StaffReportDataModel> arrOfficeWorkData = new ArrayList<>();
 
 
@@ -69,6 +82,8 @@ public class StaffReportActivity extends BaseActivity {
 
         loutOfficeView.setOnClickListener(this::onClick);
         loutRemoteView.setOnClickListener(this::onClick);
+        loutAllView.setOnClickListener(this::onClick);
+        loutVisitor.setOnClickListener(this::onClick);
     }
 
     private void getStaffReports() {
@@ -129,13 +144,21 @@ public class StaffReportActivity extends BaseActivity {
             } else if (arrItem.getDevice_type().equals(WebApiHelper.DEVICE_TYPE_MOBILE)) {
                 arrRemoteWorkData.add(arrItem);
             }
+
+            if (arrItem.getVisitor_type().equals(WebApiHelper.USER_TYPE_PRE_BOOK_VISITOR)) {
+                arrVisitorsData.add(arrItem);
+            }
         }
 
         int remoteCount = arrRemoteWorkData.size();
         int officeCount = arrOfficeWorkData.size();
+        int allCount = arrStaffReport.size();
+        int visitorCount = arrVisitorsData.size();
 
         txtOfficeWorkingCounter.setText(String.valueOf(officeCount));
         txtRemotelyWorkingCounter.setText(String.valueOf(remoteCount));
+        txtAllCounter.setText(String.valueOf(allCount));
+        txtVisitorCounter.setText(String.valueOf(visitorCount));
     }
 
     private void showResultView() {
@@ -175,6 +198,10 @@ public class StaffReportActivity extends BaseActivity {
             updateView(true, arrRemoteWorkData);
         } else if (view == loutOfficeView) {
             updateView(true, arrOfficeWorkData);
+        } else if (view == loutAllView) {
+            updateView(true, arrStaffReport);
+        } else if (view == loutVisitor) {
+            updateView(true, arrVisitorsData);
         }
     }
 }
