@@ -29,6 +29,7 @@ import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReport
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.thankYouPage.ThankYouScreen;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -200,7 +201,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public void redirectBasedOnUserType(BaseActivity activity) {
         String userType = Prefs.getString(PreferenceKeys.USER_TYPE, "0");
-
+        Log.e("FMC TOKEN",""+ getFCMRefreshedToken());
         if (userType.equals(WebApiHelper.USER_TYPE_STAFF)) {
             openStaffDashboard(activity);
         } else if (userType.equals(WebApiHelper.USER_TYPE_MANAGER)) {

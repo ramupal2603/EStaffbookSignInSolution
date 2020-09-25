@@ -17,7 +17,6 @@ import androidx.annotation.RequiresApi;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
-import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.brinfotech.feedbacksystem.ui.splashScreen.SplashScreenActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -40,6 +39,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
         Prefs.putString(PreferenceKeys.FCM_TOKEN, token);
+        Log.e("FCM Token", "" + token);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
