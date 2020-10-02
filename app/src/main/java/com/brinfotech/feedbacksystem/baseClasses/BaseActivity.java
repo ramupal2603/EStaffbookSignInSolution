@@ -23,6 +23,7 @@ import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
+import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
@@ -183,12 +184,22 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         activity.finish();
     }
 
+    public void openFireMarshalDashboard(BaseActivity activity) {
+        Intent intent = new Intent(getActivity(), FireMarshalDashboardActivity.class);
+        startActivity(intent);
+        activity.finish();
+    }
+
     public void openStaffReportActivity() {
         Intent intent = new Intent(getActivity(), StaffReportActivity.class);
         startActivity(intent);
     }
 
     public void openFireEvacuationActivity() {
+        Intent intent = new Intent(getActivity(), FireEvacuationActivity.class);
+        startActivity(intent);
+    }
+    public void openFireMarshalEvacuationActivity() {
         Intent intent = new Intent(getActivity(), FireEvacuationActivity.class);
         startActivity(intent);
     }
@@ -206,6 +217,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             openStaffDashboard(activity);
         } else if (userType.equals(WebApiHelper.USER_TYPE_MANAGER)) {
             openManagerDashboard(activity);
+        } else if (userType.equals(WebApiHelper.USER_TYPE_FIRE_MARSHAL)) {
+            openFireMarshalDashboard(activity);
         }
     }
 

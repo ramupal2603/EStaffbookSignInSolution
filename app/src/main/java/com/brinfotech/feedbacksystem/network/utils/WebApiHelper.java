@@ -15,6 +15,7 @@ public class WebApiHelper {
     public static final String USER_TYPE_ADMIN = "1";
     public static final String USER_TYPE_MANAGER = "2";
     public static final String USER_TYPE_STAFF = "3";
+    public static final String USER_TYPE_FIRE_MARSHAL = "4";
 
     //STATUS
     public static final String STATUS_SIGNED_IN = "1";

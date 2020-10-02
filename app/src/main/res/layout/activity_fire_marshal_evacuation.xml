@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/common_margin"
+        android:orientation="vertical">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="center"
+            android:text="@string/fire_evacuation"
+            android:textColor="@color/themeColor"
+            android:textSize="@dimen/headerTextSize" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/loutResultView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.70"
+                android:background="@drawable/bg_gray_round_shape"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_vialoent_round_shape">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:gravity="center"
+                        android:text="Name"
+                        android:textColor="@color/whiteColor" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical|end"
+                        android:text="Present"
+                        android:textColor="@color/whiteColor" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvFireEvacuationList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:visibility="visible">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+            <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                android:id="@+id/txtVisitorListEmptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:text="@string/no_staff_members_found"
+                android:textColor="@color/grayColor"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.30"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_border_color"
+                    android:text="Save Fire Evacuation List"
+                    android:textAllCaps="false"
+
+                    android:textColor="@color/whiteColor"
+                    android:textSize="22sp" />
+
+
+                <LinearLayout
+                    android:id="@+id/loutSuccessView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/thank_you"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/mediumTextSize" />
+
+                    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/fire_evacuation_success"
+                        android:textColor="@color/grayColor"
+                        android:textSize="@dimen/smallTextSize" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|bottom"
+                    android:text="@string/bottom_text" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_margin"
+            android:gravity="end"
+            android:text="@string/bottom_text"
+            tools:ignore="RtlHardcoded" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

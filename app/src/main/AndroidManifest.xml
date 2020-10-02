@@ -48,6 +48,10 @@
         <activity android:name=".ui.managerView.managerStaffView.StaffReportActivity" />
         <activity android:name=".ui.managerView.managerFireEvacuation.FireEvacuationActivity" />
 
+        <activity android:name=".ui.fireMarshalView.dashboard.FireMarshalDashboardActivity" />
+        <activity android:name=".ui.fireMarshalView.qrCodeScannerView.FireMarshalQrCodeScannerViewActivity" />
+        <activity android:name=".ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity" />
+
 
         <activity
             android:name=".ui.staffView.dashboard.StaffDashboardActivity"
