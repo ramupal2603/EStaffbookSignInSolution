@@ -31,5 +31,6 @@
     <string name="please_click_option_below">Please click option below</string>
     <string name="all">All</string>
     <string name="visitor">Visitor</string>
+    <string name="department">Department</string>
 
 </resources>

@@ -24,6 +24,7 @@ import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
+import com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
@@ -200,7 +201,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
     public void openFireMarshalEvacuationActivity() {
-        Intent intent = new Intent(getActivity(), FireEvacuationActivity.class);
+        Intent intent = new Intent(getActivity(), FireMarshalEvacuationActivity.class);
         startActivity(intent);
     }
 

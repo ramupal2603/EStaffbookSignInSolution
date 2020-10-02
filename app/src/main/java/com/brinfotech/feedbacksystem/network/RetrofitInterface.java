@@ -1,6 +1,8 @@
 package com.brinfotech.feedbacksystem.network;
 
 
+import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
+import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationResponseModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
@@ -33,6 +35,9 @@ public interface RetrofitInterface {
 
     @POST(WebApiHelper.IMPORT_FIRE_EVACUATION)
     Call<ImportFireEvacuationResponseModel> importFireEvacuationList(@Body ImportFireEvacuationRequestModel requestModel);
+
+    @POST(WebApiHelper.GET_DEPARTMENT)
+    Call<DepartmentResponseModel> getDepartment(@Body DepartmentRequestModel requestModel);
 
 
 }

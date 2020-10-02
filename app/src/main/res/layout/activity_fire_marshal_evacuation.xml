@@ -26,6 +26,85 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/common_margin"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:id="@+id/loutAllView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_green_round_shape"
+                android:layout_weight="0.50">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.60"
+                    android:gravity="center"
+                    android:text="@string/all"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize"
+                    tools:ignore="NestedWeights,RtlSymmetry" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:background="@color/grayColor"
+                    android:layout_height="match_parent"/>
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:id="@+id/txtAllCounter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.40"
+                    android:gravity="center"
+                    android:text="15"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/verySmallTextSize" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/loutDepartment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:background="@drawable/bg_orange_round_shape"
+                android:layout_weight="0.50">
+
+                <TextView
+                    android:id="@+id/txtDeptName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.85"
+                    android:gravity="center"
+                    android:text="@string/department"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize"
+                    tools:ignore="NestedWeights,RtlSymmetry" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:background="@color/grayColor"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/vw_ic_arrow_down"
+                     />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 

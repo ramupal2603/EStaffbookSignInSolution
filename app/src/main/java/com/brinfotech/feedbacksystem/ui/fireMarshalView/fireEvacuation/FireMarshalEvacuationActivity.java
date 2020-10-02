@@ -1,11 +1,20 @@
 package com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,6 +24,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.brinfotech.feedbacksystem.MyApplication;
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
+import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
+import com.brinfotech.feedbacksystem.data.department.DepartmentRequestParamModel;
+import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
+import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModelData;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationParamsModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodayVisitorDataModel;
@@ -48,28 +61,85 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
     @BindView(R.id.txtVisitorListEmptyView)
     TextView txtVisitorListEmptyView;
 
+    @BindView(R.id.loutAllView)
+    LinearLayout loutAllView;
+
+    @BindView(R.id.loutDepartment)
+    LinearLayout loutDepartment;
+
     @BindView(R.id.btnSubmit)
     Button btnSubmit;
+
+    @BindView(R.id.txtDeptName)
+    TextView txtDeptName;
 
     @BindView(R.id.loutSuccessView)
     LinearLayout loutSuccessView;
 
     FireEvacuationListAdapter fireEvacuationListAdapter;
     ArrayList<TodayVisitorDataModel> arrTodaysVisitor = new ArrayList<>();
+    ArrayList<DepartmentResponseModelData> arrDeptList = new ArrayList<>();
+    ArrayList<TodayVisitorDataModel> arrDeptWiseVisitor = new ArrayList<>();
 
     HashMap<String, String> selectedHashmap = new HashMap<>();
     HashMap<String, String> tempHashmap = new HashMap<>();
+    private String selectedDeptId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         btnSubmit.setOnClickListener(this::onClick);
+        loutDepartment.setOnClickListener(this::onClick);
+        loutAllView.setOnClickListener(this::onClick);
         setUpRecyclerView();
 
         setUpAdapter();
 
+        getDepartmentList();
+
         getTodayVisitorsData();
+    }
+
+    private void getDepartmentList() {
+        if (NetworkUtils.isNetworkConnected(getContext())) {
+
+            showProgressBar();
+
+            RetrofitInterface apiService = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
+            apiService.getDepartment(getDepartmentData()).enqueue(new Callback<DepartmentResponseModel>() {
+                @Override
+                public void onResponse(Call<DepartmentResponseModel> call, Response<DepartmentResponseModel> response) {
+                    hideProgressBar();
+                    if (response.isSuccessful()) {
+                        DepartmentResponseModel responseModel = response.body();
+                        if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
+                            arrDeptList.clear();
+                            arrDeptList.addAll(responseModel.getDepartment_details());
+                        } else {
+                            showEmptyView();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DepartmentResponseModel> call, Throwable t) {
+                    hideProgressBar();
+                    t.printStackTrace();
+
+                }
+            });
+        } else {
+            showNoNetworkMessage();
+        }
+    }
+
+    private DepartmentRequestModel getDepartmentData() {
+        DepartmentRequestModel requestModel = new DepartmentRequestModel();
+        DepartmentRequestParamModel paramModel = new DepartmentRequestParamModel();
+        paramModel.setCompany_id(Prefs.getString(PreferenceKeys.SITE_ID, ""));
+        requestModel.setParam(paramModel);
+        return requestModel;
     }
 
     private void getTodayVisitorsData() {
@@ -154,6 +224,123 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         if (view == btnSubmit) {
             createRequest();
         }
+
+        if (view == loutDepartment) {
+            showDepartmentDialog();
+        }
+
+        if (view == loutAllView) {
+
+            if(arrTodaysVisitor.isEmpty()){
+                showEmptyView();
+            }else {
+                showResultView();
+                txtDeptName.setText("Department");
+                tempHashmap.clear();
+                fireEvacuationListAdapter.updateData(arrTodaysVisitor);
+            }
+
+        }
+    }
+
+    private void showDepartmentDialog() {
+        final Dialog dialog = new Dialog(FireMarshalEvacuationActivity.this);
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.searchview);
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        final ListView lv = (ListView) dialog.findViewById(R.id.listView1);
+        TextView header = (TextView) dialog.findViewById(R.id.header);
+        header.setText("Select Department");
+        Button btn = (Button) dialog.findViewById(R.id.cancel);
+        Button btnSubmit = (Button) dialog.findViewById(R.id.btnSubmit);
+
+        //CREATE AND SET ADAPTER TO LISTVIEW
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(FireMarshalEvacuationActivity.this,
+                android.R.layout.simple_list_item_multiple_choice);
+
+
+        for (int i = 0; i < arrDeptList.size(); i++) {
+            arrayAdapter.add(arrDeptList.get(i).getName());
+        }
+
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        lv.setAdapter(arrayAdapter);
+        EditText sv = (EditText) dialog.findViewById(R.id.search);
+        sv.setHint("Search Name or scroll down");
+        sv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                arrayAdapter.getFilter().filter(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        //BUTTON
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                dialog.dismiss();
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SparseBooleanArray sparseBooleanArray = lv.getCheckedItemPositions();
+                StringBuilder selectedIDs = new StringBuilder();
+                ArrayList<String> arrSelectedName = new ArrayList<>();
+
+                for (int i = 0; i < arrDeptList.size(); i++) {
+                    if (sparseBooleanArray.get(i)) {
+                        arrSelectedName.add(arrDeptList.get(i).getName());
+                        selectedIDs.append(arrDeptList.get(i).getDepartment_id()).append(",");
+                    }
+                }
+
+                selectedDeptId = selectedIDs.toString();
+                txtDeptName.setText(arrSelectedName.toString().replaceAll("\\[", "").replaceAll("]", ""));
+                filteredOutData();
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void filteredOutData() {
+        String[] arrSelectedDept = selectedDeptId.split(",");
+
+        arrDeptWiseVisitor.clear();
+        for (String s : arrSelectedDept) {
+            for (int j = 0; j < arrTodaysVisitor.size(); j++) {
+                if (arrTodaysVisitor.get(j).getDepartment_id().equals(s)) {
+                    arrDeptWiseVisitor.add(arrTodaysVisitor.get(j));
+                }
+            }
+        }
+
+        if (!arrDeptWiseVisitor.isEmpty()) {
+
+            showResultView();
+
+            tempHashmap.clear();
+            fireEvacuationListAdapter.updateData(arrDeptWiseVisitor);
+        } else {
+            showEmptyView();
+        }
+
     }
 
     private void createRequest() {

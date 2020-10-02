@@ -10,6 +10,16 @@ public class TodayVisitorDataModel {
     @SerializedName("company_id")
     String site_id;
 
+    @SerializedName("department_id")
+    String department_id;
+
+    public String getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(String department_id) {
+        this.department_id = department_id;
+    }
 
     public String getVisitor_id() {
         return visitor_id;

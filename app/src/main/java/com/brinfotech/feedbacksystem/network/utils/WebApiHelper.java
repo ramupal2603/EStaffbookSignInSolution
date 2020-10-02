@@ -8,6 +8,7 @@ public class WebApiHelper {
     public static final String GET_STAFF_REPORT = "getStaffrecords";
     public static final String GET_TODAY_VISITORS = "getTodayvisitors";
     public static final String IMPORT_FIRE_EVACUATION = "importFireevacuation";
+    public static final String GET_DEPARTMENT = "getDepartment";
 
 
     //USER_TYPE
