@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="[ Scan QRCode to login ]"
+            android:text="[ Scan QR Code to login ]"
             android:textColor="@color/themeColor"
             android:textSize="@dimen/headerTextSize" />
 

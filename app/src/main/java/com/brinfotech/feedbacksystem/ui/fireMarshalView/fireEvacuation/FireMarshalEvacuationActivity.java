@@ -73,6 +73,9 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
     @BindView(R.id.txtDeptName)
     TextView txtDeptName;
 
+    @BindView(R.id.txtAllCounter)
+    TextView txtAllCounter;
+
     @BindView(R.id.loutSuccessView)
     LinearLayout loutSuccessView;
 
@@ -158,11 +161,14 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
                             arrTodaysVisitor.clear();
                             arrTodaysVisitor.addAll(responseModel.getData());
 
+                            showCounter();
+
                             showResultView();
 
                             updateAdapter();
                         } else {
                             showEmptyView();
+                            showCounter();
                         }
                     }
                 }
@@ -193,6 +199,12 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         if (fireEvacuationListAdapter != null) {
             fireEvacuationListAdapter.updateData(arrTodaysVisitor);
         }
+
+    }
+
+    private void showCounter() {
+        int counter = arrTodaysVisitor.size();
+        txtAllCounter.setText(String.valueOf(counter));
     }
 
     private TodaysRequestModel getTodayRequestData() {
@@ -226,14 +238,17 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         }
 
         if (view == loutDepartment) {
-            showDepartmentDialog();
+            if (!arrTodaysVisitor.isEmpty()) {
+                showDepartmentDialog();
+            }
+
         }
 
         if (view == loutAllView) {
 
-            if(arrTodaysVisitor.isEmpty()){
+            if (arrTodaysVisitor.isEmpty()) {
                 showEmptyView();
-            }else {
+            } else {
                 showResultView();
                 txtDeptName.setText("Department");
                 tempHashmap.clear();

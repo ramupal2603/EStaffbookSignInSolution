@@ -100,8 +100,8 @@ public class StaffReportActivity extends BaseActivity {
                         if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
                             arrStaffReport.clear();
                             arrStaffReport.addAll(responseModel.getVisitor_details());
-                            updateView(false, arrStaffReport);
                         }
+                        updateView(false, arrStaffReport);
                     }
                 }
 
