@@ -3,6 +3,10 @@ package com.brinfotech.feedbacksystem.ui.loginScreen;
 import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -11,8 +15,11 @@ import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestParamsModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginResponseModel;
+import com.brinfotech.feedbacksystem.data.loginData.ManualLogin.ManualLoginRequestDataModel;
+import com.brinfotech.feedbacksystem.data.loginData.ManualLogin.ManualLoginRequestModel;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
+import com.brinfotech.feedbacksystem.helpers.StringUtils;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
 import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
@@ -37,6 +44,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @BindView(R.id.qrCodeScannerView)
     ZXingScannerView qrCodeScanner;
 
+    @BindView(R.id.loutQrCodeLoginView)
+    LinearLayout loutQrCodeLoginView;
+
+    @BindView(R.id.loutManualLoginView)
+    LinearLayout loutManualLoginView;
+
+    @BindView(R.id.txtManualLogin)
+    TextView txtManualLogin;
+
+
+    @BindView(R.id.edtUserName)
+    EditText edtUserName;
+
+    @BindView(R.id.edtPwd)
+    EditText edtPwd;
+
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
+
+    @BindView(R.id.txtQrCodeLogin)
+    TextView txtQrCodeLogin;
+
     private static final String[] CAMERA_AND_STORAGE =
             {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -49,8 +78,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
 
         initializeScannerView();
-
-        //startActivityAfterSeconds();
+        txtManualLogin.setOnClickListener(this::onClick);
+        txtQrCodeLogin.setOnClickListener(this::onClick);
+        btnLogin.setOnClickListener(this::onClick);
 
     }
 
@@ -93,7 +123,57 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
+        if (view == txtManualLogin) {
+            loutQrCodeLoginView.setVisibility(View.GONE);
+            loutManualLoginView.setVisibility(View.VISIBLE);
+        } else if (view == txtQrCodeLogin) {
+            loutQrCodeLoginView.setVisibility(View.VISIBLE);
+            loutManualLoginView.setVisibility(View.GONE);
+        } else if (view == btnLogin) {
+            checkValidation();
+        }
+    }
 
+    private void checkValidation() {
+        if (StringUtils.checkEmptyEditText(edtUserName)) {
+            showToastMessage("Please Enter Your Email Address");
+        } else if (StringUtils.checkEmptyEditText(edtPwd)) {
+            showToastMessage("Please Enter Your Password");
+        } else {
+            doManualLogin();
+        }
+    }
+
+    private void doManualLogin() {
+        showProgressBar();
+
+        RetrofitInterface apiService = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
+        apiService.manualLogin(getManualLoginRequest()).enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                hideProgressBar();
+                if (response.isSuccessful()) {
+                    LoginResponseModel responseModel = response.body();
+                    if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
+                        Prefs.putString(PreferenceKeys.USER_ID, responseModel.getVisitor_details().get(0).getUser_id());
+                        Prefs.putString(PreferenceKeys.USER_TYPE, responseModel.getVisitor_details().get(0).getUser_type());
+                        Prefs.putString(PreferenceKeys.USER_NAME, responseModel.getVisitor_details().get(0).getUser_name());
+                        Prefs.putString(PreferenceKeys.SITE_ID, responseModel.getVisitor_details().get(0).getSite_details());
+                        Prefs.putBoolean(PreferenceKeys.USER_LOGGED_IN, true);
+                        redirectBasedOnUserType(getActivity());
+                    }
+                } else {
+                    showErrorMessage();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                t.printStackTrace();
+                hideProgressBar();
+            }
+        });
     }
 
     @Override
@@ -144,6 +224,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         requestParamsModel.setUser_type(WebApiHelper.DEVICE_ANDROID);
         requestParamsModel.setToken(fcmToken);
         requestModel.setParam(requestParamsModel);
+        return requestModel;
+    }
+
+    private ManualLoginRequestModel getManualLoginRequest() {
+        String fcmToken = getFCMRefreshedToken();
+        ManualLoginRequestModel requestModel = new ManualLoginRequestModel();
+        ManualLoginRequestDataModel manualLoginRequestDataModel = new ManualLoginRequestDataModel();
+        manualLoginRequestDataModel.setEmail(edtUserName.getText().toString().trim());
+        manualLoginRequestDataModel.setPassword(edtPwd.getText().toString().trim());
+        manualLoginRequestDataModel.setToken(fcmToken);
+        manualLoginRequestDataModel.setUser_type(WebApiHelper.DEVICE_ANDROID);
+        requestModel.setParam(manualLoginRequestDataModel);
         return requestModel;
     }
 

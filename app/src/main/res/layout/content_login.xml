@@ -21,11 +21,13 @@
 
 
     <LinearLayout
+        android:id="@+id/loutQrCodeLoginView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <com.brinfotech.feedbacksystem.customClasses.FontsTextView
             android:layout_width="match_parent"
@@ -40,6 +42,104 @@
             android:layout_width="@dimen/_250sdp"
             android:layout_height="@dimen/_250sdp"
             android:layout_marginTop="@dimen/_20sdp" />
+
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="center"
+            android:text="or"
+            android:textColor="#929292"
+            android:textSize="@dimen/mediumTextSize" />
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:id="@+id/txtManualLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="center"
+            android:text="login with email and password"
+            android:textColor="#929292"
+            android:textSize="@dimen/mediumTextSize" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/loutManualLoginView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please Login"
+            android:textColor="@color/grayColor"
+            android:textSize="24sp" />
+
+
+        <EditText
+            android:id="@+id/edtUserName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edtTextHeight"
+            android:layout_marginTop="@dimen/common_margin"
+            android:background="@drawable/edt_login_background"
+            android:gravity="center"
+            android:hint="Email Address"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/grayColor" />
+
+        <EditText
+            android:id="@+id/edtPwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edtTextHeight"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edt_login_background"
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:text=""
+            android:textColor="@color/grayColor" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edtTextHeight"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_border_color"
+            android:text="Login"
+            android:textColor="@color/whiteColor"
+            android:textSize="22sp" />
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="center"
+            android:text="or"
+            android:textColor="#929292"
+            android:textSize="@dimen/mediumTextSize" />
+
+        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+            android:id="@+id/txtQrCodeLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="center"
+            android:text="login with Qr Code"
+            android:textColor="#929292"
+            android:textSize="@dimen/mediumTextSize" />
+
 
 
     </LinearLayout>

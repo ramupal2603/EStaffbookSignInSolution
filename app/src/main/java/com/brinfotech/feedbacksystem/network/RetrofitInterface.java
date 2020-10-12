@@ -7,6 +7,8 @@ import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuat
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationResponseModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginResponseModel;
+import com.brinfotech.feedbacksystem.data.loginData.ManualLogin.ManualLoginRequestDataModel;
+import com.brinfotech.feedbacksystem.data.loginData.ManualLogin.ManualLoginRequestModel;
 import com.brinfotech.feedbacksystem.data.signINOut.ScanQrCodeResponseModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutRequestModel;
 import com.brinfotech.feedbacksystem.data.staffReport.StaffReportRequestModel;
@@ -23,6 +25,9 @@ public interface RetrofitInterface {
 
     @POST(WebApiHelper.LOGIN)
     Call<LoginResponseModel> loginFromScanner(@Body LoginRequestModel requestModel);
+
+    @POST(WebApiHelper.MANUAL_LOGIN)
+    Call<LoginResponseModel> manualLogin(@Body ManualLoginRequestModel requestModel);
 
     @POST(WebApiHelper.SIGN_IN_OUT_QRCODE)
     Call<ScanQrCodeResponseModel> scanQRCodeSignInOut(@Body SignInOutRequestModel requestModel);

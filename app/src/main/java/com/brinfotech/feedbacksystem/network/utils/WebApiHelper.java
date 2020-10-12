@@ -4,6 +4,7 @@ public class WebApiHelper {
 
     //Method Listing
     public static final String LOGIN = "scanQrcodelogin";
+    public static final String MANUAL_LOGIN = "userLogin";
     public static final String SIGN_IN_OUT_QRCODE = "scanQrcode";
     public static final String GET_STAFF_REPORT = "getStaffrecords";
     public static final String GET_TODAY_VISITORS = "getTodayvisitors";
