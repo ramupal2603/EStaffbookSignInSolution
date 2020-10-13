@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,8 +51,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @BindView(R.id.loutManualLoginView)
     LinearLayout loutManualLoginView;
 
-    @BindView(R.id.txtManualLogin)
-    TextView txtManualLogin;
+    @BindView(R.id.rLoutManualView)
+    RelativeLayout rLoutManualView;
 
 
     @BindView(R.id.edtUserName)
@@ -78,7 +79,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
 
         initializeScannerView();
-        txtManualLogin.setOnClickListener(this::onClick);
+        rLoutManualView.setOnClickListener(this::onClick);
         txtQrCodeLogin.setOnClickListener(this::onClick);
         btnLogin.setOnClickListener(this::onClick);
 
@@ -123,7 +124,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
-        if (view == txtManualLogin) {
+        if (view == rLoutManualView) {
             loutQrCodeLoginView.setVisibility(View.GONE);
             loutManualLoginView.setVisibility(View.VISIBLE);
         } else if (view == txtQrCodeLogin) {

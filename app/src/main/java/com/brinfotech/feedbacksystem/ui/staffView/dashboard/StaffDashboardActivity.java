@@ -41,7 +41,7 @@ public class StaffDashboardActivity extends BaseActivity {
 
         rLoutStaffView.setOnClickListener(this);
 
-        txtWelcomeUserId.setText(String.format("Hi , %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+        txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
     }
 
     private void displayQRCode(Bitmap qrCode) {

@@ -49,7 +49,7 @@
 
 
 
-    <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+    <!--<com.brinfotech.feedbacksystem.customClasses.FontsTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_margin"
@@ -57,7 +57,7 @@
         android:text="@string/login_bottom_title"
         android:textColor="#929292"
         android:textSize="@dimen/_18sdp"
-        android:visibility="visible" />
+        android:visibility="visible" />-->
 
 
 </LinearLayout>

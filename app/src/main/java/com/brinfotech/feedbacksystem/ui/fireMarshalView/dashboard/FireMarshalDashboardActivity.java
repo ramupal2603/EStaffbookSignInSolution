@@ -41,7 +41,7 @@ public class FireMarshalDashboardActivity extends BaseActivity {
         Bitmap qrCode = generateQRCode(Prefs.getString(PreferenceKeys.USER_ID, ""));
         displayQRCode(qrCode);
 
-        txtWelcomeUserId.setText(String.format("Hi , %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+        txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
     }
 
     private void displayQRCode(Bitmap qrCode) {

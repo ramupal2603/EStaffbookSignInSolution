@@ -217,24 +217,24 @@
 
                 </LinearLayout>
 
-                <TextView
+                <!--<TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center|bottom"
-                    android:text="@string/bottom_text" />
+                    android:text="@string/bottom_text" />-->
 
             </LinearLayout>
 
 
         </LinearLayout>
 
-        <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+        <!--<com.brinfotech.feedbacksystem.customClasses.FontsTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/common_margin"
             android:gravity="end"
             android:text="@string/bottom_text"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded" />-->
 
 
     </LinearLayout>

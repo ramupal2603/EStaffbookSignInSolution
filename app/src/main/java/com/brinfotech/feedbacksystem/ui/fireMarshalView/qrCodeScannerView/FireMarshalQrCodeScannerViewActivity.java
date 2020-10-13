@@ -62,7 +62,7 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
 
         initiateSignedInView();
 
-        txtWelcomeUserId.setText(String.format("Hi ,%s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+        txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
     }
 

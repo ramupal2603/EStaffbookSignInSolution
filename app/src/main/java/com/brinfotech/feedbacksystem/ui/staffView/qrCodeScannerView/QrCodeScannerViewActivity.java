@@ -65,7 +65,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
 
         initiateSignedInView();
 
-        txtWelcomeUserId.setText(String.format("Hi ,%s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+        txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
     }
 
