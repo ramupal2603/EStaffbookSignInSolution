@@ -76,7 +76,7 @@
             android:id="@+id/rLoutStaffSignIn"
             style="@style/StaffButtonTheme"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_35sdp"
             android:layout_height="@dimen/_100sdp"
             android:gravity="center"
             android:orientation="horizontal">
