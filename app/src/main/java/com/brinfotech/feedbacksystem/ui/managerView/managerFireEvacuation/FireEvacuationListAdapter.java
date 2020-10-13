@@ -87,6 +87,9 @@ public class FireEvacuationListAdapter extends RecyclerView.Adapter<FireEvacuati
             case "3":
                 visitor = "Staff";
                 break;
+            case "4":
+                visitor = "Fire marshal";
+                break;
         }
 
         return visitor;
