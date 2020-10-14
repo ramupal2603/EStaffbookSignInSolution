@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
+import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusParamModel;
+import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusRequestModel;
+import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusResponseModel;
 import com.brinfotech.feedbacksystem.data.signINOut.ScanQrCodeResponseModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutParamsModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutRequestModel;
@@ -60,16 +63,54 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initiateSignedInView();
+//        initiateSignedInView();
+
+        getUsersCurrentStatus();
 
         txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
     }
 
-    private void initiateSignedInView() {
+    private void getUsersCurrentStatus() {
+        showProgressBar();
 
-        String status = Prefs.getString(PreferenceKeys.SCAN_STATUS, "0");
+        RetrofitInterface apiService = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
+        apiService.getUserStatus(getUsersStatusRequest()).enqueue(new Callback<GetUserStatusResponseModel>() {
+            @Override
+            public void onResponse(Call<GetUserStatusResponseModel> call, Response<GetUserStatusResponseModel> response) {
+                hideProgressBar();
+                if (response.isSuccessful()) {
+                    GetUserStatusResponseModel responseModel = response.body();
+                    if (responseModel != null && responseModel.getStatus() != null) {
+                        initiateSignedInView(responseModel.getStatus());
+                    }else {
+                        initiateSignedInView("0");
+                    }
 
+                } else {
+                    showErrorMessage();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetUserStatusResponseModel> call, Throwable t) {
+                t.printStackTrace();
+                hideProgressBar();
+            }
+        });
+    }
+
+    private GetUserStatusRequestModel getUsersStatusRequest() {
+        GetUserStatusRequestModel requestModel = new GetUserStatusRequestModel();
+        GetUserStatusParamModel paramModel = new GetUserStatusParamModel();
+        paramModel.setVisitor_id(Prefs.getString(PreferenceKeys.USER_ID, ""));
+        paramModel.setVisitor_type(Prefs.getString(PreferenceKeys.USER_TYPE, ""));
+        requestModel.setParam(paramModel);
+        return requestModel;
+
+    }
+    private void initiateSignedInView(String status) {
 
         if (status.equals("0") || status.equals(ConstantClass.RESPONSE_SUCCESS_SIGN_OUT)) {
             txtSignIn.setTextColor(getResources().getColor(R.color.colorBlack));

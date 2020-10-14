@@ -10,6 +10,7 @@ public class WebApiHelper {
     public static final String GET_TODAY_VISITORS = "getTodayvisitors";
     public static final String IMPORT_FIRE_EVACUATION = "importFireevacuation";
     public static final String GET_DEPARTMENT = "getDepartment";
+    public static final String GET_USER_STATUS = "getUserstatus";
 
 
     //USER_TYPE

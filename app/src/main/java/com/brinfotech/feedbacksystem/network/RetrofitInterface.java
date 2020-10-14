@@ -3,6 +3,8 @@ package com.brinfotech.feedbacksystem.network;
 
 import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
+import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusRequestModel;
+import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusResponseModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationResponseModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
@@ -25,6 +27,9 @@ public interface RetrofitInterface {
 
     @POST(WebApiHelper.LOGIN)
     Call<LoginResponseModel> loginFromScanner(@Body LoginRequestModel requestModel);
+
+    @POST(WebApiHelper.GET_USER_STATUS)
+    Call<GetUserStatusResponseModel> getUserStatus(@Body GetUserStatusRequestModel requestModel);
 
     @POST(WebApiHelper.MANUAL_LOGIN)
     Call<LoginResponseModel> manualLogin(@Body ManualLoginRequestModel requestModel);
