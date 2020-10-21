@@ -139,7 +139,8 @@ public class StaffReportActivity extends BaseActivity {
         arrOfficeWorkData.clear();
 
         for (StaffReportDataModel arrItem : arrStaffReport) {
-            if (arrItem.getDevice_type().equals(WebApiHelper.DEVICE_TYPE_TAB)) {
+            if (arrItem.getDevice_type().equals(WebApiHelper.DEVICE_TYPE_TAB) &&
+                    !arrItem.getVisitor_type().equals(WebApiHelper.USER_TYPE_PRE_BOOK_VISITOR)) {
                 arrOfficeWorkData.add(arrItem);
             } else if (arrItem.getDevice_type().equals(WebApiHelper.DEVICE_TYPE_MOBILE)) {
                 arrRemoteWorkData.add(arrItem);
