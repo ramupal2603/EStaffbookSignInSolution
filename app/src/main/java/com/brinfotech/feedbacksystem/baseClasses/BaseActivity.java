@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,7 +32,6 @@ import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReport
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.thankYouPage.ThankYouScreen;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -60,6 +60,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @BindView(R.id.txtTime)
     TextView txtTime;
 
+    CountDownTimer newTimer;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +69,24 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         unbinder = ButterKnife.bind(this);
         Utils.hideKeyBoard(getActivity());
 
-        if (txtTime != null) {
-            txtTime.setText(String.format("Time: %s", DateTimeUtils.getCurrentTime(getContext())));
-        }
+        showTime();
 
+    }
+
+    private void showTime() {
+        newTimer = new CountDownTimer(1000000000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                if (txtTime != null) {
+                    txtTime.setText(String.format("Time: %s", DateTimeUtils.getCurrentTime(getContext())));
+                }
+            }
+
+            public void onFinish() {
+
+            }
+        };
+        newTimer.start();
     }
 
     @Optional
@@ -102,6 +118,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         super.onDestroy();
         if (unbinder != null) {
             unbinder.unbind();
+        }
+
+        if (newTimer != null) {
+            newTimer.cancel();
         }
     }
 
@@ -200,6 +220,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Intent intent = new Intent(getActivity(), FireEvacuationActivity.class);
         startActivity(intent);
     }
+
     public void openFireMarshalEvacuationActivity() {
         Intent intent = new Intent(getActivity(), FireMarshalEvacuationActivity.class);
         startActivity(intent);
@@ -213,7 +234,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public void redirectBasedOnUserType(BaseActivity activity) {
         String userType = Prefs.getString(PreferenceKeys.USER_TYPE, "0");
-        Log.e("FMC TOKEN",""+ getFCMRefreshedToken());
+        Log.e("FMC TOKEN", "" + getFCMRefreshedToken());
         if (userType.equals(WebApiHelper.USER_TYPE_STAFF)) {
             openStaffDashboard(activity);
         } else if (userType.equals(WebApiHelper.USER_TYPE_MANAGER)) {
