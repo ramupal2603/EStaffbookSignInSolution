@@ -2,7 +2,6 @@ package com.brinfotech.feedbacksystem.ui.managerView.qrCodeScannerView;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,17 +20,14 @@ import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
-import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.Result;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,7 +67,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
 
         getUsersCurrentStatus();
 
-        txtWelcomeUserId.setText(String.format("Hi ,%s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+        txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
     }
 
@@ -102,7 +98,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                     GetUserStatusResponseModel responseModel = response.body();
                     if (responseModel != null && responseModel.getStatus() != null) {
                         initiateSignedInView(responseModel.getStatus());
-                    }else {
+                    } else {
                         initiateSignedInView("0");
                     }
 
@@ -129,6 +125,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
         return requestModel;
 
     }
+
     private void initiateSignedInView(String status) {
 
         if (status.equals("0") || status.equals(ConstantClass.RESPONSE_SUCCESS_SIGN_OUT)) {
@@ -194,7 +191,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                             openThankYouActivity(responseModel.getStatus());
                             Prefs.putString(PreferenceKeys.SCAN_STATUS, responseModel.getStatus());
                             finish();
-                        }else {
+                        } else {
                             showInvalidQrCodeMessage();
 
                         }
@@ -225,7 +222,6 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
     private void showInvalidQrCodeMessage() {
         showToastMessage(getActivity().getResources().getString(R.string.qr_code_not_valid_for_sign_in_out));
     }
-
 
 
     @Override
