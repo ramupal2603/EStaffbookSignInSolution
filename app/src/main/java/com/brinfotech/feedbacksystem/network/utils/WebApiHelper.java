@@ -34,7 +34,7 @@ public class WebApiHelper {
 
 
     //BaseUrl of Repository
-    public static String BASE_URL = "https://staffbooks.co.uk/Webservice/";
+    public static String BASE_URL = "https://staffbooks.co.uk/app/Webservice/";
 
 
 }
