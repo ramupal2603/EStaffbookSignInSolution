@@ -23,6 +23,10 @@ public class StringUtils {
         return originString.replaceAll("\\D+", "");
     }
 
+    public static boolean checkTwoEditText(EditText edtFirst, EditText edtSecond) {
+        return edtFirst.getText().toString().toLowerCase().trim().equals(edtSecond.getText().toString().toLowerCase().trim());
+    }
+
     public static String convertStringListToJson(ArrayList<String> arrList) {
         return new Gson().toJson(arrList).replaceAll("\\[", "").replaceAll("]", "");
     }

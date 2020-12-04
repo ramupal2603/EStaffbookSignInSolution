@@ -1,6 +1,8 @@
 package com.brinfotech.feedbacksystem.network;
 
 
+import com.brinfotech.feedbacksystem.data.changePassword.ChangePasswordRequestModel;
+import com.brinfotech.feedbacksystem.data.changePassword.ChangePasswordResponseModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
 import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusRequestModel;
@@ -48,6 +50,9 @@ public interface RetrofitInterface {
 
     @POST(WebApiHelper.GET_DEPARTMENT)
     Call<DepartmentResponseModel> getDepartment(@Body DepartmentRequestModel requestModel);
+
+    @POST(WebApiHelper.CHANGE_PASSWORD)
+    Call<ChangePasswordResponseModel> changePassword(@Body ChangePasswordRequestModel requestModel);
 
 
 }

@@ -19,6 +19,7 @@
     <string name="in">In</string>
     <string name="out">Out</string>
     <string name="something_went_wrong">Something went wrong please try again later</string>
+    <string name="password_changed_successfully">Password changed successfully</string>
     <string name="no_internet_connection">Internet not available, Cross check your internet connectivity and try again"</string>
     <string name="no_staff_records_found">No Staff Records Found</string>
     <string name="signed_in_thanks_msg">Thank you for signing in</string>
@@ -32,5 +33,10 @@
     <string name="all">All</string>
     <string name="visitor">Visitor</string>
     <string name="department">Department</string>
+    <string name="weak">Weak</string>
+    <string name="medium">Medium</string>
+    <string name="strong">Strong</string>
+    <string name="very_strong">Very Strong</string>
+    <string name="invalid_credential">Invalid username or password,please try again</string>
 
 </resources>

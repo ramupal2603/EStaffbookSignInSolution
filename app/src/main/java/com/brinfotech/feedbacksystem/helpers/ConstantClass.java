@@ -2,6 +2,7 @@ package com.brinfotech.feedbacksystem.helpers;
 
 public class ConstantClass {
     public static final String RESPONSE_SUCCESS = "1";
+    public static final String RESPONSE_CHANGE_LOGIN_PWD = "2";
     public static final String RESPONSE_SUCCESS_SIGN_IN = "1";
     public static final String RESPONSE_SUCCESS_SIGN_OUT = "2";
 

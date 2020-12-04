@@ -162,6 +162,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         Prefs.putString(PreferenceKeys.SITE_ID, responseModel.getVisitor_details().get(0).getSite_details());
                         Prefs.putBoolean(PreferenceKeys.USER_LOGGED_IN, true);
                         redirectBasedOnUserType(getActivity());
+                    } else if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_CHANGE_LOGIN_PWD)) {
+                        Prefs.putString(PreferenceKeys.USER_ID, responseModel.getVisitor_details().get(0).getUser_id());
+                        Prefs.putString(PreferenceKeys.USER_TYPE, responseModel.getVisitor_details().get(0).getUser_type());
+                        Prefs.putString(PreferenceKeys.USER_NAME, responseModel.getVisitor_details().get(0).getUser_name());
+                        Prefs.putString(PreferenceKeys.SITE_ID, responseModel.getVisitor_details().get(0).getSite_details());
+                        edtUserName.setText("");
+                        edtPwd.setText("");
+                        redirectToChangePasswordScreen(LoginActivity.this);
+                    }else {
+                        showToastMessage(getResources().getString(R.string.invalid_credential));
                     }
                 } else {
                     showErrorMessage();

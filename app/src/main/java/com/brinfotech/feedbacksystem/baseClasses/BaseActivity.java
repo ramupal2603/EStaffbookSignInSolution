@@ -24,6 +24,7 @@ import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
+import com.brinfotech.feedbacksystem.ui.changePasswordView.ChangePasswordActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
@@ -195,18 +196,21 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public void openStaffDashboard(BaseActivity activity) {
         Intent intent = new Intent(getActivity(), StaffDashboardActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         activity.finish();
     }
 
     public void openManagerDashboard(BaseActivity activity) {
         Intent intent = new Intent(getActivity(), ManageDashboardActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         activity.finish();
     }
 
     public void openFireMarshalDashboard(BaseActivity activity) {
         Intent intent = new Intent(getActivity(), FireMarshalDashboardActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         activity.finish();
     }
@@ -242,6 +246,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         } else if (userType.equals(WebApiHelper.USER_TYPE_FIRE_MARSHAL)) {
             openFireMarshalDashboard(activity);
         }
+    }
+
+    public void redirectToChangePasswordScreen(BaseActivity activity) {
+        openChangedPasswordScreen(activity);
+    }
+
+    private void openChangedPasswordScreen(BaseActivity activity) {
+        Intent intent = new Intent(activity, ChangePasswordActivity.class);
+        startActivity(intent);
     }
 
 

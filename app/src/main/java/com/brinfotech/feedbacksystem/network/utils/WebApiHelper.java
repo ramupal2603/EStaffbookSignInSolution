@@ -11,6 +11,7 @@ public class WebApiHelper {
     public static final String IMPORT_FIRE_EVACUATION = "importFireevacuation";
     public static final String GET_DEPARTMENT = "getDepartment";
     public static final String GET_USER_STATUS = "getUserstatus";
+    public static final String CHANGE_PASSWORD = "changePassword";
 
 
     //USER_TYPE
