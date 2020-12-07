@@ -10,6 +10,17 @@ public class LoginResponseDataModel {
     @SerializedName("company_details")
     String site_details;
 
+    @SerializedName("site_id")
+    String site_id;
+
+    public String getSite_id() {
+        return site_id;
+    }
+
+    public void setSite_id(String site_id) {
+        this.site_id = site_id;
+    }
+
     public String getUser_id() {
         return user_id;
     }
