@@ -81,15 +81,11 @@ public class ChangePasswordActivity extends BaseActivity {
         if (!StringUtils.checkEmptyEditText(edtNewPassword)) {
             PasswordStrength passwordStrength = calculatePasswordStrength(edtNewPassword.getText().toString().trim());
             if (passwordStrength != PasswordStrength.VERY_STRONG) {
-                showToastMessage("Password should be At least 8 characters long." +
-                        "And should contain  At least 1 capital letter,1 lowercase letter," +
-                        "1 special character,1 numeric character");
-
+                showToastMessage(getString(R.string.err_msg_strong_pwd));
             } else if (StringUtils.checkEmptyEditText(edtConfirmPassword)) {
-                showToastMessage("Please enter confirm password");
-
+                showToastMessage(getString(R.string.error_msg_confirm_password_empty));
             } else if (!StringUtils.checkTwoEditText(edtNewPassword, edtConfirmPassword)) {
-                showToastMessage("New Password and Old Password Must be same");
+                showToastMessage(getString(R.string.error_msg_confirm_pwd_match));
             } else {
                 callUpdatePasswordAPI(edtNewPassword.getText().toString().trim());
             }
