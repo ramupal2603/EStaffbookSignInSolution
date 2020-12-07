@@ -174,6 +174,7 @@ public class StaffReportActivity extends BaseActivity {
         StaffReportRequestModel staffReportRequestModel = new StaffReportRequestModel();
         StaffReportParamsModel paramsModel = new StaffReportParamsModel();
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.SITE_ID, "0"));
+        paramsModel.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
         staffReportRequestModel.setParam(paramsModel);
         return staffReportRequestModel;
     }

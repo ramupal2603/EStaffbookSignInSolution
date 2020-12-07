@@ -83,7 +83,7 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
                     GetUserStatusResponseModel responseModel = response.body();
                     if (responseModel != null && responseModel.getStatus() != null) {
                         initiateSignedInView(responseModel.getStatus());
-                    }else {
+                    } else {
                         initiateSignedInView("0");
                     }
 
@@ -110,6 +110,7 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
         return requestModel;
 
     }
+
     private void initiateSignedInView(String status) {
 
         if (status.equals("0") || status.equals(ConstantClass.RESPONSE_SUCCESS_SIGN_OUT)) {
@@ -189,7 +190,7 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
                             openThankYouActivity(responseModel.getStatus());
                             Prefs.putString(PreferenceKeys.SCAN_STATUS, responseModel.getStatus());
                             finish();
-                        }else {
+                        } else {
                             showInvalidQrCodeMessage();
 
                         }
@@ -211,6 +212,7 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
         SignInOutRequestModel requestModel = new SignInOutRequestModel();
         SignInOutParamsModel paramsModel = new SignInOutParamsModel();
         paramsModel.setUser_id(scannedId);
+        paramsModel.setSite_id(Prefs.getString(PreferenceKeys.LOCATION_ID, ""));
         paramsModel.setDevice_type(WebApiHelper.DEVICE_TYPE_MOBILE);
         requestModel.setParam(paramsModel);
 
@@ -220,7 +222,6 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
     private void showInvalidQrCodeMessage() {
         showToastMessage(getActivity().getResources().getString(R.string.qr_code_not_valid_for_sign_in_out));
     }
-
 
 
     @Override

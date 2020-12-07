@@ -3,6 +3,15 @@ package com.brinfotech.feedbacksystem.data.signINOut;
 public class SignInOutParamsModel {
     String user_id;
     String device_type;
+    String site_id;
+
+    public String getSite_id() {
+        return site_id;
+    }
+
+    public void setSite_id(String site_id) {
+        this.site_id = site_id;
+    }
 
     public String getUser_id() {
         return user_id;

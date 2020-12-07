@@ -7,6 +7,17 @@ public class TodaysParamsModel {
     @SerializedName("company_id")
     String site_id;
 
+    @SerializedName("site_id")
+    String location_id;
+
+    public String getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(String location_id) {
+        this.location_id = location_id;
+    }
+
     public String getSite_id() {
         return site_id;
     }
