@@ -2,7 +2,7 @@ package com.brinfotech.feedbacksystem.data.importFireEvacuation;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ImportFireEvacuationParamsModel {
+public class ImportFireEvacuationVisitorModel {
     String evacuation_date;
     String evacuation_time;
     String visitor_id;
@@ -13,17 +13,6 @@ public class ImportFireEvacuationParamsModel {
     String site_id;
     @SerializedName("site_id")
     String location_id;
-
-    @SerializedName("user_id")
-    String userID;
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
 
     public String getLocation_id() {
         return location_id;

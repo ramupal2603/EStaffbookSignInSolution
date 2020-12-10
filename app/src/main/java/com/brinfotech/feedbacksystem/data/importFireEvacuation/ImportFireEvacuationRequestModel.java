@@ -1,15 +1,14 @@
 package com.brinfotech.feedbacksystem.data.importFireEvacuation;
 
-import java.util.ArrayList;
-
 public class ImportFireEvacuationRequestModel {
-    ArrayList<ImportFireEvacuationParamsModel> param;
 
-    public ArrayList<ImportFireEvacuationParamsModel> getParam() {
+    ImportFireEvacuationParamModel param;
+
+    public ImportFireEvacuationParamModel getParam() {
         return param;
     }
 
-    public void setParam(ArrayList<ImportFireEvacuationParamsModel> param) {
+    public void setParam(ImportFireEvacuationParamModel param) {
         this.param = param;
     }
 }

@@ -28,7 +28,8 @@ import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentRequestParamModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModelData;
-import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationParamsModel;
+import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationParamModel;
+import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationVisitorModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodayVisitorDataModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodayVisitorResponseModel;
@@ -362,8 +363,7 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
     }
 
     private void createRequest() {
-        ArrayList<ImportFireEvacuationParamsModel> arrFireEvacuationList = new ArrayList<>();
-
+        ArrayList<ImportFireEvacuationVisitorModel> arrFireEvacuationList = new ArrayList<>();
         ArrayList<String> arrSelectedVisitors = new ArrayList<>(selectedHashmap.keySet());
 
         for (int i = 0; i < arrSelectedVisitors.size(); i++) {
@@ -372,7 +372,7 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
                 TodayVisitorDataModel arrItem = arrTodaysVisitor.get(j);
                 if (selectedId.equals(arrItem.getVisitor_id())) {
 
-                    ImportFireEvacuationParamsModel evacuationImport = new ImportFireEvacuationParamsModel();
+                    ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
                     evacuationImport.setVisitor_id(arrItem.getVisitor_id());
                     evacuationImport.setVisitor_name(arrItem.getVisitor_name());
                     evacuationImport.setVisitor_type(arrItem.getVisitor_type());
@@ -381,7 +381,6 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
                     evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
                     evacuationImport.setSite_id(arrItem.getSite_id());
                     evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
-                    evacuationImport.setUserID(Prefs.getString(PreferenceKeys.USER_ID, "0"));
 
                     arrFireEvacuationList.add(evacuationImport);
                 }
@@ -389,8 +388,12 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         }
 
         if (!arrFireEvacuationList.isEmpty()) {
+
             ImportFireEvacuationRequestModel requestModel = new ImportFireEvacuationRequestModel();
-            requestModel.setParam(arrFireEvacuationList);
+            ImportFireEvacuationParamModel paramModel=new ImportFireEvacuationParamModel();
+            paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID,""));
+            paramModel.setVisitor_details(arrFireEvacuationList);
+            requestModel.setParam(paramModel);
 
             Gson gson = new Gson();
             String requestParameter = gson.toJson(requestModel);

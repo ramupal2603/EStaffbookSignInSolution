@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.brinfotech.feedbacksystem.MyApplication;
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
-import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationParamsModel;
+import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationParamModel;
+import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationVisitorModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodayVisitorDataModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodayVisitorResponseModel;
@@ -157,7 +158,7 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
     }
 
     private void createRequest() {
-        ArrayList<ImportFireEvacuationParamsModel> arrFireEvacuationList = new ArrayList<>();
+        ArrayList<ImportFireEvacuationVisitorModel> arrFireEvacuationList = new ArrayList<>();
 
         ArrayList<String> arrSelectedVisitors = new ArrayList<>(selectedHashmap.keySet());
 
@@ -167,7 +168,7 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
                 TodayVisitorDataModel arrItem = arrTodaysVisitor.get(j);
                 if (selectedId.equals(arrItem.getVisitor_id())) {
 
-                    ImportFireEvacuationParamsModel evacuationImport = new ImportFireEvacuationParamsModel();
+                    ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
                     evacuationImport.setVisitor_id(arrItem.getVisitor_id());
                     evacuationImport.setVisitor_name(arrItem.getVisitor_name());
                     evacuationImport.setVisitor_type(arrItem.getVisitor_type());
@@ -176,9 +177,6 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
                     evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireEvacuationActivity.this));
                     evacuationImport.setSite_id(arrItem.getSite_id());
                     evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
-                    evacuationImport.setUserID(Prefs.getString(PreferenceKeys.USER_ID, "0"));
-
-
                     arrFireEvacuationList.add(evacuationImport);
                 }
             }
@@ -186,7 +184,10 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
 
         if (!arrFireEvacuationList.isEmpty()) {
             ImportFireEvacuationRequestModel requestModel = new ImportFireEvacuationRequestModel();
-            requestModel.setParam(arrFireEvacuationList);
+            ImportFireEvacuationParamModel paramModel=new ImportFireEvacuationParamModel();
+            paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID,""));
+            paramModel.setVisitor_details(arrFireEvacuationList);
+            requestModel.setParam(paramModel);
 
             Gson gson = new Gson();
             String requestParameter = gson.toJson(requestModel);
