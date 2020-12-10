@@ -54,7 +54,7 @@
                     android:layout_marginBottom="@dimen/common_margin"
                     android:layout_weight="0.40"
                     android:gravity="center"
-                    android:text="15"
+                    android:text="0"
                     android:textColor="@color/whiteColor"
                     android:textSize="@dimen/verySmallTextSize" />
 
@@ -87,7 +87,7 @@
                     android:layout_marginBottom="@dimen/common_margin"
                     android:layout_weight="0.40"
                     android:gravity="center"
-                    android:text="15"
+                    android:text="0"
                     android:textColor="@color/whiteColor"
                     android:textSize="@dimen/verySmallTextSize" />
 
@@ -120,7 +120,7 @@
                     android:layout_marginBottom="@dimen/common_margin"
                     android:layout_weight="0.40"
                     android:gravity="center"
-                    android:text="15"
+                    android:text="0"
                     android:textColor="@color/whiteColor"
                     android:textSize="@dimen/verySmallTextSize" />
 
@@ -152,7 +152,7 @@
                     android:layout_weight="0.40"
                     android:layout_marginBottom="@dimen/common_margin"
                     android:gravity="center"
-                    android:text="15"
+                    android:text="0"
                     android:textColor="@color/whiteColor"
                     android:textSize="@dimen/verySmallTextSize" />
 

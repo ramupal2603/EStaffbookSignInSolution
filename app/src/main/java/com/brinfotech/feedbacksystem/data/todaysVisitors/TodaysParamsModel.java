@@ -10,6 +10,17 @@ public class TodaysParamsModel {
     @SerializedName("site_id")
     String location_id;
 
+    @SerializedName("user_id")
+    String UserID;
+
+    public String getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(String userID) {
+        UserID = userID;
+    }
+
     public String getLocation_id() {
         return location_id;
     }

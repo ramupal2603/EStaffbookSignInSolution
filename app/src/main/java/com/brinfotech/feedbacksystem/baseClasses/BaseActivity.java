@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
+import com.brinfotech.feedbacksystem.data.UnauthorizedEvent;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
@@ -27,6 +28,7 @@ import com.brinfotech.feedbacksystem.ui.Utils;
 import com.brinfotech.feedbacksystem.ui.changePasswordView.ChangePasswordActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity;
+import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity;
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
@@ -39,6 +41,9 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.pixplicity.easyprefs.library.Prefs;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -105,8 +110,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -301,6 +313,18 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         return fcmToken;
     }
 
+    @Subscribe
+    public final void onUnauthorizedEvent(UnauthorizedEvent e) {
+        handleUnauthorizedEvent();
+    }
+
+    protected void handleUnauthorizedEvent() {
+        Prefs.clear();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finish();
+    }
 
 }
 

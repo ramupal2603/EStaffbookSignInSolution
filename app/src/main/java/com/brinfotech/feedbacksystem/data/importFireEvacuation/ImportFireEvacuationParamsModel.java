@@ -14,6 +14,17 @@ public class ImportFireEvacuationParamsModel {
     @SerializedName("site_id")
     String location_id;
 
+    @SerializedName("user_id")
+    String userID;
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public String getLocation_id() {
         return location_id;
     }

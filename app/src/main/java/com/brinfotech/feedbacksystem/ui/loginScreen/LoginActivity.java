@@ -2,6 +2,7 @@ package com.brinfotech.feedbacksystem.ui.loginScreen;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,6 +104,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
+    private void resumeCameraPreview() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                qrCodeScanner.resumeCameraPreview(LoginActivity.this);
+            }
+        }, 5000);
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -172,7 +183,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         edtUserName.setText("");
                         edtPwd.setText("");
                         redirectToChangePasswordScreen(LoginActivity.this);
-                    }else {
+                    } else {
                         showToastMessage(getResources().getString(R.string.invalid_credential));
                     }
                 } else {
@@ -212,8 +223,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         Prefs.putString(PreferenceKeys.USER_TYPE, responseModel.getVisitor_details().get(0).getUser_type());
                         Prefs.putString(PreferenceKeys.USER_NAME, responseModel.getVisitor_details().get(0).getUser_name());
                         Prefs.putString(PreferenceKeys.SITE_ID, responseModel.getVisitor_details().get(0).getSite_details());
+                        Prefs.putString(PreferenceKeys.LOCATION_ID, responseModel.getVisitor_details().get(0).getSite_id());
                         Prefs.putBoolean(PreferenceKeys.USER_LOGGED_IN, true);
                         redirectBasedOnUserType(getActivity());
+                    } else {
+                        showToastMessage(getString(R.string.invalid_credential));
+                        resumeCameraPreview();
                     }
                 } else {
                     showErrorMessage();

@@ -78,6 +78,10 @@ dependencies {
     //Dimension
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
+
 
 }
 apply plugin: 'com.google.gms.google-services'

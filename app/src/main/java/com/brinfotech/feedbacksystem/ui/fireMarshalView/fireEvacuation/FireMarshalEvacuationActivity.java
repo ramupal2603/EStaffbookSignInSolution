@@ -141,6 +141,7 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         DepartmentRequestModel requestModel = new DepartmentRequestModel();
         DepartmentRequestParamModel paramModel = new DepartmentRequestParamModel();
         paramModel.setCompany_id(Prefs.getString(PreferenceKeys.SITE_ID, ""));
+        paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID, ""));
         requestModel.setParam(paramModel);
         return requestModel;
     }
@@ -212,6 +213,7 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         TodaysParamsModel paramsModel = new TodaysParamsModel();
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.SITE_ID, ""));
         paramsModel.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+        paramsModel.setUserID(Prefs.getString(PreferenceKeys.USER_ID, "0"));
         requestModel.setParam(paramsModel);
         return requestModel;
     }
@@ -379,6 +381,7 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
                     evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
                     evacuationImport.setSite_id(arrItem.getSite_id());
                     evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+                    evacuationImport.setUserID(Prefs.getString(PreferenceKeys.USER_ID, "0"));
 
                     arrFireEvacuationList.add(evacuationImport);
                 }
