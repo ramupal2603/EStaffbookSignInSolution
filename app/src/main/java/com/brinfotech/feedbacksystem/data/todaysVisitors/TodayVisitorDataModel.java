@@ -13,6 +13,17 @@ public class TodayVisitorDataModel {
     @SerializedName("department_id")
     String department_id;
 
+    @SerializedName("visitor_role")
+    String visitorRole;
+
+    public String getVisitorRole() {
+        return visitorRole;
+    }
+
+    public void setVisitorRole(String visitorRole) {
+        this.visitorRole = visitorRole;
+    }
+
     public String getDepartment_id() {
         return department_id;
     }
