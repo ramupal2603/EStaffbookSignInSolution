@@ -380,6 +380,20 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
                     evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireMarshalEvacuationActivity.this));
                     evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
                     evacuationImport.setSite_id(arrItem.getSite_id());
+                    evacuationImport.setIsSelected("1");
+                    evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+
+                    arrFireEvacuationList.add(evacuationImport);
+                }else{
+                    ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
+                    evacuationImport.setVisitor_id(arrItem.getVisitor_id());
+                    evacuationImport.setVisitor_name(arrItem.getVisitor_name());
+                    evacuationImport.setVisitor_type(arrItem.getVisitor_type());
+                    evacuationImport.setLog_id(arrItem.getLog_id());
+                    evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireMarshalEvacuationActivity.this));
+                    evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
+                    evacuationImport.setSite_id(arrItem.getSite_id());
+                    evacuationImport.setIsSelected("0");
                     evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
 
                     arrFireEvacuationList.add(evacuationImport);

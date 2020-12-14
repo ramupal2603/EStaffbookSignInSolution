@@ -14,6 +14,17 @@ public class ImportFireEvacuationVisitorModel {
     @SerializedName("site_id")
     String location_id;
 
+    @SerializedName("status")
+    String isSelected;
+
+    public String getIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(String isSelected) {
+        this.isSelected = isSelected;
+    }
+
     public String getLocation_id() {
         return location_id;
     }
