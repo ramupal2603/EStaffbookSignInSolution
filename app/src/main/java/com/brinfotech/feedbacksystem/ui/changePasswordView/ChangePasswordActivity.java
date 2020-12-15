@@ -1,5 +1,6 @@
 package com.brinfotech.feedbacksystem.ui.changePasswordView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.SingleLineTransformationMethod;
@@ -106,8 +107,9 @@ public class ChangePasswordActivity extends BaseActivity {
                     if (response.isSuccessful()) {
                         ChangePasswordResponseModel responseModel = response.body();
                         if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
-                            showToastMessage(getResources().getString(R.string.password_changed_successfully));
-                            redirectBasedOnUserType(ChangePasswordActivity.this);
+                            Intent intent = new Intent();
+                            setResult(RESULT_OK, intent);
+                            finish();
                         } else {
                             showToastMessage(getResources().getString(R.string.something_went_wrong));
                         }

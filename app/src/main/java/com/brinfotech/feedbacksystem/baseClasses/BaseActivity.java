@@ -250,7 +250,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public void redirectBasedOnUserType(BaseActivity activity) {
         String userType = Prefs.getString(PreferenceKeys.USER_TYPE, "0");
-        Log.e("FMC TOKEN", "" + getFCMRefreshedToken());
+        Log.e("FCM TOKEN", "" + getFCMRefreshedToken());
         if (userType.equals(WebApiHelper.USER_TYPE_STAFF)) {
             openStaffDashboard(activity);
         } else if (userType.equals(WebApiHelper.USER_TYPE_MANAGER)) {
@@ -266,7 +266,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     private void openChangedPasswordScreen(BaseActivity activity) {
         Intent intent = new Intent(activity, ChangePasswordActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,ConstantClass.REQUEST_CODE_CHANGE_PASSWORD);
+
     }
 
 

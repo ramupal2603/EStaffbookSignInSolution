@@ -1,6 +1,7 @@
 package com.brinfotech.feedbacksystem.ui.loginScreen;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
@@ -302,5 +304,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onRationaleDenied(int requestCode) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ConstantClass.REQUEST_CODE_CHANGE_PASSWORD && resultCode == RESULT_OK) {
+            Prefs.putBoolean(PreferenceKeys.USER_LOGGED_IN, true);
+            showToastMessage(getResources().getString(R.string.password_changed_successfully));
+            redirectBasedOnUserType(LoginActivity.this);
+        }
     }
 }

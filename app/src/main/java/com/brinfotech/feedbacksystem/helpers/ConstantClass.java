@@ -58,16 +58,6 @@ public class ConstantClass {
     public static final String REQUEST_DATE_PICKER = "REQUEST_DATE_PICKER";
     public static final String REQUEST_TIME_PICKER = "REQUEST_TIME_PICKER";
 
-    public static final int REQUEST_CONTRACTOR_DOCUMENT_1 = 120;
-    public static final int REQUEST_CONTRACTOR_DOCUMENT_2 = 121;
-    public static final int REQUEST_CONTRACTOR_DOCUMENT_3 = 122;
-    public static final int REQUEST_CODE_START_TIME_1 = 123;
-    public static final int REQUEST_CODE_START_TIME_2 = 124;
-    public static final int REQUEST_CODE_START_TIME_3 = 125;
-    public static final int REQUEST_CODE_START_TIME_4 = 126;
+    public static final int REQUEST_CODE_CHANGE_PASSWORD = 115;
 
-    public static final int REQUEST_CODE_FINISH_TIME_1 = 127;
-    public static final int REQUEST_CODE_FINISH_TIME_2 = 128;
-    public static final int REQUEST_CODE_FINISH_TIME_3 = 129;
-    public static final int REQUEST_CODE_FINISH_TIME_4 = 130;
 }
