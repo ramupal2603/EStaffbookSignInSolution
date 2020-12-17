@@ -29,8 +29,8 @@ import com.brinfotech.feedbacksystem.data.department.DepartmentRequestParamModel
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModelData;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationParamModel;
-import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationVisitorModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
+import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationVisitorModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodayVisitorDataModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodayVisitorResponseModel;
 import com.brinfotech.feedbacksystem.data.todaysVisitors.TodaysParamsModel;
@@ -366,46 +366,45 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         ArrayList<ImportFireEvacuationVisitorModel> arrFireEvacuationList = new ArrayList<>();
         ArrayList<String> arrSelectedVisitors = new ArrayList<>(selectedHashmap.keySet());
 
-        for (int i = 0; i < arrSelectedVisitors.size(); i++) {
-            for (int j = 0; j < arrTodaysVisitor.size(); j++) {
-                String selectedId = arrSelectedVisitors.get(i);
-                TodayVisitorDataModel arrItem = arrTodaysVisitor.get(j);
-                if (selectedId.equals(arrItem.getVisitor_id())) {
 
-                    ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
-                    evacuationImport.setVisitor_id(arrItem.getVisitor_id());
-                    evacuationImport.setVisitor_name(arrItem.getVisitor_name());
-                    evacuationImport.setVisitor_type(arrItem.getVisitor_type());
-                    evacuationImport.setLog_id(arrItem.getLog_id());
-                    evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireMarshalEvacuationActivity.this));
-                    evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
-                    evacuationImport.setSite_id(arrItem.getSite_id());
-                    evacuationImport.setIsSelected("1");
-                    evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+        for (int j = 0; j < arrTodaysVisitor.size(); j++) {
+            TodayVisitorDataModel arrItem = arrTodaysVisitor.get(j);
+            if (arrSelectedVisitors.contains(arrItem.getVisitor_id())) {
 
-                    arrFireEvacuationList.add(evacuationImport);
-                }else{
-                    ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
-                    evacuationImport.setVisitor_id(arrItem.getVisitor_id());
-                    evacuationImport.setVisitor_name(arrItem.getVisitor_name());
-                    evacuationImport.setVisitor_type(arrItem.getVisitor_type());
-                    evacuationImport.setLog_id(arrItem.getLog_id());
-                    evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireMarshalEvacuationActivity.this));
-                    evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
-                    evacuationImport.setSite_id(arrItem.getSite_id());
-                    evacuationImport.setIsSelected("0");
-                    evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+                ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
+                evacuationImport.setVisitor_id(arrItem.getVisitor_id());
+                evacuationImport.setVisitor_name(arrItem.getVisitor_name());
+                evacuationImport.setVisitor_type(arrItem.getVisitor_type());
+                evacuationImport.setLog_id(arrItem.getLog_id());
+                evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireMarshalEvacuationActivity.this));
+                evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
+                evacuationImport.setSite_id(arrItem.getSite_id());
+                evacuationImport.setIsSelected("1");
+                evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
 
-                    arrFireEvacuationList.add(evacuationImport);
-                }
+                arrFireEvacuationList.add(evacuationImport);
+            } else {
+                ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
+                evacuationImport.setVisitor_id(arrItem.getVisitor_id());
+                evacuationImport.setVisitor_name(arrItem.getVisitor_name());
+                evacuationImport.setVisitor_type(arrItem.getVisitor_type());
+                evacuationImport.setLog_id(arrItem.getLog_id());
+                evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireMarshalEvacuationActivity.this));
+                evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireMarshalEvacuationActivity.this));
+                evacuationImport.setSite_id(arrItem.getSite_id());
+                evacuationImport.setIsSelected("0");
+                evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+
+                arrFireEvacuationList.add(evacuationImport);
             }
         }
+
 
         if (!arrFireEvacuationList.isEmpty()) {
 
             ImportFireEvacuationRequestModel requestModel = new ImportFireEvacuationRequestModel();
-            ImportFireEvacuationParamModel paramModel=new ImportFireEvacuationParamModel();
-            paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID,""));
+            ImportFireEvacuationParamModel paramModel = new ImportFireEvacuationParamModel();
+            paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID, ""));
             paramModel.setVisitor_details(arrFireEvacuationList);
             requestModel.setParam(paramModel);
 

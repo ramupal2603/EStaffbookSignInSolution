@@ -71,28 +71,6 @@ public class FireEvacuationListAdapter extends RecyclerView.Adapter<FireEvacuati
         });
     }
 
-    private String getVisitorType(String visitorType) {
-
-        String visitorName = "";
-        switch (visitorType) {
-            case "0":
-            case "1":
-                visitorName = "Visitor";
-                break;
-            case "2":
-                visitorName = "Manager";
-                break;
-            case "3":
-                visitorName = "Staff";
-                break;
-            case "4":
-                visitorName = "Fire Marshal";
-                break;
-        }
-
-        return visitorName;
-    }
-
     @Override
     public int getItemCount() {
         return arrTodaysVisitor.size();

@@ -53,7 +53,7 @@ public class FireEvacuationListAdapter extends RecyclerView.Adapter<FireEvacuati
             fireEvacuationHolder.chkFilterView.setChecked(false);
         }
 
-        fireEvacuationHolder.txtVisitorType.setText(getVisitorType(arrItem.getVisitor_type()));
+        fireEvacuationHolder.txtVisitorType.setText(arrItem.getVisitorRole());
         fireEvacuationHolder.txtVisitorName.setText(arrItem.getVisitor_name());
         fireEvacuationHolder.layoutNotificationFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,29 +71,6 @@ public class FireEvacuationListAdapter extends RecyclerView.Adapter<FireEvacuati
         });
     }
 
-    private String getVisitorType(String visitorType) {
-
-        String visitor = "";
-        switch (visitorType) {
-            case "0":
-                visitor = "Visitor";
-                break;
-            case "1":
-                visitor = "Admin";
-                break;
-            case "2":
-                visitor = "Manager";
-                break;
-            case "3":
-                visitor = "Staff";
-                break;
-            case "4":
-                visitor = "Fire marshal";
-                break;
-        }
-
-        return visitor;
-    }
 
     @Override
     public int getItemCount() {

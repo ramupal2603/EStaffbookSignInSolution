@@ -65,7 +65,7 @@ public class ManageDashboardActivity extends BaseActivity {
             openStaffReportActivity();
         }
         if (view == rLoutFireEvacuationView) {
-            openFireMarshalEvacuationActivity();
+            openFireEvacuationActivity();
         }
 
         if (view == rLoutRemoteView) {

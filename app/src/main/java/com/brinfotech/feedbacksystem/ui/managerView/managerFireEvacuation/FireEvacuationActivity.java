@@ -30,6 +30,7 @@ import com.brinfotech.feedbacksystem.jobQueue.SyncRequestParamsJob;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
 import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
+import com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity;
 import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -130,6 +131,8 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
         TodaysRequestModel requestModel = new TodaysRequestModel();
         TodaysParamsModel paramsModel = new TodaysParamsModel();
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.SITE_ID, ""));
+        paramsModel.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+        paramsModel.setUserID(Prefs.getString(PreferenceKeys.USER_ID, "0"));
         requestModel.setParam(paramsModel);
         return requestModel;
     }
@@ -159,43 +162,44 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
 
     private void createRequest() {
         ArrayList<ImportFireEvacuationVisitorModel> arrFireEvacuationList = new ArrayList<>();
-
         ArrayList<String> arrSelectedVisitors = new ArrayList<>(selectedHashmap.keySet());
 
-        for (int i = 0; i < arrSelectedVisitors.size(); i++) {
-            for (int j = 0; j < arrTodaysVisitor.size(); j++) {
-                String selectedId = arrSelectedVisitors.get(i);
-                TodayVisitorDataModel arrItem = arrTodaysVisitor.get(j);
-                if (selectedId.equals(arrItem.getVisitor_id())) {
 
-                    ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
-                    evacuationImport.setVisitor_id(arrItem.getVisitor_id());
-                    evacuationImport.setVisitor_name(arrItem.getVisitor_name());
-                    evacuationImport.setVisitor_type(arrItem.getVisitor_type());
-                    evacuationImport.setLog_id(arrItem.getLog_id());
-                    evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireEvacuationActivity.this));
-                    evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireEvacuationActivity.this));
-                    evacuationImport.setSite_id(arrItem.getSite_id());
-                    evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
-                    evacuationImport.setIsSelected("1");
-                    arrFireEvacuationList.add(evacuationImport);
-                } else {
-                    ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
-                    evacuationImport.setVisitor_id(arrItem.getVisitor_id());
-                    evacuationImport.setVisitor_name(arrItem.getVisitor_name());
-                    evacuationImport.setVisitor_type(arrItem.getVisitor_type());
-                    evacuationImport.setLog_id(arrItem.getLog_id());
-                    evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireEvacuationActivity.this));
-                    evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireEvacuationActivity.this));
-                    evacuationImport.setSite_id(arrItem.getSite_id());
-                    evacuationImport.setIsSelected("0");
-                    evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
-                    arrFireEvacuationList.add(evacuationImport);
-                }
+        for (int j = 0; j < arrTodaysVisitor.size(); j++) {
+            TodayVisitorDataModel arrItem = arrTodaysVisitor.get(j);
+            if (arrSelectedVisitors.contains(arrItem.getVisitor_id())) {
+
+                ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
+                evacuationImport.setVisitor_id(arrItem.getVisitor_id());
+                evacuationImport.setVisitor_name(arrItem.getVisitor_name());
+                evacuationImport.setVisitor_type(arrItem.getVisitor_type());
+                evacuationImport.setLog_id(arrItem.getLog_id());
+                evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireEvacuationActivity.this));
+                evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireEvacuationActivity.this));
+                evacuationImport.setSite_id(arrItem.getSite_id());
+                evacuationImport.setIsSelected("1");
+                evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+
+                arrFireEvacuationList.add(evacuationImport);
+            } else {
+                ImportFireEvacuationVisitorModel evacuationImport = new ImportFireEvacuationVisitorModel();
+                evacuationImport.setVisitor_id(arrItem.getVisitor_id());
+                evacuationImport.setVisitor_name(arrItem.getVisitor_name());
+                evacuationImport.setVisitor_type(arrItem.getVisitor_type());
+                evacuationImport.setLog_id(arrItem.getLog_id());
+                evacuationImport.setEvacuation_date(DateTimeUtils.getCurrentDate(FireEvacuationActivity.this));
+                evacuationImport.setEvacuation_time(DateTimeUtils.getCurrentTime(FireEvacuationActivity.this));
+                evacuationImport.setSite_id(arrItem.getSite_id());
+                evacuationImport.setIsSelected("0");
+                evacuationImport.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+
+                arrFireEvacuationList.add(evacuationImport);
             }
         }
 
+
         if (!arrFireEvacuationList.isEmpty()) {
+
             ImportFireEvacuationRequestModel requestModel = new ImportFireEvacuationRequestModel();
             ImportFireEvacuationParamModel paramModel = new ImportFireEvacuationParamModel();
             paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID, ""));
