@@ -3,6 +3,8 @@ package com.brinfotech.feedbacksystem.network;
 
 import com.brinfotech.feedbacksystem.data.changePassword.ChangePasswordRequestModel;
 import com.brinfotech.feedbacksystem.data.changePassword.ChangePasswordResponseModel;
+import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionRequestModel;
+import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionResponseModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
 import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusRequestModel;
@@ -23,7 +25,9 @@ import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface RetrofitInterface {
 
@@ -54,5 +58,6 @@ public interface RetrofitInterface {
     @POST(WebApiHelper.CHANGE_PASSWORD)
     Call<ChangePasswordResponseModel> changePassword(@Body ChangePasswordRequestModel requestModel);
 
-
+    @POST(WebApiHelper.GET_VERSION)
+    Call<CurrentVersionResponseModel> getCurrentVersion(@Body CurrentVersionRequestModel requestModel);
 }

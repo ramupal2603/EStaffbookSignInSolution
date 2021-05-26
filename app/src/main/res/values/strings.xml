@@ -41,5 +41,9 @@
     <string name="err_msg_strong_pwd">Passwords should be at least 8 characters long, should contain at least 1 capital letter, 1 lowercase letter, 1 special character and 1 number.</string>
     <string name="error_msg_confirm_password_empty">Please enter confirm password</string>
     <string name="error_msg_confirm_pwd_match">New Password and Old Password Must be same</string>
+    <string name="youAreNotUpdatedTitle">Update Available</string>
+    <string name="youAreNotUpdatedMessage">A new version of Staff Solution App is available. Please update to version  </string>
+    <string name="youAreNotUpdatedMessage1">   now</string>
+    <string name="update">Update</string>
 
 </resources>
