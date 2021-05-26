@@ -12,6 +12,7 @@ android {
         versionCode 5
         versionName "1.4"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -27,23 +28,25 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "androidx.multidex:multidex:2.0.1"
+
 
     //Retrofit
-    implementation config.retrofitDependency.retrofitConverters
-    implementation config.retrofitDependency.retrofitAdapters
-    implementation config.retrofitDependency.retrofitConvertersGson
-    implementation config.retrofitDependency.okHttpLoggingInterceptor
-    implementation config.retrofitDependency.okHttp
+    implementation 'com.squareup.retrofit2:retrofit-converters:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit-adapters:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
 
     //ButterKnife
-    implementation config.butterKnifeDependency.butterknife
-    annotationProcessor config.butterKnifeDependency.butterknifeCompiler
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
     //Material Dialog
     implementation 'com.github.rey5137:material:1.2.4'

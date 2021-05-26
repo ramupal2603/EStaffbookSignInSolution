@@ -212,6 +212,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
         SignInOutParamsModel paramsModel = new SignInOutParamsModel();
         paramsModel.setUser_id(scannedId);
         paramsModel.setDevice_type(WebApiHelper.DEVICE_TYPE_MOBILE);
+        paramsModel.setUser_type(Prefs.getString(PreferenceKeys.USER_TYPE, ""));
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
         requestModel.setParam(paramsModel);
 

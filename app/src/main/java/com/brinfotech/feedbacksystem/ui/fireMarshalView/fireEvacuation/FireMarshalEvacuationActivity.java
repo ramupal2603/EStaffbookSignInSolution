@@ -142,6 +142,7 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         DepartmentRequestModel requestModel = new DepartmentRequestModel();
         DepartmentRequestParamModel paramModel = new DepartmentRequestParamModel();
         paramModel.setCompany_id(Prefs.getString(PreferenceKeys.SITE_ID, ""));
+        paramModel.setUser_type(Prefs.getString(PreferenceKeys.USER_TYPE, ""));
         paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID, ""));
         requestModel.setParam(paramModel);
         return requestModel;
@@ -215,6 +216,7 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.SITE_ID, ""));
         paramsModel.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
         paramsModel.setUserID(Prefs.getString(PreferenceKeys.USER_ID, "0"));
+        paramsModel.setUserType(Prefs.getString(PreferenceKeys.USER_TYPE, "0"));
         requestModel.setParam(paramsModel);
         return requestModel;
     }

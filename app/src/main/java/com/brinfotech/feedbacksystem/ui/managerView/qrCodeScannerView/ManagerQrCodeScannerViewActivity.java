@@ -214,6 +214,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
         SignInOutParamsModel paramsModel = new SignInOutParamsModel();
         paramsModel.setUser_id(scannedId);
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.LOCATION_ID, ""));
+        paramsModel.setUser_type(Prefs.getString(PreferenceKeys.USER_TYPE, ""));
         paramsModel.setDevice_type(WebApiHelper.DEVICE_TYPE_MOBILE);
         requestModel.setParam(paramsModel);
 

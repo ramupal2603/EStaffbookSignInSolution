@@ -251,7 +251,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         LoginRequestModel requestModel = new LoginRequestModel();
         LoginRequestParamsModel requestParamsModel = new LoginRequestParamsModel();
         requestParamsModel.setUser_id(userId);
-        requestParamsModel.setUser_type(WebApiHelper.DEVICE_ANDROID);
+        requestParamsModel.setApp_type(WebApiHelper.DEVICE_ANDROID);
         requestParamsModel.setToken(fcmToken);
         requestModel.setParam(requestParamsModel);
         return requestModel;
@@ -264,7 +264,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         manualLoginRequestDataModel.setEmail(edtUserName.getText().toString().trim());
         manualLoginRequestDataModel.setPassword(edtPwd.getText().toString().trim());
         manualLoginRequestDataModel.setToken(fcmToken);
-        manualLoginRequestDataModel.setUser_type(WebApiHelper.DEVICE_ANDROID);
+        manualLoginRequestDataModel.setApp_type(WebApiHelper.DEVICE_ANDROID);
         requestModel.setParam(manualLoginRequestDataModel);
         return requestModel;
     }

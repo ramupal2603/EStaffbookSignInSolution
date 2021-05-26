@@ -133,6 +133,7 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.SITE_ID, ""));
         paramsModel.setLocation_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
         paramsModel.setUserID(Prefs.getString(PreferenceKeys.USER_ID, "0"));
+        paramsModel.setUserType(Prefs.getString(PreferenceKeys.USER_TYPE, "0"));
         requestModel.setParam(paramsModel);
         return requestModel;
     }

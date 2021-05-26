@@ -3,15 +3,15 @@ package com.brinfotech.feedbacksystem.data.loginData;
 public class LoginRequestParamsModel{
 
     String user_id;
-    String user_type;
+    String app_type;
     String token;
 
-    public String getUser_type() {
-        return user_type;
+    public String getApp_type() {
+        return app_type;
     }
 
-    public void setUser_type(String user_type) {
-        this.user_type = user_type;
+    public void setApp_type(String app_type) {
+        this.app_type = app_type;
     }
 
     public String getToken() {

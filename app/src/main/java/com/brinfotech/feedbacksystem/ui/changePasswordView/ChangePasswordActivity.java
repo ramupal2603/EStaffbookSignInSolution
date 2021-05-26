@@ -134,6 +134,7 @@ public class ChangePasswordActivity extends BaseActivity {
         ChangePasswordRequestParamModel paramModel = new ChangePasswordRequestParamModel();
         paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID, ""));
         paramModel.setPassword(changedPassword);
+        paramModel.setUser_type(Prefs.getString(PreferenceKeys.USER_TYPE, ""));
         changePasswordRequestModel.setParam(paramModel);
         return changePasswordRequestModel;
     }
