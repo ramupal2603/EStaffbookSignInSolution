@@ -11,5 +11,8 @@
     <dimen name="veryVerySmallTextSize">@dimen/_10sdp</dimen>
     <dimen name="commonViewMargin">@dimen/_20sdp</dimen>
     <dimen name="corner_round_shape">@dimen/common_margin</dimen>
+    <dimen name="_5dpPadding">5dp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+
 
 </resources>

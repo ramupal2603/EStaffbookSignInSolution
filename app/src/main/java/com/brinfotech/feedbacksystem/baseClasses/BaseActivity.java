@@ -25,6 +25,7 @@ import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
+import com.brinfotech.feedbacksystem.ui.adminView.AdminSiteSelectionScreen;
 import com.brinfotech.feedbacksystem.ui.changePasswordView.ChangePasswordActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity;
@@ -227,6 +228,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         activity.finish();
     }
 
+    public void openAdminView(BaseActivity activity) {
+        Intent intent = new Intent(getActivity(), AdminSiteSelectionScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        activity.finish();
+    }
+
     public void openStaffReportActivity() {
         Intent intent = new Intent(getActivity(), StaffReportActivity.class);
         startActivity(intent);
@@ -257,6 +265,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             openManagerDashboard(activity);
         } else if (userType.equals(WebApiHelper.USER_TYPE_FIRE_MARSHAL)) {
             openFireMarshalDashboard(activity);
+        } else if (userType.equals(WebApiHelper.USER_TYPE_ADMIN)) {
+            openAdminView(activity);
         }
     }
 
@@ -266,7 +276,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     private void openChangedPasswordScreen(BaseActivity activity) {
         Intent intent = new Intent(activity, ChangePasswordActivity.class);
-        startActivityForResult(intent,ConstantClass.REQUEST_CODE_CHANGE_PASSWORD);
+        startActivityForResult(intent, ConstantClass.REQUEST_CODE_CHANGE_PASSWORD);
 
     }
 

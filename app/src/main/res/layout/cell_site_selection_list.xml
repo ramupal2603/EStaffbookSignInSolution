@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loutSiteSelectionView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5dpPadding"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:weightSum="7">
+
+
+        <LinearLayout
+            android:id="@+id/loutContractorDetails"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.50"
+            android:gravity="center"
+            android:paddingLeft="@dimen/common_margin"
+            android:orientation="vertical">
+
+
+
+            <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                android:id="@+id/txtSiteName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dpPadding"
+                android:gravity="center_vertical"
+                android:text="Dxb1 Wednesbury"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/verySmallTextSize">
+
+            </com.brinfotech.feedbacksystem.customClasses.FontsTextView>
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/loutSiteView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4.50"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                android:id="@+id/txtContractorSite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_5dpPadding"
+                android:paddingLeft="@dimen/common_margin"
+                android:paddingRight="@dimen/common_margin"
+                android:text="5 People are currently working on site"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/verySmallTextSize" />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        <ImageView
+            android:id="@+id/imgEye"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:padding="@dimen/common_margin"
+            android:visibility="gone"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_eye"
+            android:text="Action">
+
+        </ImageView>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

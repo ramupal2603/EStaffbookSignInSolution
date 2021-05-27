@@ -7,13 +7,14 @@ import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionRequestMo
 import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionResponseModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentResponseModel;
+import com.brinfotech.feedbacksystem.data.getNoOfContractor.AdminSitesRequestModel;
+import com.brinfotech.feedbacksystem.data.getNoOfContractor.AdminSitesResponseModel;
 import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusRequestModel;
 import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusResponseModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationResponseModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginResponseModel;
-import com.brinfotech.feedbacksystem.data.loginData.ManualLogin.ManualLoginRequestDataModel;
 import com.brinfotech.feedbacksystem.data.loginData.ManualLogin.ManualLoginRequestModel;
 import com.brinfotech.feedbacksystem.data.signINOut.ScanQrCodeResponseModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutRequestModel;
@@ -25,9 +26,7 @@ import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface RetrofitInterface {
 
@@ -60,4 +59,7 @@ public interface RetrofitInterface {
 
     @POST(WebApiHelper.GET_VERSION)
     Call<CurrentVersionResponseModel> getCurrentVersion(@Body CurrentVersionRequestModel requestModel);
+
+    @POST(WebApiHelper.GET_SITE_VISITORS)
+    Call<AdminSitesResponseModel> getSiteVisitors(@Body AdminSitesRequestModel requestModel);
 }

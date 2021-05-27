@@ -13,14 +13,15 @@ public class WebApiHelper {
     public static final String GET_USER_STATUS = "getUserstatus";
     public static final String CHANGE_PASSWORD = "changePassword";
     public static final String GET_VERSION = "getVersion";
+    public static final String GET_SITE_VISITORS = "getSitevisitors";
 
 
     //USER_TYPE
     public static final String USER_TYPE_PRE_BOOK_VISITOR = "0";
-    public static final String USER_TYPE_ADMIN = "1";
     public static final String USER_TYPE_MANAGER = "2";
     public static final String USER_TYPE_STAFF = "3";
     public static final String USER_TYPE_FIRE_MARSHAL = "4";
+    public static final String USER_TYPE_ADMIN = "5";
 
     //STATUS
     public static final String STATUS_SIGNED_IN = "1";

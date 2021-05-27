@@ -13,6 +13,9 @@
     <color name="greenColor">#D9D900</color>
     <color name="orangeColor">#FF9900</color>
     <color name="vialolent">#323857</color>
+    <color name="darkGrayColor">#919191</color>
+    <color name="lightPinkColor">#FFE3F1</color>
+
 
 
 </resources>
