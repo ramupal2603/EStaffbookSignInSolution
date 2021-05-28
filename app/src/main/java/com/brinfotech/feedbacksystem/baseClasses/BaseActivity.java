@@ -26,6 +26,7 @@ import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
 import com.brinfotech.feedbacksystem.ui.adminView.AdminSiteSelectionScreen;
+import com.brinfotech.feedbacksystem.ui.adminView.adminDashboard.AdminDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.changePasswordView.ChangePasswordActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity;
@@ -229,7 +230,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     public void openAdminView(BaseActivity activity) {
-        Intent intent = new Intent(getActivity(), AdminSiteSelectionScreen.class);
+        Intent intent = new Intent(getActivity(), AdminDashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         activity.finish();

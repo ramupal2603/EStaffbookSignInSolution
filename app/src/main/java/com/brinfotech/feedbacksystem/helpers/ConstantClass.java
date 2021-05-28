@@ -59,5 +59,7 @@ public class ConstantClass {
     public static final String REQUEST_TIME_PICKER = "REQUEST_TIME_PICKER";
 
     public static final int REQUEST_CODE_CHANGE_PASSWORD = 115;
+    public static final int REQUEST_CODE_STAFF_REPORTS = 116;
+    public static final int REQUEST_CODE_FIRE_EVACUATION = 117;
 
 }

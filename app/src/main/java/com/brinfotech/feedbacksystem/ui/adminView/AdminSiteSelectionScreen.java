@@ -1,8 +1,8 @@
 package com.brinfotech.feedbacksystem.ui.adminView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +20,6 @@ import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.interfaces.OnSiteSelectedListener;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
-import com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
@@ -35,12 +34,19 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
     @BindView(R.id.rcvDashboardList)
     RecyclerView rcvDashboardList;
 
+    @BindView(R.id.txtManagerName)
+    TextView txtManagerName;
+
+    @BindView(R.id.txtNoOfSite)
+    TextView txtNoOfSite;
+
     @BindView(R.id.swiperefresh)
     SwipeRefreshLayout swiperefresh;
 
     SiteSelectionListAdapter siteSelectionListAdapter;
 
     ArrayList<AdminSiteListModel> arrSiteList = new ArrayList<>();
+    int requestCode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +54,8 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
 
 
         setupRecyclerView();
+
+        getIntentData();
 
         setUpAdapter();
 
@@ -59,7 +67,13 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
             }
         });
 
+        txtManagerName.setText(Prefs.getString(PreferenceKeys.USER_NAME, ""));
+
         getSiteDetails(false);
+    }
+
+    private void getIntentData() {
+        requestCode = getIntent().getIntExtra(ConstantClass.EXTRAA_FORM_DATA, ConstantClass.REQUEST_CODE_STAFF_REPORTS);
     }
 
     private void getSiteDetails(boolean isFromRefreshing) {
@@ -98,6 +112,7 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
     }
 
     private void updateAdapter() {
+        txtNoOfSite.setText(String.format("%s sites assigned", arrSiteList.size()));
         if (siteSelectionListAdapter != null) {
             siteSelectionListAdapter.updateData(arrSiteList);
         }
@@ -137,7 +152,10 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
     public void openForm(int position) {
         String selectedSiteId = arrSiteList.get(position).getSite_id();
         Prefs.putString(PreferenceKeys.LOCATION_ID, selectedSiteId);
-        Intent intent = new Intent(getActivity(), ManageDashboardActivity.class);
-        startActivity(intent);
+        if (requestCode == ConstantClass.REQUEST_CODE_FIRE_EVACUATION) {
+            openFireEvacuationActivity();
+        } else {
+            openStaffReportActivity();
+        }
     }
 }

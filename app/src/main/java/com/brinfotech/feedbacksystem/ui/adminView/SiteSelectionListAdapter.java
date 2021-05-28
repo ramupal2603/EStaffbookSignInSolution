@@ -45,7 +45,7 @@ public class SiteSelectionListAdapter extends RecyclerView.Adapter<SiteSelection
         final AdminSiteListModel arrItem = arrSiteList.get(position);
 
         holder.txtSiteName.setText(arrItem.getSite_name());
-        holder.txtContractorSite.setText(String.format("%s People are currently working on site", arrItem.getVisitor_count()));
+        holder.txtContractorSite.setText(String.format("%s People are on site", arrItem.getVisitor_count()));
 
         if (position % 2 == 0) {
             holder.loutSiteSelectionView.setBackgroundColor(activity.getResources().getColor(R.color.whiteColor));

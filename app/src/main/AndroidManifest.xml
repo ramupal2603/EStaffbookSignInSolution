@@ -55,6 +55,7 @@
         <activity android:name=".ui.fireMarshalView.qrCodeScannerView.FireMarshalQrCodeScannerViewActivity" />
         <activity android:name=".ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity" />
         <activity android:name=".ui.adminView.AdminSiteSelectionScreen" />
+        <activity android:name=".ui.adminView.adminDashboard.AdminDashboardActivity" />
 
 
         <activity

@@ -21,6 +21,38 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/headerGrayColor">
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:id="@+id/txtManagerName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/common_margin"
+                    android:text="John Smith"
+                    android:maxLines="1"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize"
+                    android:paddingStart="@dimen/common_margin" />
+
+                <com.brinfotech.feedbacksystem.customClasses.FontsTextView
+                    android:id="@+id/txtNoOfSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingRight="@dimen/common_margin"
+                    android:text="6 sites assigned"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="@dimen/smallTextSize"
+                    android:paddingEnd="@dimen/common_margin" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="@dimen/_5dpPadding">
@@ -30,7 +62,6 @@
                     android:id="@+id/loutResultView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_20dp"
                     android:orientation="vertical"
                     android:visibility="visible">
 
@@ -38,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edtTextHeight"
                         android:background="@color/lightGrayColor"
-                        android:weightSum="7">
+                        android:weightSum="8">
 
 
                         <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
@@ -59,24 +90,26 @@
                             android:layout_height="match_parent"
                             android:layout_weight="4.50"
                             android:gravity="center"
-                            android:text="No of People currently working on site"
+                            android:text="No of People on site"
                             android:textColor="@color/colorBlack"
                             android:textSize="@dimen/verySmallTextSize">
 
                         </com.brinfotech.feedbacksystem.customClasses.FontTextViewBold>
 
 
-                        <com.brinfotech.feedbacksystem.customClasses.FontTextViewBold
+                        <ImageView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
+                            android:padding="@dimen/common_margin"
+                            android:src="@drawable/ic_eye"
                             android:text="Action"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/verySmallTextSize"
-                            android:visibility="gone">
+                            android:textSize="@dimen/smallTextSize"
+                            android:visibility="visible">
 
-                        </com.brinfotech.feedbacksystem.customClasses.FontTextViewBold>
+                        </ImageView>
 
 
                     </LinearLayout>
