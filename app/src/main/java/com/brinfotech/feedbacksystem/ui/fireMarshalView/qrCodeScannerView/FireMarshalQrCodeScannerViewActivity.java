@@ -88,7 +88,12 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
                     }
 
                 } else {
-                    showErrorMessage();
+                    if (response.code() != 401) {
+                        showErrorMessage();
+                    } else {
+                        showLoginFailedMessage();
+                    }
+
                 }
 
             }
@@ -195,7 +200,11 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
 
                         }
                 } else {
-                    showErrorMessage();
+                    if (response.code() != 401) {
+                        showErrorMessage();
+                    } else {
+                        showLoginFailedMessage();
+                    }
                 }
 
             }

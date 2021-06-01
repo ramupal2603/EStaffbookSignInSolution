@@ -88,7 +88,11 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
                     }
 
                 } else {
-                    showErrorMessage();
+                    if (response.code() != 401) {
+                        showErrorMessage();
+                    }else{
+                        showLoginFailedMessage();
+                    }
                 }
 
             }
@@ -194,7 +198,11 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
                             finish();
                         }
                 } else {
-                    showErrorMessage();
+                    if (response.code() != 401) {
+                        showErrorMessage();
+                    }else{
+                        showLoginFailedMessage();
+                    }
                 }
 
             }

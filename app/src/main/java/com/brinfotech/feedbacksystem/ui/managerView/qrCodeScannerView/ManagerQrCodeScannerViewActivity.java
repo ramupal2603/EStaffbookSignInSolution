@@ -103,7 +103,11 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                     }
 
                 } else {
-                    showErrorMessage();
+                    if (response.code() != 401) {
+                        showErrorMessage();
+                    }else{
+                        showLoginFailedMessage();
+                    }
                 }
 
             }
@@ -196,7 +200,11 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
 
                         }
                 } else {
-                    showErrorMessage();
+                    if (response.code() != 401) {
+                        showErrorMessage();
+                    }else{
+                        showLoginFailedMessage();
+                    }
                 }
 
             }

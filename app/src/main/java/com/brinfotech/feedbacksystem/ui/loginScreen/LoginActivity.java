@@ -233,7 +233,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         resumeCameraPreview();
                     }
                 } else {
-                    showErrorMessage();
+                    if (response.code() != 401) {
+                        showErrorMessage();
+                    }else{
+                        showLoginFailedMessage();
+                    }
                 }
 
             }
