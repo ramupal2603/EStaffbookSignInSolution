@@ -19,6 +19,7 @@
     <string name="in">In</string>
     <string name="out">Out</string>
     <string name="something_went_wrong">Something went wrong please try again later</string>
+    <string name="login_failed">Login failed, please contact your system administrator</string>
     <string name="password_changed_successfully">Password changed successfully</string>
     <string name="no_internet_connection">Internet not available, Cross check your internet connectivity and try again"</string>
     <string name="no_staff_records_found">No Staff Records Found</string>
@@ -27,7 +28,7 @@
     <string name="staff">Staff</string>
     <string name="fire_evacuation_success">Fire Evacuation list has been saved in admin</string>
     <string name="thank_you">Thank You.</string>
-    <string name="no_staff_members_found">No Staff Members Found !!</string>
+    <string name="no_staff_members_found">No Staff Members Found !</string>
     <string name="qr_code_not_valid_for_sign_in_out">Invalid QR Code For Sign in and Sign out,  Please Try Another One</string>
     <string name="please_click_option_below">Please click option below</string>
     <string name="all">All</string>
@@ -45,5 +46,7 @@
     <string name="youAreNotUpdatedMessage">A new version of Staff Solution App is available. Please update to version  </string>
     <string name="youAreNotUpdatedMessage1">   now</string>
     <string name="update">Update</string>
+    <string name="str_currently_signed_in">Currently signed in</string>
+    <string name="str_no_of_pepole_signed_in">No of People on site</string>
 
 </resources>

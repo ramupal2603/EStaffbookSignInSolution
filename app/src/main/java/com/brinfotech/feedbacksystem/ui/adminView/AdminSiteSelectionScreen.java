@@ -40,6 +40,9 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
     @BindView(R.id.txtNoOfSite)
     TextView txtNoOfSite;
 
+    @BindView(R.id.txtSiteDetails)
+    TextView txtSiteDetails;
+
     @BindView(R.id.swiperefresh)
     SwipeRefreshLayout swiperefresh;
 
@@ -53,9 +56,9 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
         super.onCreate(savedInstanceState);
 
 
-        setupRecyclerView();
-
         getIntentData();
+
+        setupRecyclerView();
 
         setUpAdapter();
 
@@ -74,6 +77,8 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
 
     private void getIntentData() {
         requestCode = getIntent().getIntExtra(ConstantClass.EXTRAA_FORM_DATA, ConstantClass.REQUEST_CODE_STAFF_REPORTS);
+        txtSiteDetails.setText(requestCode == ConstantClass.REQUEST_CODE_STAFF_REPORTS ?
+                R.string.str_currently_signed_in : R.string.str_no_of_pepole_signed_in);
     }
 
     private void getSiteDetails(boolean isFromRefreshing) {
@@ -123,13 +128,15 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
         AdminSitesRequestParamModel paramModel = new AdminSitesRequestParamModel();
         paramModel.setUser_id(Prefs.getString(PreferenceKeys.USER_ID, "0"));
         paramModel.setUser_type(Prefs.getString(PreferenceKeys.USER_TYPE, "0"));
+        paramModel.setReport_type(requestCode == ConstantClass.REQUEST_CODE_STAFF_REPORTS ? "1" : "2");
         adminSitesRequestModel.setParam(paramModel);
         return adminSitesRequestModel;
 
     }
 
     private void setUpAdapter() {
-        siteSelectionListAdapter = new SiteSelectionListAdapter(AdminSiteSelectionScreen.this, AdminSiteSelectionScreen.this, arrSiteList);
+        siteSelectionListAdapter = new SiteSelectionListAdapter(AdminSiteSelectionScreen.this,
+                AdminSiteSelectionScreen.this, arrSiteList, requestCode);
         rcvDashboardList.setAdapter(siteSelectionListAdapter);
     }
 

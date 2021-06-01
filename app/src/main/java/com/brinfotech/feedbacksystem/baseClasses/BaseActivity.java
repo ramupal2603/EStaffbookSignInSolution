@@ -286,6 +286,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         showToastMessage(getActivity().getResources().getString(R.string.something_went_wrong));
     }
 
+    public void showLoginFailedMessage() {
+        showToastMessage(getActivity().getResources().getString(R.string.login_failed));
+    }
+
     public void showNoNetworkMessage() {
         showToastMessage(getActivity().getResources().getString(R.string.no_internet_connection));
     }

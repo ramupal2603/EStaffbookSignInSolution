@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.data.getNoOfContractor.AdminSiteListModel;
+import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.interfaces.OnSiteSelectedListener;
 
 import java.util.ArrayList;
@@ -24,11 +25,13 @@ public class SiteSelectionListAdapter extends RecyclerView.Adapter<SiteSelection
     Activity activity;
     OnSiteSelectedListener onSiteSelectedListener;
     ArrayList<AdminSiteListModel> arrSiteList;
+    int requestCode;
 
     public SiteSelectionListAdapter(Activity activity, OnSiteSelectedListener onSiteSelectedListener,
-                                    ArrayList<AdminSiteListModel> arrSiteList) {
+                                    ArrayList<AdminSiteListModel> arrSiteList, int requestCode) {
         this.activity = activity;
         this.arrSiteList = arrSiteList;
+        this.requestCode = requestCode;
         this.onSiteSelectedListener = onSiteSelectedListener;
 
     }
@@ -45,7 +48,7 @@ public class SiteSelectionListAdapter extends RecyclerView.Adapter<SiteSelection
         final AdminSiteListModel arrItem = arrSiteList.get(position);
 
         holder.txtSiteName.setText(arrItem.getSite_name());
-        holder.txtContractorSite.setText(String.format("%s People are on site", arrItem.getVisitor_count()));
+        holder.txtContractorSite.setText(getDetailText(arrItem));
 
         if (position % 2 == 0) {
             holder.loutSiteSelectionView.setBackgroundColor(activity.getResources().getColor(R.color.whiteColor));
@@ -60,6 +63,12 @@ public class SiteSelectionListAdapter extends RecyclerView.Adapter<SiteSelection
             }
         });
 
+    }
+
+    private String getDetailText(AdminSiteListModel arrItem) {
+        return requestCode == ConstantClass.REQUEST_CODE_STAFF_REPORTS ?
+                String.format("%s signed in", arrItem.getVisitor_count()) :
+                String.format("%s People are on site", arrItem.getVisitor_count());
     }
 
 

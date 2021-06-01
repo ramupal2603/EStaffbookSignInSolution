@@ -4,6 +4,15 @@ public class AdminSitesRequestParamModel {
 
     String user_id;
     String user_type;
+    String report_type;
+
+    public String getReport_type() {
+        return report_type;
+    }
+
+    public void setReport_type(String report_type) {
+        this.report_type = report_type;
+    }
 
     public String getUser_type() {
         return user_type;

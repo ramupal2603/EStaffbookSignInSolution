@@ -189,7 +189,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         showToastMessage(getResources().getString(R.string.invalid_credential));
                     }
                 } else {
-                    showErrorMessage();
+                    showLoginFailedMessage();
                 }
 
             }
