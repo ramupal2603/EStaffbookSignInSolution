@@ -16,8 +16,8 @@ import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionRequestPa
 import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionResponseModel;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.jobQueue.StartUpApplicationJob;
-import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
+import com.brinfotech.feedbacksystem.network.VersionRetrofitClient;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 
@@ -31,13 +31,11 @@ public class SplashScreenActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        MyApplication.getInstance().getMainJobManager().addJobInBackground(new StartUpApplicationJob());
         getAndCompareCurrentVersion();
     }
 
     private void getAndCompareCurrentVersion() {
-        RetrofitInterface apiService = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
+        RetrofitInterface apiService = VersionRetrofitClient.getVersionRetrofit().create(RetrofitInterface.class);
         apiService.getCurrentVersion(getRequestParamsForCurrentVersion()).
                 enqueue(new Callback<CurrentVersionResponseModel>() {
                     @Override
@@ -45,8 +43,10 @@ public class SplashScreenActivity extends BaseActivity {
                         if (response.isSuccessful()) {
                             CurrentVersionResponseModel responseModel = response.body();
                             if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
+                                WebApiHelper.BASE_URL = responseModel.getUrl();
                                 compareCurrentVersion(responseModel.getVersion());
                             } else {
+                                WebApiHelper.BASE_URL = WebApiHelper.VERSION_BASE_URL;
                                 redirectDashboardActivity();
                             }
                         }
@@ -100,6 +100,7 @@ public class SplashScreenActivity extends BaseActivity {
     }
 
     private void redirectDashboardActivity() {
+        MyApplication.getInstance().getMainJobManager().addJobInBackground(new StartUpApplicationJob());
         if (isUserLoggedIn()) {
             redirectBasedOnUserType(getActivity());
         } else {
