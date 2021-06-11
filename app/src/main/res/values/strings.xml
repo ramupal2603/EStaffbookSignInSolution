@@ -39,6 +39,7 @@
     <string name="strong">Strong</string>
     <string name="very_strong">Very Strong</string>
     <string name="invalid_credential">Invalid username or password,please try again</string>
+    <string name="user_already_logged_in">User already logged in,please contact your system administrator</string>
     <string name="err_msg_strong_pwd">Passwords should be at least 8 characters long, should contain at least 1 capital letter, 1 lowercase letter, 1 special character and 1 number.</string>
     <string name="error_msg_confirm_password_empty">Please enter confirm password</string>
     <string name="error_msg_confirm_pwd_match">New Password and Old Password Must be same</string>

@@ -43,7 +43,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:paddingRight="@dimen/common_margin"
-                    android:text="6 sites assigned"
+                    android:text="0 sites assigned"
                     android:textColor="@color/whiteColor"
                     android:textSize="@dimen/smallTextSize"
                     android:paddingEnd="@dimen/common_margin" />
@@ -136,10 +136,10 @@
                     android:layout_marginLeft="@dimen/_5dpPadding"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:text="No Data Found !!"
+                    android:text="No Sites Found !"
                     android:textColor="@color/darkGrayColor"
                     android:textSize="20sp"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
 
             </LinearLayout>

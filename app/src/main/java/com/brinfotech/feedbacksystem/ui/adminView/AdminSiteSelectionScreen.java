@@ -2,6 +2,7 @@ package com.brinfotech.feedbacksystem.ui.adminView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -42,6 +43,9 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
 
     @BindView(R.id.txtSiteDetails)
     TextView txtSiteDetails;
+
+    @BindView(R.id.loutResultView)
+    LinearLayout loutResultView;
 
     @BindView(R.id.swiperefresh)
     SwipeRefreshLayout swiperefresh;
@@ -93,9 +97,10 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
                     arrSiteList.clear();
                     if (response.body() != null) {
                         AdminSitesResponseModel responseModel = response.body();
-                        if (responseModel.getStatus().equals(ConstantClass.TRUE)) {
+                        if (responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
                             arrSiteList.addAll(responseModel.getData().getSite_details());
                             updateAdapter();
+                            loutResultView.setVisibility(arrSiteList.isEmpty() ? View.GONE : View.VISIBLE);
                         }
 
                     }

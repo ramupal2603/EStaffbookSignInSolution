@@ -185,6 +185,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         edtUserName.setText("");
                         edtPwd.setText("");
                         redirectToChangePasswordScreen(LoginActivity.this);
+                    } else if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_USER_ALREADY_LOGGED_IN)) {
+                        showToastMessage(getResources().getString(R.string.user_already_logged_in));
                     } else {
                         showToastMessage(getResources().getString(R.string.invalid_credential));
                     }
@@ -235,7 +237,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 } else {
                     if (response.code() != 401) {
                         showErrorMessage();
-                    }else{
+                    } else {
                         showLoginFailedMessage();
                     }
                 }

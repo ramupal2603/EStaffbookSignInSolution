@@ -120,9 +120,15 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
                         if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
                             arrDeptList.clear();
                             arrDeptList.addAll(responseModel.getDepartment_details());
+                            if (arrDeptList.isEmpty()) {
+                                showEmptyView();
+                            } else {
+                                showResultView();
+                            }
                         } else {
                             showEmptyView();
                         }
+
                     }
                 }
 
@@ -164,14 +170,14 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
                             arrTodaysVisitor.clear();
                             arrTodaysVisitor.addAll(responseModel.getData());
 
+                            if (arrTodaysVisitor.isEmpty()) {
+                                showEmptyView();
+                            } else {
+                                showResultView();
+                            }
+
                             showCounter();
-
-                            showResultView();
-
                             updateAdapter();
-                        } else {
-                            showEmptyView();
-                            showCounter();
                         }
                     }
                 }

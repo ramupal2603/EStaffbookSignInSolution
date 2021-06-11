@@ -69,7 +69,6 @@ public class ThankYouScreen extends BaseActivity {
         mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                // TODO Auto-generated method stub
                 mp.release();
             }
         });
@@ -82,7 +81,6 @@ public class ThankYouScreen extends BaseActivity {
 
             @Override
             public void onCompletion(MediaPlayer mp) {
-                // TODO Auto-generated method stub
                 mp.release();
             }
         });
