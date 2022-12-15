@@ -245,8 +245,8 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     }
 
     @Override
-    public void OnSignOutReasonListener(int selectedValue) {
+    public void OnSignOutReasonListener(String selectedValue) {
         String userID = Prefs.getString(PreferenceKeys.USER_ID, "");
-        callSignInOutMethod(userID, String.valueOf(selectedValue));
+        callSignInOutMethod(userID,selectedValue);
     }
 }

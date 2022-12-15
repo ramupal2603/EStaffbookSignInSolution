@@ -26,7 +26,6 @@ import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.interfaces.OnSignOutReasonSelected;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
-import com.brinfotech.feedbacksystem.ui.adminView.AdminSiteSelectionScreen;
 import com.brinfotech.feedbacksystem.ui.adminView.adminDashboard.AdminDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.changePasswordView.ChangePasswordActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
@@ -58,19 +57,14 @@ import butterknife.Unbinder;
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     Unbinder unbinder = null;
-
-
-    private ProgressLoader loader;
-
     @Nullable
     @BindView(R.id.txtBack)
     ImageView imgBack;
-
     @Nullable
     @BindView(R.id.txtTime)
     TextView txtTime;
-
     CountDownTimer newTimer;
+    private ProgressLoader loader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -345,19 +339,21 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     public void showSignOutOptionsDialog(OnSignOutReasonSelected signOutReasonSelected) {
+        final String[] selectedReason = {"0"};
+
         CFAlertDialog.Builder builder = new CFAlertDialog.Builder(this);
         builder.setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT);
         builder.setTitle("Reason For Signing Out");
-        builder.setSingleChoiceItems(new String[]{"Break Time", "Lunch Break", "Signing out for today"}, 3, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(new String[]{"Break Time", "Lunch Break", "Signing out for today"}, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int index) {
-
+                selectedReason[0] = String.valueOf(index);
             }
         });
         builder.addButton("Submit", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.END, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                signOutReasonSelected.OnSignOutReasonListener(i);
+                signOutReasonSelected.OnSignOutReasonListener(selectedReason[0]);
                 dialogInterface.dismiss();
             }
         });
