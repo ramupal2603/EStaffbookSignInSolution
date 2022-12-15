@@ -5,6 +5,15 @@ public class SignInOutParamsModel {
     String device_type;
     String site_id;
     String user_type ;
+    String logout_reason ;
+
+    public String getLogout_reason() {
+        return logout_reason;
+    }
+
+    public void setLogout_reason(String logout_reason) {
+        this.logout_reason = logout_reason;
+    }
 
     public String getUser_type() {
         return user_type;

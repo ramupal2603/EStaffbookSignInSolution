@@ -18,6 +18,7 @@ import com.brinfotech.feedbacksystem.data.signINOut.SignInOutParamsModel;
 import com.brinfotech.feedbacksystem.data.signINOut.SignInOutRequestModel;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
+import com.brinfotech.feedbacksystem.interfaces.OnSignOutReasonSelected;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
@@ -34,30 +35,23 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class QrCodeScannerViewActivity extends BaseActivity implements View.OnClickListener, EasyPermissions.PermissionCallbacks,
-        EasyPermissions.RationaleCallbacks {
-
-    @BindView(R.id.rLoutStaffSignIn)
-    RelativeLayout rLoutStaffSignIn;
-
-    @BindView(R.id.txtSignIn)
-    TextView txtSignIn;
-
-    @BindView(R.id.txtSignOut)
-    TextView txtSignOut;
-
-    @BindView(R.id.txtWelcomeUserId)
-    TextView txtWelcomeUserId;
-
-
-    @BindView(R.id.rLoutStaffSignOut)
-    RelativeLayout rLoutStaffSignOut;
+        EasyPermissions.RationaleCallbacks, OnSignOutReasonSelected {
 
     private static final String[] CAMERA_AND_STORAGE =
             {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE};
-
-    List<BarcodeFormat> arrFormatList = new ArrayList<>();
     private static final int MY_CAMERA_REQUEST_CODE = 1000;
+    @BindView(R.id.rLoutStaffSignIn)
+    RelativeLayout rLoutStaffSignIn;
+    @BindView(R.id.txtSignIn)
+    TextView txtSignIn;
+    @BindView(R.id.txtSignOut)
+    TextView txtSignOut;
+    @BindView(R.id.txtWelcomeUserId)
+    TextView txtWelcomeUserId;
+    @BindView(R.id.rLoutStaffSignOut)
+    RelativeLayout rLoutStaffSignOut;
+    List<BarcodeFormat> arrFormatList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +84,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
                 } else {
                     if (response.code() != 401) {
                         showErrorMessage();
-                    }else{
+                    } else {
                         showLoginFailedMessage();
                     }
                 }
@@ -164,12 +158,11 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
 
         if (view == rLoutStaffSignIn) {
             String userID = Prefs.getString(PreferenceKeys.USER_ID, "");
-            callSignInOutMethod(userID);
+            callSignInOutMethod(userID, null);
         }
 
         if (view == rLoutStaffSignOut) {
-            String userID = Prefs.getString(PreferenceKeys.USER_ID, "");
-            callSignInOutMethod(userID);
+            showSignOutOptionsDialog(QrCodeScannerViewActivity.this);
         }
     }
 
@@ -178,13 +171,14 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
         super.onPause();
     }
 
-    private void callSignInOutMethod(String scannedId) {
+    private void callSignInOutMethod(String scannedId, String logoutReason) {
         printLogMessage("userID", "" + scannedId);
+        printLogMessage("Selected Reason", "" + scannedId);
 
         showProgressBar();
 
         RetrofitInterface apiService = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
-        apiService.scanQRCodeSignInOut(getSignInOutRequest(scannedId)).enqueue(new Callback<ScanQrCodeResponseModel>() {
+        apiService.scanQRCodeSignInOut(getSignInOutRequest(scannedId, logoutReason)).enqueue(new Callback<ScanQrCodeResponseModel>() {
             @Override
             public void onResponse(Call<ScanQrCodeResponseModel> call, Response<ScanQrCodeResponseModel> response) {
                 hideProgressBar();
@@ -200,7 +194,7 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
                 } else {
                     if (response.code() != 401) {
                         showErrorMessage();
-                    }else{
+                    } else {
                         showLoginFailedMessage();
                     }
                 }
@@ -215,13 +209,14 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
         });
     }
 
-    private SignInOutRequestModel getSignInOutRequest(String scannedId) {
+    private SignInOutRequestModel getSignInOutRequest(String scannedId, String logoutReason) {
         SignInOutRequestModel requestModel = new SignInOutRequestModel();
         SignInOutParamsModel paramsModel = new SignInOutParamsModel();
         paramsModel.setUser_id(scannedId);
         paramsModel.setDevice_type(WebApiHelper.DEVICE_TYPE_MOBILE);
         paramsModel.setUser_type(Prefs.getString(PreferenceKeys.USER_TYPE, ""));
         paramsModel.setSite_id(Prefs.getString(PreferenceKeys.LOCATION_ID, "0"));
+        paramsModel.setLogout_reason(logoutReason);
         requestModel.setParam(paramsModel);
 
         return requestModel;
@@ -247,5 +242,11 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
     @Override
     public void onRationaleDenied(int requestCode) {
 
+    }
+
+    @Override
+    public void OnSignOutReasonListener(int selectedValue) {
+        String userID = Prefs.getString(PreferenceKeys.USER_ID, "");
+        callSignInOutMethod(userID, String.valueOf(selectedValue));
     }
 }

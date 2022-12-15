@@ -38,7 +38,7 @@ public class WebApiHelper {
 
     //BaseUrl of Repository
     public static String BASE_URL = "";
-    public static String VERSION_BASE_URL = "http://advertico.co.uk/Staffbooks/app/Webservice/";
+    public static String VERSION_BASE_URL = "https://konnectico.co.uk/Staffbooks-Development/Webservice/";
 
 
 }

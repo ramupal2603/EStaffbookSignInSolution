@@ -23,6 +23,7 @@ import com.brinfotech.feedbacksystem.data.UnauthorizedEvent;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
+import com.brinfotech.feedbacksystem.interfaces.OnSignOutReasonSelected;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
 import com.brinfotech.feedbacksystem.ui.adminView.AdminSiteSelectionScreen;
@@ -36,6 +37,7 @@ import com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEv
 import com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.staffView.thankYouPage.ThankYouScreen;
+import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -342,5 +344,24 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         getActivity().finish();
     }
 
+    public void showSignOutOptionsDialog(OnSignOutReasonSelected signOutReasonSelected) {
+        CFAlertDialog.Builder builder = new CFAlertDialog.Builder(this);
+        builder.setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT);
+        builder.setTitle("Reason For Signing Out");
+        builder.setSingleChoiceItems(new String[]{"Break Time", "Lunch Break", "Signing out for today"}, 3, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int index) {
+
+            }
+        });
+        builder.addButton("Submit", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.END, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                signOutReasonSelected.OnSignOutReasonListener(i);
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
+    }
 }
 
