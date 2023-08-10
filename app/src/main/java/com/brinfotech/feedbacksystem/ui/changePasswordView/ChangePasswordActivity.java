@@ -23,6 +23,7 @@ import com.brinfotech.feedbacksystem.helpers.StringUtils;
 import com.brinfotech.feedbacksystem.network.RetrofitClient;
 import com.brinfotech.feedbacksystem.network.RetrofitInterface;
 import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
+import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
@@ -107,9 +108,9 @@ public class ChangePasswordActivity extends BaseActivity {
                     if (response.isSuccessful()) {
                         ChangePasswordResponseModel responseModel = response.body();
                         if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
-                            Intent intent = new Intent();
-                            setResult(RESULT_OK, intent);
-                            finish();
+                            Prefs.putBoolean(PreferenceKeys.USER_LOGGED_IN, true);
+                            showToastMessage(getResources().getString(R.string.password_changed_successfully));
+                            redirectBasedOnUserType(ChangePasswordActivity.this);
                         } else {
                             showToastMessage(getResources().getString(R.string.something_went_wrong));
                         }

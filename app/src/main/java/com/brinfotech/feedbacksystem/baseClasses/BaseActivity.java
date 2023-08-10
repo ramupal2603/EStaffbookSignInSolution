@@ -136,7 +136,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public void showToastMessage(String errorMessage) {
 
-        Toast toast = Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG);
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+       /* Toast toast = Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG);
         LinearLayout toastLayout = (LinearLayout) toast.getView();
         TextView toastTV = null;
         if (toastLayout != null) {
@@ -144,7 +146,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             toastTV.setTextSize(15);
         }
 
-        toast.show();
+        toast.show();*/
     }
 
     public void printLogMessage(String tag, String errorMessage) {
