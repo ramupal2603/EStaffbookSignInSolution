@@ -25,7 +25,6 @@ import com.brinfotech.feedbacksystem.helpers.DateTimeUtils;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.brinfotech.feedbacksystem.ui.Utils;
-import com.brinfotech.feedbacksystem.ui.adminView.AdminSiteSelectionScreen;
 import com.brinfotech.feedbacksystem.ui.adminView.adminDashboard.AdminDashboardActivity;
 import com.brinfotech.feedbacksystem.ui.changePasswordView.ChangePasswordActivity;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity;
@@ -56,19 +55,14 @@ import butterknife.Unbinder;
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     Unbinder unbinder = null;
-
-
-    private ProgressLoader loader;
-
     @Nullable
     @BindView(R.id.txtBack)
     ImageView imgBack;
-
     @Nullable
     @BindView(R.id.txtTime)
     TextView txtTime;
-
     CountDownTimer newTimer;
+    private ProgressLoader loader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -144,8 +138,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
         Toast toast = Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG);
         LinearLayout toastLayout = (LinearLayout) toast.getView();
-        TextView toastTV = (TextView) toastLayout.getChildAt(0);
-        toastTV.setTextSize(15);
+        TextView toastTV = null;
+        if (toastLayout != null) {
+            toastTV = (TextView) toastLayout.getChildAt(0);
+            toastTV.setTextSize(15);
+        }
+
         toast.show();
     }
 
