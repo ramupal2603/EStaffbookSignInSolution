@@ -70,9 +70,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @BindView(R.id.txtQrCodeLogin)
     TextView txtQrCodeLogin;
 
-    private static final String[] CAMERA_AND_STORAGE =
-            {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE};
+    private static final String[] CAMERA_AND_STORAGE = {Manifest.permission.CAMERA};
 
     List<BarcodeFormat> arrFormatList = new ArrayList<>();
     private static final int MY_CAMERA_REQUEST_CODE = 1000;
