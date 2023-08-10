@@ -140,8 +140,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
         Toast toast = Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG);
         LinearLayout toastLayout = (LinearLayout) toast.getView();
-        TextView toastTV = (TextView) toastLayout.getChildAt(0);
-        toastTV.setTextSize(15);
+        TextView toastTV = null;
+        if (toastLayout != null) {
+            toastTV = (TextView) toastLayout.getChildAt(0);
+            toastTV.setTextSize(15);
+        }
+
         toast.show();
     }
 
