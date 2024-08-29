@@ -42,7 +42,8 @@ public class SplashScreenActivity extends BaseActivity {
                     public void onResponse(Call<CurrentVersionResponseModel> call, Response<CurrentVersionResponseModel> response) {
                         if (response.isSuccessful()) {
                             CurrentVersionResponseModel responseModel = response.body();
-                            if (responseModel != null && responseModel.getStatus().equals(ConstantClass.RESPONSE_SUCCESS)) {
+                            if (responseModel != null && responseModel.getStatus().
+                                    equals(ConstantClass.RESPONSE_SUCCESS)) {
                                 WebApiHelper.BASE_URL = responseModel.getUrl();
                                 compareCurrentVersion(responseModel.getVersion());
                             } else {
@@ -69,6 +70,7 @@ public class SplashScreenActivity extends BaseActivity {
 
     private void compareCurrentVersion(String currentVersion) {
         String versionName = BuildConfig.VERSION_NAME;
+
         if (versionName.equals(currentVersion)) {
             redirectDashboardActivity();
         } else {

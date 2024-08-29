@@ -46,78 +46,83 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
     public static void generateNotification(Context context, String title,
                                             String message, Intent intent, int id) {
 
-        NOTIFICATION_ID = random(0, NOTIFICATION_ID);
-
-        int icon = R.drawable.launcher_icon;
-
-        NotificationManager notificationManager = (NotificationManager) context
-                .getSystemService(NOTIFICATION_SERVICE);
-
-        PendingIntent pendingIntent = null;
-
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),
-                icon);
+        try {
 
 
-        if (intent != null) {
+            NOTIFICATION_ID = random(0, NOTIFICATION_ID);
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    | Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    | Intent.FLAG_ACTIVITY_NEW_TASK);
+            int icon = R.drawable.launcher_icon;
 
-            int iUniqueId = (int) (System.currentTimeMillis() & 0xfffffff);
+            NotificationManager notificationManager = (NotificationManager) context
+                    .getSystemService(NOTIFICATION_SERVICE);
 
-            pendingIntent = PendingIntent.getActivity(context, iUniqueId,
-                    intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            PendingIntent pendingIntent = null;
+
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),
+                    icon);
 
 
+            if (intent != null) {
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                int iUniqueId = (int) (System.currentTimeMillis() & 0xfffffff);
+
+                pendingIntent = PendingIntent.getActivity(context, iUniqueId,
+                        intent, PendingIntent.FLAG_MUTABLE);
+
+
+            }
+            String notificationMode = "";
+            Notification.Builder notificationBuilder = new Notification.Builder(
+                    context).setContentTitle("" + "Notification").setSmallIcon(icon)
+                    .setLargeIcon(bitmap).setTicker("" + title)
+                    .setContentText("" + message).setAutoCancel(true);
+
+            //notificationMode = Prefs.getString(PrefsKeys.NOTIFICATION_MODE, "");
+            if (notificationMode.isEmpty()) {
+                notificationBuilder.setDefaults(Notification.DEFAULT_SOUND);
+
+            }
+
+            if (intent != null) {
+                notificationBuilder.setContentIntent(pendingIntent);
+            }
+
+            notificationBuilder.setStyle(new Notification.BigTextStyle()
+                    .setBigContentTitle("" + title).bigText("" + message));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                notificationBuilder.setColor(Color.parseColor("#000000"));
+            }
+
+            Notification notification = notificationBuilder.build();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                String channelId = context.getPackageName();
+
+                notificationBuilder.setChannelId(channelId);
+
+                CharSequence name = "Staff Solution";
+                String description = "Notification";
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+
+                NotificationChannel mChannel = new NotificationChannel(channelId, name, importance);
+
+                mChannel.setDescription(description);
+                mChannel.enableLights(true);
+                mChannel.setLightColor(Color.parseColor("#000000"));
+
+                mChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(mChannel);
+
+            }
+            notificationManager.notify(id, notification);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        String notificationMode = "";
-        Notification.Builder notificationBuilder = new Notification.Builder(
-                context).setContentTitle("" + "Notification").setSmallIcon(icon)
-                .setLargeIcon(bitmap).setTicker("" + title)
-                .setContentText("" + message).setAutoCancel(true);
-
-        //notificationMode = Prefs.getString(PrefsKeys.NOTIFICATION_MODE, "");
-        if (notificationMode.isEmpty()) {
-            notificationBuilder.setDefaults(Notification.DEFAULT_SOUND);
-
-        }
-
-        if (intent != null) {
-            notificationBuilder.setContentIntent(pendingIntent);
-        }
-
-        notificationBuilder.setStyle(new Notification.BigTextStyle()
-                .setBigContentTitle("" + title).bigText("" + message));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            notificationBuilder.setColor(Color.parseColor("#000000"));
-        }
-
-        Notification notification = notificationBuilder.build();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            String channelId = context.getPackageName();
-
-            notificationBuilder.setChannelId(channelId);
-
-            CharSequence name = "Staff Solution";
-            String description = "Notification";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-
-            NotificationChannel mChannel = new NotificationChannel(channelId, name, importance);
-
-            mChannel.setDescription(description);
-            mChannel.enableLights(true);
-            mChannel.setLightColor(Color.parseColor("#000000"));
-
-            mChannel.enableVibration(true);
-            notificationManager.createNotificationChannel(mChannel);
-
-        }
-        notificationManager.notify(id, notification);
-
     }
 
     public static int random(int min, int max) {
