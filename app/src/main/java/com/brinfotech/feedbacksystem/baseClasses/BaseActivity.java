@@ -117,10 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         EventBus.getDefault().unregister(this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+
 
     @Override
     protected void onDestroy() {

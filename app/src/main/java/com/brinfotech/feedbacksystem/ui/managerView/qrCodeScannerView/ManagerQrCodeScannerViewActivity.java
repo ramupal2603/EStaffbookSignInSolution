@@ -68,13 +68,6 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
         getUsersCurrentStatus();
 
         txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
         if (!EasyPermissions.hasPermissions(ManagerQrCodeScannerViewActivity.this, CAMERA_AND_STORAGE)) {
             EasyPermissions.requestPermissions(
                     this,
@@ -82,6 +75,11 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                     MY_CAMERA_REQUEST_CODE,
                     CAMERA_AND_STORAGE);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
 
     }
@@ -105,7 +103,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                 } else {
                     if (response.code() != 401) {
                         showErrorMessage();
-                    }else{
+                    } else {
                         showLoginFailedMessage();
                     }
                 }
@@ -202,7 +200,7 @@ public class ManagerQrCodeScannerViewActivity extends BaseActivity implements Vi
                 } else {
                     if (response.code() != 401) {
                         showErrorMessage();
-                    }else{
+                    } else {
                         showLoginFailedMessage();
                     }
                 }

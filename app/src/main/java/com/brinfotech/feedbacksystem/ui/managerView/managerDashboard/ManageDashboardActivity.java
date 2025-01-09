@@ -54,12 +54,9 @@ public class ManageDashboardActivity extends BaseActivity {
         displayQRCode(qrCode);
 
         txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
         askNotificationPermission();
     }
+
     private void askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.POST_NOTIFICATIONS)

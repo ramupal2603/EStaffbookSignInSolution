@@ -69,6 +69,13 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
 
         txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
+        if (!EasyPermissions.hasPermissions(FireMarshalQrCodeScannerViewActivity.this, CAMERA_AND_STORAGE)) {
+            EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.rationale_camera),
+                    MY_CAMERA_REQUEST_CODE,
+                    CAMERA_AND_STORAGE);
+        }
     }
 
     private void getUsersCurrentStatus() {
@@ -131,20 +138,7 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        if (!EasyPermissions.hasPermissions(FireMarshalQrCodeScannerViewActivity.this, CAMERA_AND_STORAGE)) {
-            EasyPermissions.requestPermissions(
-                    this,
-                    getString(R.string.rationale_camera),
-                    MY_CAMERA_REQUEST_CODE,
-                    CAMERA_AND_STORAGE);
-        }
-
-
-    }
 
     @Override
     protected void onDestroy() {

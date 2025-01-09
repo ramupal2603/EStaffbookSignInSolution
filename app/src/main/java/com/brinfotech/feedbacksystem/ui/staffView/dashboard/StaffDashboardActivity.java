@@ -50,6 +50,9 @@ public class StaffDashboardActivity extends BaseActivity {
         rLoutStaffView.setOnClickListener(this);
 
         txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+
+        askNotificationPermission();
+
     }
 
     private void displayQRCode(Bitmap qrCode) {
@@ -58,11 +61,6 @@ public class StaffDashboardActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        askNotificationPermission();
-    }
 
     private void askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

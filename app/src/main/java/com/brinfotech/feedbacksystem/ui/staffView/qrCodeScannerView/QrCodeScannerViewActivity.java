@@ -69,6 +69,18 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
 
         txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
 
+        if (!EasyPermissions.hasPermissions(QrCodeScannerViewActivity.this, CAMERA_AND_STORAGE)) {
+            EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.rationale_camera),
+                    MY_CAMERA_REQUEST_CODE,
+                    CAMERA_AND_STORAGE);
+        } else {
+
+        }
+
+
+
     }
 
     private void getUsersCurrentStatus() {
@@ -131,22 +143,6 @@ public class QrCodeScannerViewActivity extends BaseActivity implements View.OnCl
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (!EasyPermissions.hasPermissions(QrCodeScannerViewActivity.this, CAMERA_AND_STORAGE)) {
-            EasyPermissions.requestPermissions(
-                    this,
-                    getString(R.string.rationale_camera),
-                    MY_CAMERA_REQUEST_CODE,
-                    CAMERA_AND_STORAGE);
-        } else {
-
-        }
-
-
-    }
 
     @Override
     protected void onDestroy() {

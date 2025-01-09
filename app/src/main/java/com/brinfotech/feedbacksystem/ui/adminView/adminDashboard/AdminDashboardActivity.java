@@ -56,13 +56,10 @@ public class AdminDashboardActivity extends BaseActivity {
         displayQRCode(qrCode);
 
         txtWelcomeUserId.setText(String.format("Hi, %s", Prefs.getString(PreferenceKeys.USER_NAME, "")));
+        askNotificationPermission();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        askNotificationPermission();
-    } private void askNotificationPermission() {
+    private void askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.POST_NOTIFICATIONS)
                     != PackageManager.PERMISSION_GRANTED) {
