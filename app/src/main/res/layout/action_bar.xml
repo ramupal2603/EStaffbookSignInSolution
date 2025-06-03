@@ -16,7 +16,7 @@
             android:layout_width="@dimen/_45sdp"
             android:layout_height="match_parent"
             android:padding="@dimen/_15sdp"
-            android:src="@drawable/vw_ic_back" />
+            android:src="@drawable/ic_back_arrow" />
 
         <ImageView
             android:layout_width="0dp"
