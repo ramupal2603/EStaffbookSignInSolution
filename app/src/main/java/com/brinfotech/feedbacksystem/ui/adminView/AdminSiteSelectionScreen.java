@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.getNoOfContractor.AdminSiteListModel;
 import com.brinfotech.feedbacksystem.data.getNoOfContractor.AdminSitesRequestModel;
@@ -25,30 +25,27 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSelectedListener {
 
-    @BindView(R.id.rcvDashboardList)
-    RecyclerView rcvDashboardList;
+    private RecyclerView rcvDashboardList;
+    private TextView txtManagerName;
+    private TextView txtNoOfSite;
+    private TextView txtSiteDetails;
+    private LinearLayout loutResultView;
+    private SwipeRefreshLayout swiperefresh;
 
-    @BindView(R.id.txtManagerName)
-    TextView txtManagerName;
-
-    @BindView(R.id.txtNoOfSite)
-    TextView txtNoOfSite;
-
-    @BindView(R.id.txtSiteDetails)
-    TextView txtSiteDetails;
-
-    @BindView(R.id.loutResultView)
-    LinearLayout loutResultView;
-
-    @BindView(R.id.swiperefresh)
-    SwipeRefreshLayout swiperefresh;
+    private void initViews() {
+        rcvDashboardList = findViewById(R.id.rcvDashboardList);
+        txtManagerName = findViewById(R.id.txtManagerName);
+        txtNoOfSite = findViewById(R.id.txtNoOfSite);
+        txtSiteDetails = findViewById(R.id.txtSiteDetails);
+        loutResultView = findViewById(R.id.loutResultView);
+        swiperefresh = findViewById(R.id.swiperefresh);
+    }
 
     SiteSelectionListAdapter siteSelectionListAdapter;
 
@@ -59,6 +56,7 @@ public class AdminSiteSelectionScreen extends BaseActivity implements OnSiteSele
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initViews();
 
         getIntentData();
 

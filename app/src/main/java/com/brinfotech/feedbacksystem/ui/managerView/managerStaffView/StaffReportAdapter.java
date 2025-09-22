@@ -10,13 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.data.staffReport.StaffReportDataModel;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class StaffReportAdapter extends RecyclerView.Adapter<StaffReportAdapter.DashboardHolder> {
 
@@ -53,26 +51,23 @@ public class StaffReportAdapter extends RecyclerView.Adapter<StaffReportAdapter.
     }
 
 
-    void updateData(ArrayList<StaffReportDataModel> arrStaffReport){
-        this.arrVisitorDetails=arrStaffReport;
+    void updateData(ArrayList<StaffReportDataModel> arrStaffReport) {
+        this.arrVisitorDetails = arrStaffReport;
         notifyDataSetChanged();
 
     }
 
     static class DashboardHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.txtName)
-        TextView txtName;
-
-        @BindView(R.id.txtSignInTime)
-        TextView txtSignInTime;
-
-        @BindView(R.id.txtSignOutTime)
-        TextView txtSignOutTime;
+        private TextView txtName;
+        private TextView txtSignInTime;
+        private TextView txtSignOutTime;
 
         DashboardHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            txtName = itemView.findViewById(R.id.txtName);
+            txtSignInTime = itemView.findViewById(R.id.txtSignInTime);
+            txtSignOutTime = itemView.findViewById(R.id.txtSignOutTime);
         }
     }
 }

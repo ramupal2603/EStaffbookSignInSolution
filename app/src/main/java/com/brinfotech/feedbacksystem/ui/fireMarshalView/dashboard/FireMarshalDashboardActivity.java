@@ -16,33 +16,32 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.ui.fireMarshalView.qrCodeScannerView.FireMarshalQrCodeScannerViewActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import butterknife.BindView;
 
 public class FireMarshalDashboardActivity extends BaseActivity {
     private static final int REQUEST_QR_CODE_SCANNER = 10000;
-    @BindView(R.id.rLoutRemoteView)
-    RelativeLayout rLoutRemoteView;
+    private RelativeLayout rLoutRemoteView;
+    private RelativeLayout rLoutFireEvacuationView;
+    private ImageView imgQrCodeView;
+    private TextView txtWelcomeUserId;
 
-    @BindView(R.id.rLoutFireEvacuationView)
-    RelativeLayout rLoutFireEvacuationView;
-
-    @BindView(R.id.imgQrCodeView)
-    ImageView imgQrCodeView;
-
-    @BindView(R.id.txtWelcomeUserId)
-    TextView txtWelcomeUserId;
-
+    private void initViews() {
+        rLoutRemoteView = findViewById(R.id.rLoutRemoteView);
+        rLoutFireEvacuationView = findViewById(R.id.rLoutFireEvacuationView);
+        imgQrCodeView = findViewById(R.id.imgQrCodeView);
+        txtWelcomeUserId = findViewById(R.id.txtWelcomeUserId);
+    }
     private static final int REQUEST_NOTIFICATION_PERMISSION = 123;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initViews();
         rLoutRemoteView.setOnClickListener(this);
         rLoutFireEvacuationView.setOnClickListener(this);
 

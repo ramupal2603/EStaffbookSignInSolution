@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusParamModel;
 import com.brinfotech.feedbacksystem.data.getUserStatus.GetUserStatusRequestModel;
@@ -27,7 +27,6 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,21 +35,19 @@ import retrofit2.Response;
 public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implements View.OnClickListener, EasyPermissions.PermissionCallbacks,
         EasyPermissions.RationaleCallbacks {
 
-    @BindView(R.id.rLoutStaffSignIn)
-    RelativeLayout rLoutStaffSignIn;
+    private RelativeLayout rLoutStaffSignIn;
+    private TextView txtSignIn;
+    private TextView txtSignOut;
+    private TextView txtWelcomeUserId;
+    private RelativeLayout rLoutStaffSignOut;
 
-    @BindView(R.id.txtSignIn)
-    TextView txtSignIn;
-
-    @BindView(R.id.txtSignOut)
-    TextView txtSignOut;
-
-    @BindView(R.id.txtWelcomeUserId)
-    TextView txtWelcomeUserId;
-
-
-    @BindView(R.id.rLoutStaffSignOut)
-    RelativeLayout rLoutStaffSignOut;
+    private void initViews() {
+        rLoutStaffSignIn = findViewById(R.id.rLoutStaffSignIn);
+        txtSignIn = findViewById(R.id.txtSignIn);
+        txtSignOut = findViewById(R.id.txtSignOut);
+        txtWelcomeUserId = findViewById(R.id.txtWelcomeUserId);
+        rLoutStaffSignOut = findViewById(R.id.rLoutStaffSignOut);
+    }
 
     private static final String[] CAMERA_AND_STORAGE =
             {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -62,6 +59,8 @@ public class FireMarshalQrCodeScannerViewActivity extends BaseActivity implement
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
 
 //        initiateSignedInView();
 

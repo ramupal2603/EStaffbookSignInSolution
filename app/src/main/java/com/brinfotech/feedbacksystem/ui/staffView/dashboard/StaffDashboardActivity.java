@@ -16,25 +16,25 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.ui.staffView.qrCodeScannerView.QrCodeScannerViewActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import butterknife.BindView;
 
 public class StaffDashboardActivity extends BaseActivity {
 
 
-    @BindView(R.id.rLoutStaffView)
-    RelativeLayout rLoutStaffView;
+    private RelativeLayout rLoutStaffView;
+    private ImageView imgQrCodeView;
+    private TextView txtWelcomeUserId;
 
-    @BindView(R.id.imgQrCodeView)
-    ImageView imgQrCodeView;
-
-    @BindView(R.id.txtWelcomeUserId)
-    TextView txtWelcomeUserId;
+    private void initViews() {
+        rLoutStaffView = findViewById(R.id.rLoutStaffView);
+        imgQrCodeView = findViewById(R.id.imgQrCodeView);
+        txtWelcomeUserId = findViewById(R.id.txtWelcomeUserId);
+    }
 
     int REQUEST_QR_CODE_SCANNER;
 
@@ -43,6 +43,8 @@ public class StaffDashboardActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
 
         Bitmap qrCode = generateQRCode(Prefs.getString(PreferenceKeys.USER_ID, ""));
         displayQRCode(qrCode);

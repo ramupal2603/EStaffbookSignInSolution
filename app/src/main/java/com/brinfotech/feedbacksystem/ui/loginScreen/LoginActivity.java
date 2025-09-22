@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestModel;
 import com.brinfotech.feedbacksystem.data.loginData.LoginRequestParamsModel;
@@ -35,7 +35,6 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
@@ -45,30 +44,25 @@ import retrofit2.Response;
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ZXingScannerView.ResultHandler, EasyPermissions.PermissionCallbacks,
         EasyPermissions.RationaleCallbacks {
 
-    @BindView(R.id.qrCodeScannerView)
-    ZXingScannerView qrCodeScanner;
+    private ZXingScannerView qrCodeScanner;
+    private LinearLayout loutQrCodeLoginView;
+    private LinearLayout loutManualLoginView;
+    private RelativeLayout rLoutManualView;
+    private EditText edtUserName;
+    private EditText edtPwd;
+    private Button btnLogin;
+    private TextView txtQrCodeLogin;
 
-    @BindView(R.id.loutQrCodeLoginView)
-    LinearLayout loutQrCodeLoginView;
-
-    @BindView(R.id.loutManualLoginView)
-    LinearLayout loutManualLoginView;
-
-    @BindView(R.id.rLoutManualView)
-    RelativeLayout rLoutManualView;
-
-
-    @BindView(R.id.edtUserName)
-    EditText edtUserName;
-
-    @BindView(R.id.edtPwd)
-    EditText edtPwd;
-
-    @BindView(R.id.btnLogin)
-    Button btnLogin;
-
-    @BindView(R.id.txtQrCodeLogin)
-    TextView txtQrCodeLogin;
+    private void initViews() {
+        qrCodeScanner = findViewById(R.id.qrCodeScannerView);
+        loutQrCodeLoginView = findViewById(R.id.loutQrCodeLoginView);
+        loutManualLoginView = findViewById(R.id.loutManualLoginView);
+        rLoutManualView = findViewById(R.id.rLoutManualView);
+        edtUserName = findViewById(R.id.edtUserName);
+        edtPwd = findViewById(R.id.edtPwd);
+        btnLogin = findViewById(R.id.btnLogin);
+        txtQrCodeLogin = findViewById(R.id.txtQrCodeLogin);
+    }
 
     private static final String[] CAMERA_AND_STORAGE = {Manifest.permission.CAMERA};
 
@@ -78,6 +72,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
 
         initializeScannerView();
         rLoutManualView.setOnClickListener(this::onClick);

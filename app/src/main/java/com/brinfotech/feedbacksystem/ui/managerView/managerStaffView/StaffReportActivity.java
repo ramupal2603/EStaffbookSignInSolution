@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.staffReport.StaffReportDataModel;
 import com.brinfotech.feedbacksystem.data.staffReport.StaffReportParamsModel;
@@ -26,39 +26,33 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StaffReportActivity extends BaseActivity {
 
-    @BindView(R.id.rcvStaffReport)
-    RecyclerView rcvStaffReport;
+    private RecyclerView rcvStaffReport;
+    private TextView txtRemotelyWorkingCounter;
+    private TextView txtOfficeWorkingCounter;
+    private LinearLayout loutRemoteView;
+    private LinearLayout loutAllView;
+    private LinearLayout loutVisitor;
+    private TextView txtAllCounter;
+    private TextView txtVisitorCounter;
+    private LinearLayout loutOfficeView;
 
-    @BindView(R.id.txtRemotelyWorkingCounter)
-    TextView txtRemotelyWorkingCounter;
-
-    @BindView(R.id.txtOfficeWorkingCounter)
-    TextView txtOfficeWorkingCounter;
-
-    @BindView(R.id.loutRemoteView)
-    LinearLayout loutRemoteView;
-
-    @BindView(R.id.loutAllView)
-    LinearLayout loutAllView;
-
-    @BindView(R.id.loutVisitor)
-    LinearLayout loutVisitor;
-
-    @BindView(R.id.txtAllCounter)
-    TextView txtAllCounter;
-
-    @BindView(R.id.txtVisitorCounter)
-    TextView txtVisitorCounter;
-
-    @BindView(R.id.loutOfficeView)
-    LinearLayout loutOfficeView;
+    private void initViews() {
+        rcvStaffReport = findViewById(R.id.rcvStaffReport);
+        txtRemotelyWorkingCounter = findViewById(R.id.txtRemotelyWorkingCounter);
+        txtOfficeWorkingCounter = findViewById(R.id.txtOfficeWorkingCounter);
+        loutRemoteView = findViewById(R.id.loutRemoteView);
+        loutAllView = findViewById(R.id.loutAllView);
+        loutVisitor = findViewById(R.id.loutVisitor);
+        txtAllCounter = findViewById(R.id.txtAllCounter);
+        txtVisitorCounter = findViewById(R.id.txtVisitorCounter);
+        loutOfficeView = findViewById(R.id.loutOfficeView);
+    }
 
     StaffReportAdapter staffReportAdapter;
 
@@ -73,6 +67,8 @@ public class StaffReportActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
 
         setUpRecyclerView();
 

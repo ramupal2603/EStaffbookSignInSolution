@@ -21,8 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.MyApplication;
-import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.department.DepartmentRequestModel;
 import com.brinfotech.feedbacksystem.data.department.DepartmentRequestParamModel;
@@ -49,36 +49,12 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FireMarshalEvacuationActivity extends BaseActivity implements OnStaffSelectedListener {
 
-    @BindView(R.id.rcvFireEvacuationList)
-    RecyclerView rcvFireEvacuationList;
-
-    @BindView(R.id.txtVisitorListEmptyView)
-    TextView txtVisitorListEmptyView;
-
-    @BindView(R.id.loutAllView)
-    LinearLayout loutAllView;
-
-    @BindView(R.id.loutDepartment)
-    LinearLayout loutDepartment;
-
-    @BindView(R.id.btnSubmit)
-    Button btnSubmit;
-
-    @BindView(R.id.txtDeptName)
-    TextView txtDeptName;
-
-    @BindView(R.id.txtAllCounter)
-    TextView txtAllCounter;
-
-    @BindView(R.id.loutSuccessView)
-    LinearLayout loutSuccessView;
 
     FireEvacuationListAdapter fireEvacuationListAdapter;
     ArrayList<TodayVisitorDataModel> arrTodaysVisitor = new ArrayList<>();
@@ -89,9 +65,31 @@ public class FireMarshalEvacuationActivity extends BaseActivity implements OnSta
     HashMap<String, String> tempHashmap = new HashMap<>();
     private String selectedDeptId;
 
+    private RecyclerView rcvFireEvacuationList;
+    private TextView txtVisitorListEmptyView;
+    private LinearLayout loutAllView;
+    private LinearLayout loutDepartment;
+    private Button btnSubmit;
+    private TextView txtDeptName;
+    private TextView txtAllCounter;
+    private LinearLayout loutSuccessView;
+
+    private void initViews() {
+        rcvFireEvacuationList = findViewById(R.id.rcvFireEvacuationList);
+        txtVisitorListEmptyView = findViewById(R.id.txtVisitorListEmptyView);
+        loutAllView = findViewById(R.id.loutAllView);
+        loutDepartment = findViewById(R.id.loutDepartment);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        txtDeptName = findViewById(R.id.txtDeptName);
+        txtAllCounter = findViewById(R.id.txtAllCounter);
+        loutSuccessView = findViewById(R.id.loutSuccessView);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
 
         btnSubmit.setOnClickListener(this::onClick);
         loutDepartment.setOnClickListener(this::onClick);

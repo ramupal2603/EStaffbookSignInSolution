@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.brinfotech.feedbacksystem">
+    package="com.adverticoLTD.staffbooks">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +16,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
-        android:name=".MyApplication"
+        android:name="com.brinfotech.feedbacksystem.MyApplication"
         android:allowBackup="false"
         android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
@@ -25,7 +29,7 @@
         tools:targetApi="m">
 
 
-        <activity android:name=".ui.splashScreen.SplashScreenActivity" android:exported="true">
+        <activity android:name="com.brinfotech.feedbacksystem.ui.splashScreen.SplashScreenActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,43 +38,43 @@
         </activity>
 
         <activity
-            android:name=".ui.signatureView.SignatureViewActivity"
+            android:name="com.brinfotech.feedbacksystem.ui.signatureView.SignatureViewActivity"
             android:configChanges="keyboardHidden|orientation"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
 
-        <activity android:name=".ui.loginScreen.LoginActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity" />
 
-        <activity android:name=".ui.changePasswordView.ChangePasswordActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.changePasswordView.ChangePasswordActivity" />
 
-        <activity android:name=".ui.staffView.qrCodeScannerView.QrCodeScannerViewActivity" />
-        <activity android:name=".ui.managerView.qrCodeScannerView.ManagerQrCodeScannerViewActivity" />
-        <activity android:name=".ui.staffView.thankYouPage.ThankYouScreen" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.staffView.qrCodeScannerView.QrCodeScannerViewActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.managerView.qrCodeScannerView.ManagerQrCodeScannerViewActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.staffView.thankYouPage.ThankYouScreen" />
 
-        <activity android:name=".ui.managerView.managerDashboard.ManageDashboardActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.managerView.managerDashboard.ManageDashboardActivity" />
 
-        <activity android:name=".ui.managerView.managerStaffView.StaffReportActivity" />
-        <activity android:name=".ui.managerView.managerFireEvacuation.FireEvacuationActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.managerView.managerStaffView.StaffReportActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.managerView.managerFireEvacuation.FireEvacuationActivity" />
 
-        <activity android:name=".ui.fireMarshalView.dashboard.FireMarshalDashboardActivity" />
-        <activity android:name=".ui.fireMarshalView.qrCodeScannerView.FireMarshalQrCodeScannerViewActivity" />
-        <activity android:name=".ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity" />
-        <activity android:name=".ui.adminView.AdminSiteSelectionScreen" />
-        <activity android:name=".ui.adminView.adminDashboard.AdminDashboardActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.fireMarshalView.dashboard.FireMarshalDashboardActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.fireMarshalView.qrCodeScannerView.FireMarshalQrCodeScannerViewActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.fireMarshalView.fireEvacuation.FireMarshalEvacuationActivity" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.adminView.AdminSiteSelectionScreen" />
+        <activity android:name="com.brinfotech.feedbacksystem.ui.adminView.adminDashboard.AdminDashboardActivity" />
 
 
         <activity
-            android:name=".ui.staffView.dashboard.StaffDashboardActivity"
+            android:name="com.brinfotech.feedbacksystem.ui.staffView.dashboard.StaffDashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
 
-        <service android:name=".firebasePushNotification.MyFireBaseMessagingService" android:exported="false">
+        <service android:name="com.brinfotech.feedbacksystem.firebasePushNotification.MyFireBaseMessagingService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".firebasePushNotification.MyFirebaseInstanceIDService" android:exported="false">
+        <service android:name="com.brinfotech.feedbacksystem.firebasePushNotification.MyFirebaseInstanceIDService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>

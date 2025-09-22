@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
 

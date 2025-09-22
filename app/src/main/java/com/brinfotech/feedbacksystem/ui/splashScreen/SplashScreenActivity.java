@@ -3,13 +3,13 @@ package com.brinfotech.feedbacksystem.ui.splashScreen;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import com.brinfotech.feedbacksystem.BuildConfig;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.MyApplication;
-import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionRequestModel;
 import com.brinfotech.feedbacksystem.data.currentVersion.CurrentVersionRequestParamModel;
@@ -68,7 +68,7 @@ public class SplashScreenActivity extends BaseActivity {
         return requestModel;
     }
 
-    private void compareCurrentVersion(String currentVersion) {
+    /*private void compareCurrentVersion(String currentVersion) {
         String versionName = BuildConfig.VERSION_NAME;
 
         if (versionName.equals(currentVersion)) {
@@ -77,6 +77,22 @@ public class SplashScreenActivity extends BaseActivity {
             showUpdatePopUpDialog(currentVersion);
         }
 
+    }*/
+    private void compareCurrentVersion(String currentVersion) {
+        String versionName = "";
+        try {
+            versionName = getPackageManager()
+                    .getPackageInfo(getPackageName(), 0)
+                    .versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (versionName.equals(currentVersion)) {
+            redirectDashboardActivity();
+        } else {
+            showUpdatePopUpDialog(currentVersion);
+        }
     }
 
     private void showUpdatePopUpDialog(String latestVersion) {

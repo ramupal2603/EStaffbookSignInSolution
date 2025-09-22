@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.customClasses.ProgressLoader;
 import com.brinfotech.feedbacksystem.data.UnauthorizedEvent;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
@@ -46,30 +46,25 @@ import com.pixplicity.easyprefs.library.Prefs;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Optional;
-import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Unbinder unbinder = null;
-    @Nullable
-    @BindView(R.id.txtBack)
-    ImageView imgBack;
-    @Nullable
-    @BindView(R.id.txtTime)
-    TextView txtTime;
+    private ImageView imgBack;
+    private TextView txtTime;
     CountDownTimer newTimer;
     private ProgressLoader loader;
+
+    private void initViews() {
+        imgBack = findViewById(R.id.txtBack);
+        txtTime = findViewById(R.id.txtTime);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
-        unbinder = ButterKnife.bind(this);
         Utils.hideKeyBoard(getActivity());
+        initViews();
 
         showTime();
 
@@ -91,8 +86,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         newTimer.start();
     }
 
-    @Optional
-    @OnClick(R.id.txtBack)
+
     void onBackArrowPressed() {
         getActivity().finish();
     }
@@ -122,9 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
+
 
         if (newTimer != null) {
             newTimer.cancel();

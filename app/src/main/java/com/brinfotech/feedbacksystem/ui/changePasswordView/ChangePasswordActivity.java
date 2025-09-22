@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.changePassword.ChangePasswordRequestModel;
 import com.brinfotech.feedbacksystem.data.changePassword.ChangePasswordRequestParamModel;
@@ -26,25 +26,23 @@ import com.brinfotech.feedbacksystem.network.utils.NetworkUtils;
 import com.brinfotech.feedbacksystem.ui.loginScreen.LoginActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChangePasswordActivity extends BaseActivity {
 
-    @BindView(R.id.edtNewPassword)
-    EditText edtNewPassword;
+    private EditText edtNewPassword;
+    private EditText edtConfirmPassword;
+    private Button btnUpdate;
+    private ImageView imgToggleView;
 
-    @BindView(R.id.edtConfirmPassword)
-    EditText edtConfirmPassword;
-
-    @BindView(R.id.btnUpdate)
-    Button btnUpdate;
-
-    @BindView(R.id.imgToggleView)
-    ImageView imgToggleView;
-
+    private void initViews() {
+        edtNewPassword = findViewById(R.id.edtNewPassword);
+        edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        imgToggleView = findViewById(R.id.imgToggleView);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

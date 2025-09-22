@@ -2,7 +2,8 @@ package com.brinfotech.feedbacksystem.helpers;
 
 import android.graphics.Color;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
+
 
 public enum PasswordStrength {
 

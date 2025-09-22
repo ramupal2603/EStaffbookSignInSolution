@@ -8,28 +8,30 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.brinfotech.feedbacksystem.R;
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.helpers.ConstantClass;
 import com.brinfotech.feedbacksystem.helpers.PreferenceKeys;
 import com.brinfotech.feedbacksystem.network.utils.WebApiHelper;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import butterknife.BindView;
 
 public class ThankYouScreen extends BaseActivity {
 
-    @BindView(R.id.txtUserName)
-    TextView txtUserName;
+    private TextView txtUserName;
+    private TextView txtThanksMessage;
 
-    @BindView(R.id.txtThanksMessage)
-    TextView txtThanksMessage;
-
+    private void initViews() {
+        txtUserName = findViewById(R.id.txtUserName);
+        txtThanksMessage = findViewById(R.id.txtThanksMessage);
+    }
     String status;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
 
         getIntentData();
 

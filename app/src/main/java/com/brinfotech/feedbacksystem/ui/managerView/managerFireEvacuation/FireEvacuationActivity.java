@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.adverticoLTD.staffbooks.R;
 import com.brinfotech.feedbacksystem.MyApplication;
-import com.brinfotech.feedbacksystem.R;
 import com.brinfotech.feedbacksystem.baseClasses.BaseActivity;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationParamModel;
 import com.brinfotech.feedbacksystem.data.importFireEvacuation.ImportFireEvacuationRequestModel;
@@ -37,24 +37,23 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FireEvacuationActivity extends BaseActivity implements OnStaffSelectedListener {
 
-    @BindView(R.id.rcvFireEvacuationList)
-    RecyclerView rcvFireEvacuationList;
+    private RecyclerView rcvFireEvacuationList;
+    private TextView txtVisitorListEmptyView;
+    private Button btnSubmit;
+    private LinearLayout loutSuccessView;
 
-    @BindView(R.id.txtVisitorListEmptyView)
-    TextView txtVisitorListEmptyView;
-
-    @BindView(R.id.btnSubmit)
-    Button btnSubmit;
-
-    @BindView(R.id.loutSuccessView)
-    LinearLayout loutSuccessView;
+    private void initViews() {
+        rcvFireEvacuationList = findViewById(R.id.rcvFireEvacuationList);
+        txtVisitorListEmptyView = findViewById(R.id.txtVisitorListEmptyView);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        loutSuccessView = findViewById(R.id.loutSuccessView);
+    }
 
     FireEvacuationListAdapter fireEvacuationListAdapter;
     ArrayList<TodayVisitorDataModel> arrTodaysVisitor = new ArrayList<>();
@@ -65,6 +64,8 @@ public class FireEvacuationActivity extends BaseActivity implements OnStaffSelec
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
 
         btnSubmit.setOnClickListener(this::onClick);
         setUpRecyclerView();

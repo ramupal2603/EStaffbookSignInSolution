@@ -9,8 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 
-import com.brinfotech.feedbacksystem.R;
-
+import com.adverticoLTD.staffbooks.R;
 
 
 public class ProgressLoader extends Dialog {
