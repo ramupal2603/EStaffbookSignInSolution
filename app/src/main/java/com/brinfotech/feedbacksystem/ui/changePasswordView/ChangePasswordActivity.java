@@ -48,6 +48,8 @@ public class ChangePasswordActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initViews();
+
         btnUpdate.setOnClickListener(this::onClick);
         imgToggleView.setOnClickListener(new View.OnClickListener() {
             @Override
